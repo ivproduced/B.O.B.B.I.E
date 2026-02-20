@@ -1,0 +1,159 @@
+{
+  "control_id": "PL-2",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 38,
+  "objectives": [
+    {
+      "objective_id": "pl-2_obj.a.1-1",
+      "objective_prose": "a security plan for the system is developed that is consistent with the organization\u2019s enterprise architecture;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.1-2",
+      "objective_prose": "a privacy plan for the system is developed that is consistent with the organization\u2019s enterprise architecture;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.2-1",
+      "objective_prose": "a security plan for the system is developed that explicitly defines the constituent system components;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.2-2",
+      "objective_prose": "a privacy plan for the system is developed that explicitly defines the constituent system components;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.3-1",
+      "objective_prose": "a security plan for the system is developed that describes the operational context of the system in terms of mission and business processes;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.3-2",
+      "objective_prose": "a privacy plan for the system is developed that describes the operational context of the system in terms of mission and business processes;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.4-1",
+      "objective_prose": "a security plan for the system is developed that identifies the individuals that fulfill system roles and responsibilities;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.4-2",
+      "objective_prose": "a privacy plan for the system is developed that identifies the individuals that fulfill system roles and responsibilities;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.5-1",
+      "objective_prose": "a security plan for the system is developed that identifies the information types processed, stored, and transmitted by the system;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.5-2",
+      "objective_prose": "a privacy plan for the system is developed that identifies the information types processed, stored, and transmitted by the system;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.6-1",
+      "objective_prose": "a security plan for the system is developed that provides the security categorization of the system, including supporting rationale;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.6-2",
+      "objective_prose": "a privacy plan for the system is developed that provides the security categorization of the system, including supporting rationale;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.7-1",
+      "objective_prose": "a security plan for the system is developed that describes any specific threats to the system that are of concern to the organization;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.7-2",
+      "objective_prose": "a privacy plan for the system is developed that describes any specific threats to the system that are of concern to the organization;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.8-1",
+      "objective_prose": "a security plan for the system is developed that provides the results of a privacy risk assessment for systems processing personally identifiable information;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.8-2",
+      "objective_prose": "a privacy plan for the system is developed that provides the results of a privacy risk assessment for systems processing personally identifiable information;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.9-1",
+      "objective_prose": "a security plan for the system is developed that describes the operational environment for the system and any dependencies on or connections to other systems or system components;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.9-2",
+      "objective_prose": "a privacy plan for the system is developed that describes the operational environment for the system and any dependencies on or connections to other systems or system components;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.10-1",
+      "objective_prose": "a security plan for the system is developed that provides an overview of the security requirements for the system;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.10-2",
+      "objective_prose": "a privacy plan for the system is developed that provides an overview of the privacy requirements for the system;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.11-1",
+      "objective_prose": "a security plan for the system is developed that identifies any relevant control baselines or overlays, if applicable;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.11-2",
+      "objective_prose": "a privacy plan for the system is developed that identifies any relevant control baselines or overlays, if applicable;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.12-1",
+      "objective_prose": "a security plan for the system is developed that describes the controls in place or planned for meeting the security requirements, including rationale for any tailoring decisions;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.12-2",
+      "objective_prose": "a privacy plan for the system is developed that describes the controls in place or planned for meeting the privacy requirements, including rationale for any tailoring decisions;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.13-1",
+      "objective_prose": "a security plan for the system is developed that includes risk determinations for security architecture and design decisions;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.13-2",
+      "objective_prose": "a privacy plan for the system is developed that includes risk determinations for privacy architecture and design decisions;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.14-1",
+      "objective_prose": "a security plan for the system is developed that includes security-related activities affecting the system that require planning and coordination with {{ insert: param, pl-02_odp.01 }};"
+    },
+    {
+      "objective_id": "pl-2_obj.a.14-2",
+      "objective_prose": "a privacy plan for the system is developed that includes privacy-related activities affecting the system that require planning and coordination with {{ insert: param, pl-02_odp.01 }};"
+    },
+    {
+      "objective_id": "pl-2_obj.a.15-1",
+      "objective_prose": "a security plan for the system is developed that is reviewed and approved by the authorizing official or designated representative prior to plan implementation;"
+    },
+    {
+      "objective_id": "pl-2_obj.a.15-2",
+      "objective_prose": "a privacy plan for the system is developed that is reviewed and approved by the authorizing official or designated representative prior to plan implementation."
+    },
+    {
+      "objective_id": "pl-2_obj.b-1",
+      "objective_prose": "copies of the plans are distributed to {{ insert: param, pl-02_odp.02 }};"
+    },
+    {
+      "objective_id": "pl-2_obj.b-2",
+      "objective_prose": "subsequent changes to the plans are communicated to {{ insert: param, pl-02_odp.02 }};"
+    },
+    {
+      "objective_id": "pl-2_obj.c",
+      "objective_prose": "plans are reviewed {{ insert: param, pl-02_odp.03 }};"
+    },
+    {
+      "objective_id": "pl-2_obj.d-1",
+      "objective_prose": "plans are updated to address changes to the system and environment of operations;"
+    },
+    {
+      "objective_id": "pl-2_obj.d-2",
+      "objective_prose": "plans are updated to address problems identified during the plan implementation;"
+    },
+    {
+      "objective_id": "pl-2_obj.d-3",
+      "objective_prose": "plans are updated to address problems identified during control assessments;"
+    },
+    {
+      "objective_id": "pl-2_obj.e-1",
+      "objective_prose": "plans are protected from unauthorized disclosure;"
+    },
+    {
+      "objective_id": "pl-2_obj.e-2",
+      "objective_prose": "plans are protected from unauthorized modification."
+    }
+  ]
+}

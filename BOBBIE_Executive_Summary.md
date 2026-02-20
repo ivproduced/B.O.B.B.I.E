@@ -24,7 +24,7 @@ Federal agencies and contractors spend **$200M+ annually** on manual security co
 ### The Solution
 
 BOBBIE automates compliance validation through:
-- **10 specialized AI agents** (hackathon demo) assessing NIST 800-53 controls in parallel
+- **20 family AI agents** (1 per NIST control family target architecture), with an 8-family subset active for the hackathon demo
 - **Autonomous data collection** from AWS CloudWatch, Systems Manager, OSCAL documents, Windows event logs
 - **AI-powered analysis** using Nova Pro's 128K context window for complex reasoning
 - **Actionable remediation** with specific fix recommendations and POA&M generation
@@ -60,7 +60,11 @@ User Interface (CLI + Streamlit Web UI)
     ↓
 BOBBIEOrchestrator (Master Agent)
     ↓
-10 Specialized Control Agents (Parallel Execution)
+20 Family Agents (Parallel Execution, target architecture)
+  ├─ Hackathon-active families: AC, AU, CM, IA, PL, PM, RA, SI
+  └─ Remaining families: scaffolded for production rollout
+  ↓
+Family Agent Internal Control Routing
     ├─ PL2Agent: SSP Validation
     ├─ PM9Agent: Risk Register
     ├─ SI4Agent: CloudWatch Monitoring
@@ -82,9 +86,9 @@ Assessment Report + POA&M + Remediation Guidance
 ## Key Features
 
 ### 1. Multi-Agent Architecture
-- **11 total agents:** 1 orchestrator + 10 control specialists
-- **Parallel execution:** All agents run simultaneously for speed
-- **Autonomous operation:** Each agent independently collects evidence and analyzes
+- **21 total agents (target):** 1 orchestrator + 20 family agents
+- **Parallel execution:** Family agents run simultaneously for speed
+- **Autonomous operation:** Each family agent independently collects evidence and analyzes controls in-scope
 - **Fault-tolerant:** Failed agent doesn't crash entire assessment
 
 ### 2. Hybrid Intelligence
@@ -248,7 +252,7 @@ Assessment Report + POA&M + Remediation Guidance
 **Technical Implementation (40% weight)**
 - ✅ Amazon Nova Pro integration with 128K context
 - ✅ LangChain multi-agent orchestration
-- ✅ 10 control agents with parallel execution
+- ✅ Family-agent orchestration with 10-control demo execution
 - ✅ Accessible AWS architecture ($15-30 cost)
 
 **Enterprise Impact (20% weight)**
@@ -290,7 +294,7 @@ Assessment Report + POA&M + Remediation Guidance
 | **Project Name** | BOBBIE (Bot Oversight & Boundary Benchmarking Inference Engine) |
 | **AI Model** | Amazon Nova Pro (128K context) |
 | **Framework** | LangChain + AWS Bedrock |
-| **Agents** | 11 total (1 orchestrator + 10 control agents) |
+| **Agents** | 21 target (1 orchestrator + 20 family agents); 9 active in demo path (1 orchestrator + 8 family agents) |
 | **Controls (Demo)** | 10 NIST SP 800-53 Rev 5 controls |
 | **Controls (Production)** | 48 controls (9-month roadmap) |
 | **Assessment Time** | 15-30 minutes (vs. 2-4 weeks manual) |

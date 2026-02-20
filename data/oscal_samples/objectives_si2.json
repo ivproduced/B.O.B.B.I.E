@@ -1,0 +1,47 @@
+{
+  "control_id": "SI-2",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 10,
+  "objectives": [
+    {
+      "objective_id": "si-2_obj.a-1",
+      "objective_prose": "system flaws are identified;"
+    },
+    {
+      "objective_id": "si-2_obj.a-2",
+      "objective_prose": "system flaws are reported;"
+    },
+    {
+      "objective_id": "si-2_obj.a-3",
+      "objective_prose": "system flaws are corrected;"
+    },
+    {
+      "objective_id": "si-2_obj.b-1",
+      "objective_prose": "software updates related to flaw remediation are tested for effectiveness before installation;"
+    },
+    {
+      "objective_id": "si-2_obj.b-2",
+      "objective_prose": "software updates related to flaw remediation are tested for potential side effects before installation;"
+    },
+    {
+      "objective_id": "si-2_obj.b-3",
+      "objective_prose": "firmware updates related to flaw remediation are tested for effectiveness before installation;"
+    },
+    {
+      "objective_id": "si-2_obj.b-4",
+      "objective_prose": "firmware updates related to flaw remediation are tested for potential side effects before installation;"
+    },
+    {
+      "objective_id": "si-2_obj.c-1",
+      "objective_prose": "security-relevant software updates are installed within {{ insert: param, si-02_odp }} of the release of the updates;"
+    },
+    {
+      "objective_id": "si-2_obj.c-2",
+      "objective_prose": "security-relevant firmware updates are installed within {{ insert: param, si-02_odp }} of the release of the updates;"
+    },
+    {
+      "objective_id": "si-2_obj.d",
+      "objective_prose": "flaw remediation is incorporated into the organizational configuration management process."
+    }
+  ]
+}

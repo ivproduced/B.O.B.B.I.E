@@ -11,14 +11,16 @@
 
 ## Executive Summary
 
-BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator agent coordinating 10 specialized control assessment agents. Each agent operates autonomously with dedicated tools and data sources, enabling parallel execution for sub-30-minute full assessments of 10 NIST 800-53 controls.
+BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator agent coordinating **20 family agents** (1 per NIST control family). Each family agent evaluates one or more controls in its family using dedicated tools and data sources, enabling parallel execution for sub-30-minute full assessments.
 
 **Key Design Principles:**
-- **Autonomy:** Each control agent independently assesses its assigned control
+- **Autonomy:** Each family agent independently assesses controls in its assigned family
 - **Specialization:** Agents tailored to specific data sources (OSCAL, AWS APIs, EVTX logs, mock data)
-- **Parallelization:** All 10 agents execute simultaneously to minimize assessment time
+- **Parallelization:** Family agents execute simultaneously to minimize assessment time
 - **Determinism:** Hybrid approach combining deterministic logic with Nova Pro reasoning
-- **Modularity:** Agents are plug-and-play for easy extension to 48+ controls
+- **Modularity:** Family agents are plug-and-play for easy extension to 48+ controls
+
+**Hackathon Scope Note:** The current demo activates 8 family agents (AC, AU, CM, IA, PL, PM, RA, SI) covering 10 controls.
 
 ---
 
@@ -39,7 +41,7 @@ BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator a
 │              Master Orchestrator Agent (Layer 1)              │
 │  ┌─────────────────────────────────────────────────────────┐ │
 │  │ BOBBIEOrchestrator                                      │ │
-│  │ • Coordinates all 10 control agents                     │ │
+│  │ • Coordinates all active family agents                  │ │
 │  │ • Manages parallel execution                            │ │
 │  │ • Aggregates results into compliance report             │ │
 │  │ • Generates POA&M entries                               │ │
@@ -52,7 +54,7 @@ BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator a
                     └────────────┬────────────┘
                                  ▼
 ┌───────────────────────────────────────────────────────────────┐
-│           Control Assessment Agents (Layer 2 - 10 Agents)     │
+│         Family Assessment Agents (Layer 2 - 20 Target)        │
 ├───────────────────────────────────────────────────────────────┤
 │  OSCAL Document Analysis Agents (2)                           │
 │  ┌──────────────────┐  ┌──────────────────┐                  │
@@ -119,13 +121,13 @@ BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator a
 #### **BOBBIEOrchestrator**
 - **Role:** System coordinator and compliance report generator
 - **Responsibilities:**
-  - Dispatch assessment requests to all 10 control agents
+  - Dispatch assessment requests to active family agents
   - Manage parallel execution with timeout handling
   - Aggregate individual control results
   - Calculate overall compliance score
   - Generate POA&M entries for failures
   - Produce executive summary with remediation priorities
-- **Tools Used:** All 10 control agents wrapped as LangChain Tools
+- **Tools Used:** Family agents wrapped as LangChain Tools (8 active in hackathon demo)
 - **Nova Pro Usage:** 
   - Synthesize findings across controls
   - Generate context-aware remediation recommendations
@@ -873,13 +875,13 @@ logger.info(f"PL2Agent: Status=FAIL, Confidence=0.95")
 ## Development Roadmap
 
 ### **Phase 1: Hackathon Demo (~30 Days Remaining)**
-- ✅ 1 orchestrator + 10 control agents
+- ✅ 1 orchestrator + 8 active family agents (covering 10 controls)
 - ✅ Parallel execution
 - ✅ Basic error handling
 - ✅ CLI + Streamlit UI
 
 ### **Phase 2: Production MVP (Post-Hackathon Months 1-3)**
-- Add 9 more agents (19 total for Tier 1 controls)
+- Expand to 20 total family agents (1 per NIST family)
 - Implement grouped execution strategy
 - Add Splunk, ServiceNow integration
 - Database persistence for assessment history
@@ -993,7 +995,7 @@ Capture and correlate:
 
 | Domain | Must Have | Exit Criteria |
 |-------|-----------|---------------|
-| Core orchestration | 1 orchestrator + 10 control agents | All 10 controls execute and aggregate in one report |
+| Core orchestration | 1 orchestrator + family-agent routing (8 active families in demo) | All 10 controls execute and aggregate in one report |
 | Execution mode | Parallel dispatch | Full run completes in ≤30 minutes (P95 target) |
 | Error handling | Per-agent try/except + timeout | Failed agents return `ERROR` without crashing full run |
 | Output | Standardized `ControlAssessment` + summary + POA&M | Report includes status for every control |

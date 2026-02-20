@@ -1,0 +1,7 @@
+langchain
+langchain-aws
+boto3
+pydantic
+streamlit
+python-evtx
+pytest

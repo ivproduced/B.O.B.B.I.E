@@ -8,6 +8,105 @@
 
 ---
 
+## Phased, Actionable Checklist (Build-Out Start Here)
+
+Use this section as the execution tracker. Keep this list current daily and treat each phase gate as required before moving forward.
+
+### Phase 0 — Project Activation (Day 0)
+**Outcome:** Repo and execution cadence are in place.
+- [ ] Confirm final scope freeze: 10 demo controls only (PL-2, PM-9, SI-4, CM-8, SI-2, AC-2, AC-7, AU-3, IA-5, RA-5)
+- [ ] Assign owners for architecture, agent implementation, data/tooling, UI/demo, and QA
+- [ ] Create milestone calendar from Feb 14 → Mar 16 with review checkpoints every 3 days
+- [ ] Define definition-of-done for each control: deterministic checks + Nova reasoning + structured output + test evidence
+- [ ] Open risk log (AWS access, data availability, model/runtime failures, timeline risk)
+
+**Gate to Phase 1:** Owners assigned, calendar published, risk log started, scope frozen.
+
+### Phase 1 — Foundation & Environment (Days 1-5)
+**Outcome:** System skeleton runs with one end-to-end control (PL-2).
+- [ ] Provision AWS Bedrock access and verify `amazon.nova-pro-v1:0` invocation works
+- [ ] Initialize Python environment and lock dependencies
+- [ ] Scaffold project structure (`src/agents`, `src/tools`, `src/models`, `src/parsers`, `tests`, `data/*`)
+- [ ] Implement Nova client + `ControlAssessment` schema
+- [ ] Implement first tool path for OSCAL ingestion and validation
+- [ ] Build `PL2Agent` end-to-end (input SSP → assessment JSON)
+- [ ] Add smoke test and CLI command for single-control run
+
+**Gate to Phase 2:** PL-2 runs successfully from CLI with reproducible output and no blocking defects.
+
+### Phase 2 — Control Agent Buildout (Days 6-18)
+**Outcome:** All 10 demo controls execute through family-agent routing (8 active families).
+
+**Track A: OSCAL agents (PL-2, PM-9)**
+- [x] Finalize OSCAL parser/validator coverage for required sections and baseline mapping
+- [x] Implement PM-9 risk scoring and approval checks
+
+**Track B: AWS agents (SI-4, CM-8, SI-2)**
+- [x] Implement CloudWatch gap/anomaly checks
+- [x] Implement SSM inventory reconciliation against mock/system inventory
+- [x] Implement patch compliance + NVD/KEV cross-reference logic
+
+**Track C: EVTX agents (AC-2, AC-7, AU-3)**
+- [x] Parse required Windows events (4625, 4720, 4722, 4738, 4740)
+- [x] Implement account/ticket correlation and failed-logon lockout verification
+- [x] Implement AU-3 field completeness and sensitive-data pattern checks
+
+**Track D: Mock-data agents (IA-5, RA-5)**
+- [x] Implement password policy validator aligned to NIST 800-63B thresholds
+- [x] Implement vulnerability SLA logic + KEV enrichment + coverage checks
+
+**Gate to Phase 3:** 10/10 agents return valid `ControlAssessment` outputs on sample data.
+
+### Phase 3 — Orchestration & Reporting (Days 19-23)
+**Outcome:** One-command full assessment with consolidated outputs.
+- [x] Implement orchestrator with parallel dispatch, timeout handling, and failure isolation
+- [x] Aggregate agent outputs into overall compliance score and prioritized findings
+- [x] Generate POA&M-ready remediation entries
+- [x] Add deterministic run mode (fixed prompts/config) for reproducibility
+- [x] Export report artifacts (JSON + human-readable summary)
+
+**Gate to Phase 4:** Full 10-control run completes under target runtime with stable aggregated output.
+
+### Phase 4 — Demo Experience & Hardening (Days 24-27)
+**Outcome:** Demo-ready user experience and reliable runbook.
+- [x] Build/finish Streamlit demo flow (upload/select data → run assessment → view results)
+- [x] Add clear error messages and fallback behavior for missing data/API failures
+- [x] Add validation script for pre-demo checks (credentials, data files, service reachability)
+- [x] Run 3 full dry-runs and capture known issues + fixes
+- [x] Freeze demo dataset and expected output snapshots
+
+**Gate to Phase 5:** Demo can be executed start-to-finish by a teammate using only the runbook.
+
+### Phase 5 — Submission Packaging (Days 28-30)
+**Outcome:** Hackathon package complete and review-ready.
+- [x] Finalize README with setup, architecture diagram, and run commands
+- [x] Prepare 3-minute demo script (problem → live run → outcomes)
+- [ ] Record and edit demo video with one backup take
+- [ ] Publish/submission-check all required assets (repo, docs, video, optional blog)
+- [x] Conduct final checklist review against judging criteria
+
+**Gate to Complete:** All submission artifacts delivered and validated against requirements.
+
+### Cross-Phase Operating Checklist (Daily)
+- [ ] Daily 15-minute standup with blockers and risk updates
+- [ ] Update this checklist and milestone status before end-of-day
+- [ ] Keep one stable demo branch and one active development branch
+- [ ] Maintain issue triage: blocker/high/medium/low with explicit owners
+- [ ] Re-test previously passing controls after any shared-tool changes
+
+### Family-Agent Architecture Track (New)
+**Objective:** Shift to 1 agent per NIST control family (20 family agents) while keeping the hackathon demo at 10 controls.
+- [ ] Define canonical family-agent contract (`family_id`, `controls_supported`, `collect_evidence()`, `assess_control()`, `aggregate_family_results()`)
+- [ ] Create family registry (`src/agents/family_registry.py`) for dynamic loading/routing
+- [ ] Refactor current control agents into family containers for active demo families (AC, AU, CM, IA, PL, PM, RA, SI)
+- [ ] Keep non-demo families scaffolded with stubs and explicit `NOT_IMPLEMENTED` status
+- [ ] Update orchestrator to dispatch by family first, then by control within family
+- [ ] Add output shape for family-level summaries + control-level details
+
+**Gate:** Demo run executes via family-agent routing and returns the same 10 control outputs.
+
+---
+
 ## Technical Architecture
 
 ### Core Technology Stack
@@ -20,7 +119,7 @@
 │  └─ Streamlit/Gradio Web UI                        │
 ├─────────────────────────────────────────────────────┤
 │  LangChain Orchestration Layer                      │
-│  ├─ Agent Executor (10 control agents)             │
+│  ├─ Family Agent Executor (20 family agents target)│
 │  ├─ Tool Integration (AWS APIs, EVTX parser)       │
 │  ├─ Memory (Conversation buffer for multi-step)    │
 │  └─ Output Parsers (Structured remediation)        │

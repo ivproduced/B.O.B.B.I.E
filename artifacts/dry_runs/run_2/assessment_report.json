@@ -1,0 +1,1042 @@
+{
+  "assessment_date": "2026-02-14T20:53:02.911068+00:00",
+  "system_name": "BOBBIE Dry Run 2",
+  "bobbie_version": "phase3",
+  "summary": {
+    "total_controls": 10,
+    "passed": 10,
+    "failed": 0,
+    "compliance_score": 100.0,
+    "deterministic_mode": true,
+    "prioritized_findings": [],
+    "poam_items": []
+  },
+  "families": {
+    "AC": {
+      "controls": {
+        "AC-2": {
+          "control_id": "AC-2",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Use baseline tags with EVTX evidence checks for final AC assessment",
+            "Correlate account and lockout events to objective statements",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ac-2",
+            "title": "Account Management",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "account_events": [
+                {
+                  "account_id": "svc-app-01",
+                  "event_id": 4720,
+                  "timestamp": "2026-02-14T12:00:00.000Z"
+                },
+                {
+                  "account_id": "svc-app-01",
+                  "event_id": 4738,
+                  "timestamp": "2026-02-14T12:10:00.000Z"
+                }
+              ],
+              "approved_tickets": [
+                {
+                  "account_id": "svc-app-01",
+                  "isso_approved": true
+                }
+              ],
+              "status_change_notifications": true
+            },
+            "objective_results": [
+              {
+                "objective_id": "ac-2_obj.a-1",
+                "met": true,
+                "reason": "Account lifecycle evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.a-2",
+                "met": true,
+                "reason": "Account lifecycle evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.b",
+                "met": true,
+                "reason": "Account lifecycle evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.c",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.d.1",
+                "met": true,
+                "reason": "All account events mapped to approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.d.2",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.d.3-1",
+                "met": true,
+                "reason": "All account events mapped to approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.d.3-2",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.e",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.f-1",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.f-2",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.f-3",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.f-4",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.f-5",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.g",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.h.1",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.h.2",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.h.3",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.i.1",
+                "met": true,
+                "reason": "All account events mapped to approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.i.2",
+                "met": true,
+                "reason": "All account events mapped to approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.i.3",
+                "met": true,
+                "reason": "All account events mapped to approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.j",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.k-1",
+                "met": true,
+                "reason": "Account lifecycle evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.k-2",
+                "met": true,
+                "reason": "Lifecycle enforcement evidence present"
+              },
+              {
+                "objective_id": "ac-2_obj.l-1",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              },
+              {
+                "objective_id": "ac-2_obj.l-2",
+                "met": true,
+                "reason": "Generic objective inference from available account evidence"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        },
+        "AC-7": {
+          "control_id": "AC-7",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Use baseline tags with EVTX evidence checks for final AC assessment",
+            "Correlate account and lockout events to objective statements",
+            "Enforce account lockout after failed authentication threshold"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.94,
+          "evidence": {
+            "control_id": "ac-7",
+            "title": "Unsuccessful Logon Attempts",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "failed_logons": [
+                {
+                  "username": "locked-user",
+                  "timestamp": "2026-02-14T12:05:00.000Z"
+                },
+                {
+                  "username": "locked-user",
+                  "timestamp": "2026-02-14T12:06:00.000Z"
+                },
+                {
+                  "username": "locked-user",
+                  "timestamp": "2026-02-14T12:07:00.000Z"
+                }
+              ],
+              "lockouts": [
+                "locked-user"
+              ]
+            },
+            "objective_results": [],
+            "effectiveness": "UNKNOWN"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 2,
+        "passed": 2,
+        "failed": 0
+      }
+    },
+    "AU": {
+      "controls": {
+        "AU-3": {
+          "control_id": "AU-3",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+            "Map missing fields to POA&M-ready remediation language",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "au-3",
+            "title": "Content of Audit Records",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "records": [
+                {
+                  "timestamp": "2026-02-14T12:00:00.000Z",
+                  "event_type": "4720",
+                  "subject": "svc-app-01",
+                  "outcome": "SUCCESS",
+                  "source_ip": "10.0.0.10"
+                },
+                {
+                  "timestamp": "2026-02-14T12:05:00.000Z",
+                  "event_type": "4625",
+                  "subject": "locked-user",
+                  "outcome": "FAILURE",
+                  "source_ip": "10.0.0.12"
+                },
+                {
+                  "timestamp": "2026-02-14T12:06:00.000Z",
+                  "event_type": "4625",
+                  "subject": "locked-user",
+                  "outcome": "FAILURE",
+                  "source_ip": "10.0.0.12"
+                },
+                {
+                  "timestamp": "2026-02-14T12:07:00.000Z",
+                  "event_type": "4625",
+                  "subject": "locked-user",
+                  "outcome": "FAILURE",
+                  "source_ip": "10.0.0.12"
+                },
+                {
+                  "timestamp": "2026-02-14T12:08:00.000Z",
+                  "event_type": "4740",
+                  "subject": "locked-user",
+                  "outcome": "SUCCESS",
+                  "source_ip": "10.0.0.12"
+                },
+                {
+                  "timestamp": "2026-02-14T12:10:00.000Z",
+                  "event_type": "4738",
+                  "subject": "svc-app-01",
+                  "outcome": "SUCCESS",
+                  "source_ip": "10.0.0.10"
+                }
+              ],
+              "pii_detections": 0
+            },
+            "objective_results": [
+              {
+                "objective_id": "au-3_obj.a",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              },
+              {
+                "objective_id": "au-3_obj.b",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              },
+              {
+                "objective_id": "au-3_obj.c",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              },
+              {
+                "objective_id": "au-3_obj.d",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              },
+              {
+                "objective_id": "au-3_obj.e",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              },
+              {
+                "objective_id": "au-3_obj.f",
+                "met": true,
+                "reason": "Audit records include required AU-3 content"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "CM": {
+      "controls": {
+        "CM-8": {
+          "control_id": "CM-8",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Use CM-8 baseline mapping with SSM inventory reconciliation checks",
+            "Track inventory deltas and ownership metadata in final control output",
+            "Reconcile expected and discovered inventory sets"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.94,
+          "evidence": {
+            "control_id": "cm-8",
+            "title": "System Component Inventory",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "inventory_expected": [
+                "i-001",
+                "i-002",
+                "i-003"
+              ],
+              "inventory_discovered": [
+                "i-001",
+                "i-002",
+                "i-003"
+              ]
+            }
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "IA": {
+      "controls": {
+        "IA-5": {
+          "control_id": "IA-5",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+            "Document policy deviations and compensating controls in POA&M output",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ia-5",
+            "title": "Authenticator Management",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "policy": {
+                "MinimumLength": 14,
+                "ComplexityEnabled": true,
+                "PasswordHistory": 24,
+                "MaximumAge": 60
+              },
+              "weak_algorithms": []
+            },
+            "objective_results": [
+              {
+                "objective_id": "ia-5_obj.a",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.b",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.c",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.d",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.e",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.f",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.g",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.h-1",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.h-2",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              },
+              {
+                "objective_id": "ia-5_obj.i",
+                "met": true,
+                "reason": "Policy meets IA-5 thresholds"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "PL": {
+      "controls": {
+        "PL-2": {
+          "control_id": "PL-2",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Confirm baseline selection aligns with system impact level",
+            "Use baseline tags for family-agent control routing",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "pl-2",
+            "title": "System Security and Privacy Plans",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": true
+            },
+            "control_evidence": {
+              "sections_present": [
+                "system-characteristics",
+                "control-implementation",
+                "system-implementation",
+                "metadata"
+              ],
+              "missing_baseline_controls": 0,
+              "stale_approvals": 0
+            },
+            "objective_results": [
+              {
+                "objective_id": "pl-2_obj.a.1-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.1-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.2-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.2-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.3-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.3-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.4-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.4-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.5-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.5-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.6-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.6-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.7-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.7-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.8-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.8-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.9-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.9-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.10-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.10-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.11-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.11-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.12-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.12-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.13-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.13-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.14-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.14-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.15-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.a.15-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.b-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.b-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.c",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.d-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.d-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.d-3",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.e-1",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              },
+              {
+                "objective_id": "pl-2_obj.e-2",
+                "met": true,
+                "reason": "Required SSP sections are present"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "PM": {
+      "controls": {
+        "PM-9": {
+          "control_id": "PM-9",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Use PM-9 baseline membership as routing input for risk-register checks",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "pm-9",
+            "title": "Risk Management Strategy",
+            "baselines": {
+              "LOW": false,
+              "MODERATE": false,
+              "HIGH": false,
+              "PRIVACY": true
+            },
+            "control_evidence": {
+              "risks": [
+                {
+                  "id": "R-001",
+                  "likelihood": 2,
+                  "impact": 3,
+                  "score": 6,
+                  "approved": true,
+                  "mitigation": "Segmentation and monitoring controls"
+                },
+                {
+                  "id": "R-002",
+                  "likelihood": 1,
+                  "impact": 3,
+                  "score": 3,
+                  "approved": true,
+                  "mitigation": "Compensating detective control"
+                }
+              ]
+            },
+            "objective_results": [
+              {
+                "objective_id": "pm-9_obj.a.1",
+                "met": true,
+                "reason": "Risk assessment inventory and scoring are valid"
+              },
+              {
+                "objective_id": "pm-9_obj.a.2",
+                "met": true,
+                "reason": "Risk assessment inventory and scoring are valid"
+              },
+              {
+                "objective_id": "pm-9_obj.b",
+                "met": true,
+                "reason": "Risk assessment inventory and scoring are valid"
+              },
+              {
+                "objective_id": "pm-9_obj.c",
+                "met": true,
+                "reason": "Risk assessment inventory and scoring are valid"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "RA": {
+      "controls": {
+        "RA-5": {
+          "control_id": "RA-5",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+            "Track open-age and exploitability in remediation prioritization",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ra-5",
+            "title": "Vulnerability Monitoring and Scanning",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "vulnerabilities": [
+                {
+                  "cve": "CVE-2025-0101",
+                  "cvss_score": 6.5,
+                  "days_open": 20,
+                  "in_kev": false
+                }
+              ],
+              "scan_coverage": 1.0,
+              "scan_age_hours": 12
+            },
+            "objective_results": [
+              {
+                "objective_id": "ra-5_obj.a-1",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              },
+              {
+                "objective_id": "ra-5_obj.a-2",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              },
+              {
+                "objective_id": "ra-5_obj.b",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              },
+              {
+                "objective_id": "ra-5_obj.c",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              },
+              {
+                "objective_id": "ra-5_obj.d",
+                "met": true,
+                "reason": "All vulnerabilities within SLA"
+              },
+              {
+                "objective_id": "ra-5_obj.e",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              },
+              {
+                "objective_id": "ra-5_obj.f",
+                "met": true,
+                "reason": "Recent vulnerability scan evidence present"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "SI": {
+      "controls": {
+        "SI-2": {
+          "control_id": "SI-2",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+            "Prioritize exploitability and SLA breaches in remediation output",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "si-2",
+            "title": "Flaw Remediation",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "patches": [
+                {
+                  "cve": "CVE-2025-1111",
+                  "severity": "CRITICAL",
+                  "days_open": 7,
+                  "compensating_control": true,
+                  "in_kev": false
+                },
+                {
+                  "cve": "CVE-2025-2222",
+                  "severity": "HIGH",
+                  "days_open": 10,
+                  "compensating_control": true,
+                  "in_kev": false
+                }
+              ]
+            },
+            "objective_results": [
+              {
+                "objective_id": "si-2_obj.a-1",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.a-2",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.a-3",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.b-1",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.b-2",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.b-3",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.b-4",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              },
+              {
+                "objective_id": "si-2_obj.c-1",
+                "met": true,
+                "reason": "Patches applied within SLA"
+              },
+              {
+                "objective_id": "si-2_obj.c-2",
+                "met": true,
+                "reason": "Patches applied within SLA"
+              },
+              {
+                "objective_id": "si-2_obj.d",
+                "met": true,
+                "reason": "Patch/flaw inventory evidence present"
+              }
+            ],
+            "effectiveness": "EFFECTIVE"
+          }
+        },
+        "SI-4": {
+          "control_id": "SI-4",
+          "status": "PASS",
+          "findings": [],
+          "recommendations": [
+            "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+            "Prioritize exploitability and SLA breaches in remediation output",
+            "Ensure continuous monitoring with no hourly log gaps",
+            "Investigate anomalous log volume spikes/drops"
+          ],
+          "risk_level": "LOW",
+          "confidence_score": 0.94,
+          "evidence": {
+            "control_id": "si-4",
+            "title": "System Monitoring",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {
+              "hourly_event_counts": [
+                12,
+                13,
+                11,
+                14,
+                10,
+                12,
+                13,
+                11,
+                14,
+                12,
+                10,
+                11,
+                13,
+                12,
+                10,
+                11,
+                12,
+                14,
+                13,
+                12,
+                11,
+                10,
+                12,
+                13
+              ],
+              "anomaly_hours": []
+            },
+            "objective_results": [],
+            "effectiveness": "UNKNOWN"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 2,
+        "passed": 2,
+        "failed": 0
+      }
+    }
+  }
+}

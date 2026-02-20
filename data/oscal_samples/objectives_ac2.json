@@ -1,0 +1,111 @@
+{
+  "control_id": "AC-2",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 26,
+  "objectives": [
+    {
+      "objective_id": "ac-2_obj.a-1",
+      "objective_prose": "account types allowed for use within the system are defined and documented;"
+    },
+    {
+      "objective_id": "ac-2_obj.a-2",
+      "objective_prose": "account types specifically prohibited for use within the system are defined and documented;"
+    },
+    {
+      "objective_id": "ac-2_obj.b",
+      "objective_prose": "account managers are assigned;"
+    },
+    {
+      "objective_id": "ac-2_obj.c",
+      "objective_prose": "{{ insert: param, ac-02_odp.01 }} for group and role membership are required;"
+    },
+    {
+      "objective_id": "ac-2_obj.d.1",
+      "objective_prose": "authorized users of the system are specified;"
+    },
+    {
+      "objective_id": "ac-2_obj.d.2",
+      "objective_prose": "group and role membership are specified;"
+    },
+    {
+      "objective_id": "ac-2_obj.d.3-1",
+      "objective_prose": "access authorizations (i.e., privileges) are specified for each account;"
+    },
+    {
+      "objective_id": "ac-2_obj.d.3-2",
+      "objective_prose": "{{ insert: param, ac-02_odp.02 }} are specified for each account;"
+    },
+    {
+      "objective_id": "ac-2_obj.e",
+      "objective_prose": "approvals are required by {{ insert: param, ac-02_odp.03 }} for requests to create accounts;"
+    },
+    {
+      "objective_id": "ac-2_obj.f-1",
+      "objective_prose": "accounts are created in accordance with {{ insert: param, ac-02_odp.04 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.f-2",
+      "objective_prose": "accounts are enabled in accordance with {{ insert: param, ac-02_odp.04 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.f-3",
+      "objective_prose": "accounts are modified in accordance with {{ insert: param, ac-02_odp.04 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.f-4",
+      "objective_prose": "accounts are disabled in accordance with {{ insert: param, ac-02_odp.04 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.f-5",
+      "objective_prose": "accounts are removed in accordance with {{ insert: param, ac-02_odp.04 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.g",
+      "objective_prose": "the use of accounts is monitored; "
+    },
+    {
+      "objective_id": "ac-2_obj.h.1",
+      "objective_prose": "account managers and {{ insert: param, ac-02_odp.05 }} are notified within {{ insert: param, ac-02_odp.06 }} when accounts are no longer required;"
+    },
+    {
+      "objective_id": "ac-2_obj.h.2",
+      "objective_prose": "account managers and {{ insert: param, ac-02_odp.05 }} are notified within {{ insert: param, ac-02_odp.07 }} when users are terminated or transferred;"
+    },
+    {
+      "objective_id": "ac-2_obj.h.3",
+      "objective_prose": "account managers and {{ insert: param, ac-02_odp.05 }} are notified within {{ insert: param, ac-02_odp.08 }} when system usage or the need to know changes for an individual;"
+    },
+    {
+      "objective_id": "ac-2_obj.i.1",
+      "objective_prose": "access to the system is authorized based on a valid access authorization;"
+    },
+    {
+      "objective_id": "ac-2_obj.i.2",
+      "objective_prose": "access to the system is authorized based on intended system usage;"
+    },
+    {
+      "objective_id": "ac-2_obj.i.3",
+      "objective_prose": "access to the system is authorized based on {{ insert: param, ac-02_odp.09 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.j",
+      "objective_prose": "accounts are reviewed for compliance with account management requirements {{ insert: param, ac-02_odp.10 }};"
+    },
+    {
+      "objective_id": "ac-2_obj.k-1",
+      "objective_prose": "a process is established for changing shared or group account authenticators (if deployed) when individuals are removed from the group;"
+    },
+    {
+      "objective_id": "ac-2_obj.k-2",
+      "objective_prose": "a process is implemented for changing shared or group account authenticators (if deployed) when individuals are removed from the group;"
+    },
+    {
+      "objective_id": "ac-2_obj.l-1",
+      "objective_prose": "account management processes are aligned with personnel termination processes;"
+    },
+    {
+      "objective_id": "ac-2_obj.l-2",
+      "objective_prose": "account management processes are aligned with personnel transfer processes."
+    }
+  ]
+}

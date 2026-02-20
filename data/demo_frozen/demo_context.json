@@ -1,0 +1,100 @@
+{
+  "control_evidence": {
+    "PL-2": {
+      "sections_present": [
+        "system-characteristics",
+        "control-implementation",
+        "system-implementation",
+        "metadata"
+      ],
+      "missing_baseline_controls": 0,
+      "stale_approvals": 0
+    },
+    "PM-9": {
+      "risks": [
+        {
+          "id": "R-001",
+          "likelihood": 2,
+          "impact": 3,
+          "score": 6,
+          "approved": true,
+          "mitigation": "Segmentation and monitoring controls"
+        },
+        {
+          "id": "R-002",
+          "likelihood": 1,
+          "impact": 3,
+          "score": 3,
+          "approved": true,
+          "mitigation": "Compensating detective control"
+        }
+      ]
+    },
+    "SI-4": {
+      "hourly_event_counts": [
+        12, 13, 11, 14, 10, 12, 13, 11, 14, 12, 10, 11,
+        13, 12, 10, 11, 12, 14, 13, 12, 11, 10, 12, 13
+      ],
+      "anomaly_hours": []
+    },
+    "SI-2": {
+      "patches": [
+        {
+          "cve": "CVE-2025-1111",
+          "severity": "CRITICAL",
+          "days_open": 7,
+          "compensating_control": true,
+          "in_kev": false
+        },
+        {
+          "cve": "CVE-2025-2222",
+          "severity": "HIGH",
+          "days_open": 10,
+          "compensating_control": true,
+          "in_kev": false
+        }
+      ]
+    },
+    "CM-8": {
+      "inventory_expected": ["i-001", "i-002", "i-003"],
+      "inventory_discovered": ["i-001", "i-002", "i-003"]
+    },
+    "IA-5": {
+      "policy": {
+        "MinimumLength": 14,
+        "ComplexityEnabled": true,
+        "PasswordHistory": 24,
+        "MaximumAge": 60
+      },
+      "weak_algorithms": []
+    },
+    "RA-5": {
+      "vulnerabilities": [
+        {
+          "cve": "CVE-2025-0101",
+          "cvss_score": 6.5,
+          "days_open": 20,
+          "in_kev": false
+        }
+      ],
+      "scan_coverage": 1.0,
+      "scan_age_hours": 12
+    }
+  },
+  "evtx": {
+    "xml_records": [
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4720</EventID><TimeCreated SystemTime=\"2026-02-14T12:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account created</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:05:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">locked-user</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.12</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:06:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">locked-user</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.12</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:07:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">locked-user</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.12</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4740</EventID><TimeCreated SystemTime=\"2026-02-14T12:08:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">locked-user</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.12</Data><Data Name=\"Message\">Account lockout</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4738</EventID><TimeCreated SystemTime=\"2026-02-14T12:10:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account changed</Data></EventData></Event>"
+    ],
+    "approved_tickets": [
+      {
+        "account_id": "svc-app-01",
+        "isso_approved": true
+      }
+    ]
+  }
+}

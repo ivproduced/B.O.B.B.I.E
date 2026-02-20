@@ -1,0 +1,47 @@
+{
+  "control_id": "IA-5",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 10,
+  "objectives": [
+    {
+      "objective_id": "ia-5_obj.a",
+      "objective_prose": "system authenticators are managed through the verification of the identity of the individual, group, role, service, or device receiving the authenticator as part of the initial authenticator distribution;"
+    },
+    {
+      "objective_id": "ia-5_obj.b",
+      "objective_prose": "system authenticators are managed through the establishment of initial authenticator content for any authenticators issued by the organization;"
+    },
+    {
+      "objective_id": "ia-5_obj.c",
+      "objective_prose": "system authenticators are managed to ensure that authenticators have sufficient strength of mechanism for their intended use;"
+    },
+    {
+      "objective_id": "ia-5_obj.d",
+      "objective_prose": "system authenticators are managed through the establishment and implementation of administrative procedures for initial authenticator distribution; lost, compromised, or damaged authenticators; and the revocation of authenticators;"
+    },
+    {
+      "objective_id": "ia-5_obj.e",
+      "objective_prose": "system authenticators are managed through the change of default authenticators prior to first use;"
+    },
+    {
+      "objective_id": "ia-5_obj.f",
+      "objective_prose": "system authenticators are managed through the change or refreshment of authenticators {{ insert: param, ia-05_odp.01 }} or when {{ insert: param, ia-05_odp.02 }} occur;"
+    },
+    {
+      "objective_id": "ia-5_obj.g",
+      "objective_prose": "system authenticators are managed through the protection of authenticator content from unauthorized disclosure and modification;"
+    },
+    {
+      "objective_id": "ia-5_obj.h-1",
+      "objective_prose": "system authenticators are managed through the requirement for individuals to take specific controls to protect authenticators;"
+    },
+    {
+      "objective_id": "ia-5_obj.h-2",
+      "objective_prose": "system authenticators are managed through the requirement for devices to implement specific controls to protect authenticators;"
+    },
+    {
+      "objective_id": "ia-5_obj.i",
+      "objective_prose": "system authenticators are managed through the change of authenticators for group or role accounts when membership to those accounts changes."
+    }
+  ]
+}

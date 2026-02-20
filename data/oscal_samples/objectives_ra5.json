@@ -1,0 +1,35 @@
+{
+  "control_id": "RA-5",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 7,
+  "objectives": [
+    {
+      "objective_id": "ra-5_obj.a-1",
+      "objective_prose": "systems and hosted applications are monitored for vulnerabilities {{ insert: param, ra-05_odp.01 }} and when new vulnerabilities potentially affecting the system are identified and reported;"
+    },
+    {
+      "objective_id": "ra-5_obj.a-2",
+      "objective_prose": "systems and hosted applications are scanned for vulnerabilities {{ insert: param, ra-05_odp.02 }} and when new vulnerabilities potentially affecting the system are identified and reported;"
+    },
+    {
+      "objective_id": "ra-5_obj.b",
+      "objective_prose": "vulnerability monitoring tools and techniques are employed to facilitate interoperability among tools;"
+    },
+    {
+      "objective_id": "ra-5_obj.c",
+      "objective_prose": "vulnerability scan reports and results from vulnerability monitoring are analyzed;"
+    },
+    {
+      "objective_id": "ra-5_obj.d",
+      "objective_prose": "legitimate vulnerabilities are remediated {{ insert: param, ra-05_odp.03 }} in accordance with an organizational assessment of risk;"
+    },
+    {
+      "objective_id": "ra-5_obj.e",
+      "objective_prose": "information obtained from the vulnerability monitoring process and control assessments is shared with {{ insert: param, ra-05_odp.04 }} to help eliminate similar vulnerabilities in other systems;"
+    },
+    {
+      "objective_id": "ra-5_obj.f",
+      "objective_prose": "vulnerability monitoring tools that include the capability to readily update the vulnerabilities to be scanned are employed."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "control_id": "AU-3",
+  "source": "NIST_SP-800-53_rev5_catalog.json",
+  "total_objectives": 6,
+  "objectives": [
+    {
+      "objective_id": "au-3_obj.a",
+      "objective_prose": "audit records contain information that establishes what type of event occurred;"
+    },
+    {
+      "objective_id": "au-3_obj.b",
+      "objective_prose": "audit records contain information that establishes when the event occurred;"
+    },
+    {
+      "objective_id": "au-3_obj.c",
+      "objective_prose": "audit records contain information that establishes where the event occurred;"
+    },
+    {
+      "objective_id": "au-3_obj.d",
+      "objective_prose": "audit records contain information that establishes the source of the event;"
+    },
+    {
+      "objective_id": "au-3_obj.e",
+      "objective_prose": "audit records contain information that establishes the outcome of the event;"
+    },
+    {
+      "objective_id": "au-3_obj.f",
+      "objective_prose": "audit records contain information that establishes the identity of any individuals, subjects, or objects/entities associated with the event."
+    }
+  ]
+}
