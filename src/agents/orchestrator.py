@@ -93,6 +93,41 @@ class BOBBIEOrchestrator:
             )
         return poam_items
 
+    def _invoke_nova_executive_summary(
+        self, summary: dict[str, Any], context: dict[str, Any]
+    ) -> str | None:
+        """Call Nova Pro for a cross-control compliance executive narrative. Returns None on failure."""
+        try:
+            from src.models.nova_client import create_nova_client
+
+            region = str(context.get("aws_region", "")).strip() or None
+            llm = create_nova_client(region_name=region)
+            top_findings = summary.get("prioritized_findings", [])[:5]
+            findings_text = (
+                "\n".join(
+                    f"- [{f['risk_level']}] {f['control_id']}: {f['finding']}"
+                    for f in top_findings
+                )
+                if top_findings
+                else "- No failures detected"
+            )
+            prompt = (
+                f"You are a federal security compliance officer.\n"
+                f"NIST SP 800-53 assessment results:\n"
+                f"- Total controls assessed: {summary.get('total_controls', 0)}\n"
+                f"- Passed: {summary.get('passed', 0)}\n"
+                f"- Failed: {summary.get('failed', 0)}\n"
+                f"- Compliance score: {summary.get('compliance_score', 0.0)}%\n\n"
+                f"Top priority findings:\n{findings_text}\n\n"
+                f"Write a 3-4 sentence executive compliance narrative. "
+                f"Summarize the overall security posture, the most critical risks, "
+                f"and the immediate recommended actions. Be authoritative and actionable."
+            )
+            response = llm.invoke(prompt)
+            return str(response.content).strip()
+        except Exception:
+            return None
+
     def run(self, control_plan: dict[str, list[str]], context: dict[str, Any] | None = None) -> dict[str, Any]:
         context = context or {}
         orchestrator_cfg = context.get("orchestrator", {}) if isinstance(context.get("orchestrator", {}), dict) else {}
@@ -148,4 +183,10 @@ class BOBBIEOrchestrator:
             "prioritized_findings": prioritized_findings,
             "poam_items": poam_items,
         }
+
+        if context.get("nova_narrative"):
+            narrative = self._invoke_nova_executive_summary(output["summary"], context)
+            if narrative:
+                output["summary"]["nova_narrative"] = narrative
+
         return output

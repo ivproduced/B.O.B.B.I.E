@@ -37,4 +37,10 @@ FAMILY_REGISTRY["SI"] = SIFamilyAgent()
 
 
 def get_family_agent(family_id: str) -> BaseFamilyAgent:
-    return FAMILY_REGISTRY[family_id]
+    agent = FAMILY_REGISTRY.get(family_id)
+    if agent is None:
+        raise KeyError(
+            f"Family '{family_id}' is not registered in FAMILY_REGISTRY. "
+            f"Valid family IDs are: {sorted(FAMILY_REGISTRY.keys())}"
+        )
+    return agent

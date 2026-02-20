@@ -35,7 +35,10 @@ class SIFamilyAgent(BaseFamilyAgent):
                         logs_client = boto3.client("logs", region_name=region)
                         control_evidence["SI-4"] = CloudWatchEvidenceCollector(logs_client=logs_client).collect(log_group=log_group, hours=hours)
                     except Exception as exc:
-                        control_evidence["SI-4"] = {"hourly_event_counts": [], "collection_error": str(exc)}
+                        control_evidence["SI-4"] = {
+                            "hourly_event_counts": [],
+                            "collection_error": str(exc),
+                        }
 
         if control_id.upper() == "SI-2":
             if "SI-2" not in control_evidence and aws.get("ssm"):
@@ -43,6 +46,8 @@ class SIFamilyAgent(BaseFamilyAgent):
                 instance_ids = list(cfg.get("instance_ids", []))
                 raw_patches = list(cfg.get("patches", []))
                 kev_vulns = list(cfg.get("kev_vulnerabilities", []))
+
+                collection_error: str | None = None
 
                 if raw_patches:
                     patches = raw_patches
@@ -76,12 +81,16 @@ class SIFamilyAgent(BaseFamilyAgent):
                                     }
                                 )
                     except Exception as exc:
-                        patches = [{"cve": "UNKNOWN", "severity": "HIGH", "days_open": 999, "compensating_control": False, "collection_error": str(exc)}]
+                        collection_error = str(exc)
+                        patches = []
                 else:
                     patches = []
 
                 enriched = NVDKEVEnricher().enrich(patches, kev_vulns=kev_vulns)
-                control_evidence["SI-2"] = {"patches": enriched}
+                si2_evidence: dict[str, Any] = {"patches": enriched}
+                if collection_error:
+                    si2_evidence["collection_error"] = collection_error
+                control_evidence["SI-2"] = si2_evidence
 
         runtime["control_evidence"] = control_evidence
         return runtime

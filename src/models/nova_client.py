@@ -1,10 +1,19 @@
 from __future__ import annotations
 
+import os
+
 from langchain_aws import ChatBedrock
 
 
-def create_nova_client() -> ChatBedrock:
+def create_nova_client(region_name: str | None = None) -> ChatBedrock:
+    region = (
+        region_name
+        or os.environ.get("AWS_REGION")
+        or os.environ.get("AWS_DEFAULT_REGION")
+        or "us-east-1"
+    )
     return ChatBedrock(
         model_id="amazon.nova-pro-v1:0",
-        model_kwargs={"temperature": 0.0, "max_tokens": 4096, "top_p": 0.9},
+        region_name=region,
+        model_kwargs={"temperature": 0.0, "max_tokens": 4096},
     )

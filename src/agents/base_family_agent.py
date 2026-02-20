@@ -50,9 +50,39 @@ class BaseFamilyAgent:
                 return control
         return None
 
+    def _invoke_nova_narrative(
+        self,
+        control_id: str,
+        status: str,
+        findings: list[str],
+        context: dict[str, Any],
+    ) -> str | None:
+        """Call Nova Pro for a human-readable risk narrative. Returns None on any failure."""
+        try:
+            from src.models.nova_client import create_nova_client
+
+            region = str(context.get("aws_region", "")).strip() or None
+            llm = create_nova_client(region_name=region)
+            findings_text = (
+                "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
+            )
+            prompt = (
+                f"You are a federal security compliance analyst assessing NIST SP 800-53.\n"
+                f"Control: {control_id.upper()}\n"
+                f"Assessment result: {status}\n"
+                f"Findings:\n{findings_text}\n\n"
+                f"Write a concise 2-3 sentence risk narrative for this control. "
+                f"Describe the compliance posture and key risk implications. "
+                f"Do not repeat findings verbatim. Be direct and specific."
+            )
+            response = llm.invoke(prompt)
+            return str(response.content).strip()
+        except Exception:
+            return None
+
     def assess_control(self, control_id: str, context: dict[str, Any]) -> dict[str, Any]:
         evidence = self.collect_evidence(control_id, context)
-        return {
+        result: dict[str, Any] = {
             "control_id": control_id,
             "status": evidence.get("status", "NOT_IMPLEMENTED"),
             "findings": evidence.get("findings", []),
@@ -61,6 +91,18 @@ class BaseFamilyAgent:
             "confidence_score": evidence.get("confidence_score", 0.0),
             "evidence": evidence.get("evidence", {}),
         }
+
+        if context.get("nova_narrative"):
+            narrative = self._invoke_nova_narrative(
+                control_id=control_id,
+                status=result["status"],
+                findings=result["findings"],
+                context=context,
+            )
+            if narrative:
+                result["nova_narrative"] = narrative
+
+        return result
 
     def aggregate_family_results(self, results: dict[str, Any]) -> FamilyAssessmentResult:
         passed = sum(1 for value in results.values() if value.get("status") == "PASS")

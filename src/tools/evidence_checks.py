@@ -71,7 +71,7 @@ def evaluate_control_effectiveness_with_objectives(control_id: str, context: dic
     if not objective_results:
         fallback = evaluate_control_evidence(control_key, context)
         fallback["objective_results"] = []
-        fallback["effectiveness"] = "UNKNOWN"
+        fallback["effectiveness"] = "EFFECTIVE" if fallback.get("status") == "PASS" else "INEFFECTIVE"
         return fallback
 
     unmet = [item for item in objective_results if not item["met"]]
@@ -558,10 +558,15 @@ def _check_au3(evidence: dict[str, Any]) -> dict[str, Any]:
 
 def _check_cm8(evidence: dict[str, Any]) -> dict[str, Any]:
     findings: list[str] = []
+
+    collection_error = evidence.get("collection_error")
+    if collection_error:
+        findings.append(f"AWS SSM inventory collection failed: {collection_error}")
+
     expected = set(str(item).lower() for item in evidence.get("inventory_expected", []))
     discovered = set(str(item).lower() for item in evidence.get("inventory_discovered", []))
 
-    if not expected and not discovered:
+    if not expected and not discovered and not collection_error:
         findings.append("No CM-8 inventory evidence provided")
     else:
         orphans = sorted(expected - discovered)
@@ -571,7 +576,7 @@ def _check_cm8(evidence: dict[str, Any]) -> dict[str, Any]:
         if shadow:
             findings.append(f"Discovered unmanaged assets (shadow IT): {len(shadow)}")
 
-    return _result(findings, ["Reconcile expected and discovered inventory sets"], "MEDIUM")
+    return _result(findings, ["Reconcile expected and discovered inventory sets", "Verify AWS SSM connectivity and IAM permissions"], "MEDIUM")
 
 
 def _check_ia5(evidence: dict[str, Any]) -> dict[str, Any]:
@@ -614,11 +619,16 @@ def _check_ra5(evidence: dict[str, Any]) -> dict[str, Any]:
 
 def _check_si2(evidence: dict[str, Any]) -> dict[str, Any]:
     findings: list[str] = []
+
+    collection_error = evidence.get("collection_error")
+    if collection_error:
+        findings.append(f"AWS SSM patch state collection failed: {collection_error}")
+
     patches = evidence.get("patches", [])
 
-    if not patches:
+    if not patches and not collection_error:
         findings.append("No SI-2 patch evidence provided")
-    else:
+    elif patches:
         for patch in patches:
             severity = str(patch.get("severity", "")).upper()
             days_open = int(patch.get("days_open", 0))
@@ -636,6 +646,16 @@ def _check_si2(evidence: dict[str, Any]) -> dict[str, Any]:
 
 def _check_si4(evidence: dict[str, Any]) -> dict[str, Any]:
     findings: list[str] = []
+
+    collection_error = evidence.get("collection_error")
+    if collection_error:
+        findings.append(f"AWS CloudWatch log collection failed: {collection_error}")
+        return _result(
+            findings,
+            ["Verify CloudWatch log group name and AWS credentials/permissions"],
+            "HIGH",
+        )
+
     hourly_counts = evidence.get("hourly_event_counts", [])
     anomaly_hours = list(evidence.get("anomaly_hours", []))
 

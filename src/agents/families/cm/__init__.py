@@ -21,6 +21,7 @@ class CMFamilyAgent(BaseFamilyAgent):
             expected = list(cfg.get("inventory_expected", cfg.get("mock_inventory", [])))
             discovered = list(cfg.get("inventory_discovered", []))
 
+            collection_error: str | None = None
             if not discovered:
                 try:
                     import boto3
@@ -28,16 +29,20 @@ class CMFamilyAgent(BaseFamilyAgent):
                     region = str(cfg.get("region", runtime.get("aws_region", ""))).strip() or None
                     ssm_client = boto3.client("ssm", region_name=region)
                     discovered = SSMInventoryCollector(ssm_client=ssm_client).collect_instance_ids()
-                except Exception:
+                except Exception as exc:
+                    collection_error = str(exc)
                     discovered = []
 
             reconciled = reconcile_inventory(expected=expected, discovered=discovered)
-            control_evidence["CM-8"] = {
+            cm8_evidence: dict[str, Any] = {
                 "inventory_expected": reconciled["inventory_expected"],
                 "inventory_discovered": reconciled["inventory_discovered"],
                 "missing_assets": reconciled["missing_assets"],
                 "unmanaged_assets": reconciled["unmanaged_assets"],
             }
+            if collection_error:
+                cm8_evidence["collection_error"] = collection_error
+            control_evidence["CM-8"] = cm8_evidence
 
         runtime["control_evidence"] = control_evidence
         return runtime

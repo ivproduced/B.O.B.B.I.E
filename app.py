@@ -55,6 +55,9 @@ def _render_control_table(result: dict[str, Any]) -> None:
                     st.write("Recommendations:")
                     for recommendation in recommendations:
                         st.write(f"- {recommendation}")
+                nova_narrative = control_result.get("nova_narrative")
+                if nova_narrative:
+                    st.info(f"**Nova Pro Risk Narrative:** {nova_narrative}")
 
 
 st.set_page_config(page_title="BOBBIE Assessment Engine", layout="wide")
@@ -70,6 +73,11 @@ with st.sidebar:
 
     st.subheader("Data Sources")
     use_frozen_context = st.checkbox("Use frozen demo dataset", value=True)
+    enable_nova_narrative = st.checkbox(
+        "Enable Nova Pro narrative (requires AWS Bedrock)",
+        value=False,
+        help="Calls Amazon Nova Pro to generate a risk narrative per control and an executive compliance summary.",
+    )
     uploaded_control_evidence = st.file_uploader("Control evidence JSON (optional)", type=["json"])
     uploaded_evtx_payload = st.file_uploader("EVTX payload JSON (optional)", type=["json"])
     uploaded_tickets = st.file_uploader("Approved tickets JSON (optional)", type=["json"])
@@ -82,6 +90,7 @@ if run_assessment:
     context: dict[str, Any] = {
         "repo_root": str(REPO_ROOT),
         "deterministic_run": bool(deterministic_mode),
+        "nova_narrative": bool(enable_nova_narrative),
         "orchestrator": {
             "control_timeout_seconds": float(timeout_seconds),
             "max_workers": int(max_workers),
@@ -141,6 +150,11 @@ if run_assessment:
 
     if summary.get("failed", 0) > 0:
         st.warning("Some controls failed. Review findings and recommendations below for remediation.")
+
+    nova_executive = summary.get("nova_narrative")
+    if nova_executive:
+        st.subheader("Nova Pro Executive Summary")
+        st.info(nova_executive)
 
     st.subheader("Control Results")
     _render_control_table(result)
