@@ -13,16 +13,7 @@ from src.utils import ReportGenerator
 REPO_ROOT = Path(__file__).resolve().parent
 FROZEN_CONTEXT_PATH = REPO_ROOT / "data" / "demo_frozen" / "demo_context.json"
 
-DEMO_PLAN = {
-    "PL": ["PL-2"],
-    "PM": ["PM-9"],
-    "SI": ["SI-4", "SI-2"],
-    "CM": ["CM-8"],
-    "AC": ["AC-2", "AC-7"],
-    "AU": ["AU-3"],
-    "IA": ["IA-5"],
-    "RA": ["RA-5"],
-}
+from src.config.demo_plan import DEMO_PLAN
 
 
 def _load_uploaded_json(uploaded_file: Any, label: str) -> dict[str, Any] | list[Any] | None:
@@ -75,8 +66,16 @@ with st.sidebar:
     use_frozen_context = st.checkbox("Use frozen demo dataset", value=True)
     enable_nova_narrative = st.checkbox(
         "Enable Nova Pro narrative (requires AWS Bedrock)",
-        value=False,
+        value=True,
         help="Calls Amazon Nova Pro to generate a risk narrative per control and an executive compliance summary.",
+    )
+    apply_nova_suggestions = st.checkbox(
+        "Apply Nova suggestions automatically",
+        value=False,
+        help="If checked, BOBBIE will apply Nova's suggested status/risk when confidence >= threshold. Use with caution.",
+    )
+    nova_confidence_threshold = st.number_input(
+        "Nova confidence threshold (0.0-1.0)", min_value=0.0, max_value=1.0, value=0.9, step=0.05
     )
     uploaded_control_evidence = st.file_uploader("Control evidence JSON (optional)", type=["json"])
     uploaded_evtx_payload = st.file_uploader("EVTX payload JSON (optional)", type=["json"])
@@ -90,7 +89,9 @@ if run_assessment:
     context: dict[str, Any] = {
         "repo_root": str(REPO_ROOT),
         "deterministic_run": bool(deterministic_mode),
-        "nova_narrative": bool(enable_nova_narrative),
+            "nova_narrative": bool(enable_nova_narrative),
+            "apply_nova_suggestions": bool(apply_nova_suggestions),
+            "nova_confidence_threshold": float(nova_confidence_threshold),
         "orchestrator": {
             "control_timeout_seconds": float(timeout_seconds),
             "max_workers": int(max_workers),

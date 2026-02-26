@@ -13,7 +13,7 @@ def create_nova_client(region_name: str | None = None) -> ChatBedrock:
         or "us-east-1"
     )
     return ChatBedrock(
-        model_id="amazon.nova-pro-v1:0",
+        model_id="amazon.nova-2-lite-v1:0",
         region_name=region,
         model_kwargs={"temperature": 0.0, "max_tokens": 4096},
     )

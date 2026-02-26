@@ -26,22 +26,26 @@ def main() -> None:
         action="store_true",
         help="Enable Amazon Nova Pro narrative generation per control and executive summary (requires AWS Bedrock)",
     )
+    parser.add_argument(
+        "--apply-nova-suggestions",
+        action="store_true",
+        help="Apply Nova's suggested status/risk automatically when confidence >= threshold",
+    )
+    parser.add_argument(
+        "--nova-confidence-threshold",
+        type=float,
+        default=0.9,
+        help="Confidence threshold (0.0-1.0) required to auto-apply Nova suggestions",
+    )
     args = parser.parse_args()
 
-    demo_plan = {
-        "PL": ["PL-2"],
-        "PM": ["PM-9"],
-        "SI": ["SI-4", "SI-2"],
-        "CM": ["CM-8"],
-        "AC": ["AC-2", "AC-7"],
-        "AU": ["AU-3"],
-        "IA": ["IA-5"],
-        "RA": ["RA-5"],
-    }
+    from src.config.demo_plan import DEMO_PLAN as demo_plan
 
     context: dict[str, Any] = {
         "deterministic_run": bool(args.deterministic),
         "nova_narrative": bool(args.nova_narrative),
+        "apply_nova_suggestions": bool(args.apply_nova_suggestions),
+        "nova_confidence_threshold": float(args.nova_confidence_threshold),
         "orchestrator": {
             "control_timeout_seconds": float(args.control_timeout_seconds),
             "max_workers": int(args.max_workers),

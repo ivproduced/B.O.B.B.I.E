@@ -104,7 +104,7 @@ def get_control_assessment_objectives(control_id: str, context: dict[str, Any]) 
                 if isinstance(item, dict)
             ]
 
-    catalog_path = Path(str(context.get("catalog_path", repo_root / "NIST_SP-800-53_rev5_catalog.json")))
+    catalog_path = Path(str(context.get("catalog_path", repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json")))
     if not catalog_path.exists():
         return []
 

@@ -20,6 +20,7 @@ BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator a
 - **Determinism:** Hybrid approach combining deterministic logic with Nova Pro reasoning
 - **Modularity:** Family agents are plug-and-play for easy extension to 48+ controls
 
+**Control Atomicity:** NIST controls are atomic and must be assessed by a single owning family agent. Individual control identifiers (e.g., `AC-2`) must not be split across multiple agents or families; any sub-requirement rollups happen inside the owning family agent. The orchestrator validates control assignment at run-time and agents verify routing to ensure auditability.
 **Hackathon Scope Note:** The current demo activates 8 family agents (AC, AU, CM, IA, PL, PM, RA, SI) covering 10 controls.
 
 ---

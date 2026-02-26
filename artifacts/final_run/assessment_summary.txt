@@ -1,4 +1,4 @@
-System: BOBBIE Demo System
+System: BOBBIE Full Flow Test
 Total controls: 10
 Passed: 0
 Failed: 10

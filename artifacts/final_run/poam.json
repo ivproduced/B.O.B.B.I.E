@@ -1,8 +1,11 @@
 {
+  "$schema": "vendor/oscal-metaschema/oscal_poam_schema.json",
+  "oscal_version": "1.2.0",
   "plan-of-action-and-milestones": {
     "metadata": {
-      "title": "POA&M for BOBBIE Demo System",
-      "last-modified": "2026-02-14T20:49:58.964326+00:00"
+      "title": "POA&M for BOBBIE Full Flow Test",
+      "last-modified": "2026-02-26T01:42:21.159707+00:00",
+      "version": "1.2.0"
     },
     "poam-items": [
       {

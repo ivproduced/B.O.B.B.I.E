@@ -1,0 +1,22 @@
+{
+  "control_evidence": {},
+  "evtx": {
+    "xml_records": [
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4720</EventID><TimeCreated SystemTime=\"2026-02-14T08:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account created</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4738</EventID><TimeCreated SystemTime=\"2026-02-14T08:05:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account changed</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4634</EventID><TimeCreated SystemTime=\"2026-02-14T17:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account logoff</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4648</EventID><TimeCreated SystemTime=\"2026-02-14T09:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">alice</Data><Data Name=\"IpAddress\">10.0.0.20</Data><Data Name=\"Message\">Explicit credentials used</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4624</EventID><TimeCreated SystemTime=\"2026-02-14T09:01:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.20</Data><Data Name=\"Message\">Logon success</Data></EventData></Event>"
+    ],
+    "approved_tickets": [
+      {
+        "account_id": "svc-app-01",
+        "isso_approved": true
+      },
+      {
+        "account_id": "alice",
+        "isso_approved": true
+      }
+    ]
+  }
+}

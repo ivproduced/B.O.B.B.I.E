@@ -66,29 +66,29 @@ def load_baseline_profile(
 
 def load_standard_baselines(repo_root: str) -> dict[str, BaselineProfile]:
     root = Path(repo_root)
-    catalog_path = str(root / "NIST_SP-800-53_rev5_catalog.json")
+    catalog_path = str(root / "data" / "NIST_SP-800-53_rev5_catalog.json")
 
     return {
         "LOW": load_baseline_profile(
-            profile_path=str(root / "NIST_SP-800-53_rev5_LOW-baseline_profile.json"),
+            profile_path=str(root / "data" / "NIST_SP-800-53_rev5_LOW-baseline_profile.json"),
             catalog_path=catalog_path,
             baseline_id="low",
             title="NIST SP 800-53 Rev5 Low Baseline",
         ),
         "MODERATE": load_baseline_profile(
-            profile_path=str(root / "NIST_SP-800-53_rev5_MODERATE-baseline_profile.json"),
+            profile_path=str(root / "data" / "NIST_SP-800-53_rev5_MODERATE-baseline_profile.json"),
             catalog_path=catalog_path,
             baseline_id="moderate",
             title="NIST SP 800-53 Rev5 Moderate Baseline",
         ),
         "HIGH": load_baseline_profile(
-            profile_path=str(root / "NIST_SP-800-53_rev5_HIGH-baseline_profile.json"),
+            profile_path=str(root / "data" / "NIST_SP-800-53_rev5_HIGH-baseline_profile.json"),
             catalog_path=catalog_path,
             baseline_id="high",
             title="NIST SP 800-53 Rev5 High Baseline",
         ),
         "PRIVACY": load_baseline_profile(
-            profile_path=str(root / "NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json"),
+            profile_path=str(root / "data" / "NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json"),
             catalog_path=catalog_path,
             baseline_id="privacy",
             title="NIST SP 800-53 Rev5 Privacy Baseline",

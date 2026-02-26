@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Minimal OSCAL POA&M schema (vendored, simplified)",
+  "type": "object",
+  "properties": {
+    "oscal_version": {"type": "string"},
+    "plan-of-action-and-milestones": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "last-modified": {"type": "string"},
+            "version": {"type": "string"}
+          },
+          "required": ["title", "last-modified"]
+        },
+        "poam-items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item_id": {"type": "string"},
+              "family_id": {"type": "string"},
+              "control_id": {"type": "string"},
+              "weakness": {"type": "string"},
+              "risk_level": {"type": "string"}
+            },
+            "required": ["item_id", "family_id", "control_id", "weakness", "risk_level"]
+          }
+        }
+      },
+      "required": ["metadata", "poam-items"]
+    }
+  },
+  "required": ["plan-of-action-and-milestones"]
+}

@@ -67,6 +67,19 @@ Show:
 - run button
 - results + artifact download buttons
 
+### Nova Suggestion Safety (Important)
+
+When demoing with Nova suggestions enabled, note the following safety controls:
+
+- `Apply Nova suggestions automatically` (Streamlit) / `--apply-nova-suggestions` (CLI) is OFF by default. Leave it OFF for the demo unless you explicitly want suggestions applied.
+- `Nova confidence threshold` (Streamlit) / `--nova-confidence-threshold` (CLI) defaults to `0.9`. Auto-apply only occurs when Nova reports a confidence >= threshold.
+- If a Nova suggestion is shown, reviewers should:
+	1. Inspect the `nova_suggestion` object in the control result (or UI) which includes `suggested_status`, `suggested_risk`, `confidence`, and a short `explanation`.
+	2. Verify deterministic evidence and findings supporting the suggestion.
+	3. Only toggle `Apply Nova suggestions automatically` or accept the suggestion after human approval — the system records `_original_status` and `_original_risk_level` when an auto-apply occurs to preserve auditability.
+
+For the hackathon demo, prefer showing suggestions in the UI and discussing them verbally rather than auto-applying them.
+
 ### 2:55-3:00 — Close
 
 "BOBBIE demonstrates deterministic, evidence-driven compliance assessment at family-agent scale, with repeatable runs and actionable remediation outputs."

@@ -1,0 +1,163 @@
+{
+  "control_evidence": {
+    "PL-2": {
+      "sections_present": [
+        "system-characteristics",
+        "control-implementation",
+        "system-implementation",
+        "metadata"
+      ],
+      "missing_baseline_controls": 0,
+      "stale_approvals": 0
+    },
+    "IA-5": {
+      "policy": {
+        "MinimumLength": 14,
+        "ComplexityEnabled": true,
+        "PasswordHistory": 24,
+        "MaximumAge": 60
+      },
+      "weak_algorithms": []
+    },
+    "CM-8": {
+      "inventory_expected": [
+        "i-001",
+        "i-002",
+        "i-003",
+        "i-004"
+      ],
+      "inventory_discovered": [
+        "i-001",
+        "i-002",
+        "i-003",
+        "i-004"
+      ]
+    },
+    "SI-4": {
+      "hourly_event_counts": [
+        12,
+        13,
+        11,
+        14,
+        10,
+        12,
+        13,
+        11,
+        14,
+        12,
+        10,
+        11,
+        13,
+        12,
+        10,
+        11,
+        12,
+        14,
+        13,
+        12,
+        11,
+        10,
+        12,
+        13
+      ],
+      "anomaly_hours": []
+    },
+    "PM-9": {
+      "risks": [
+        {
+          "id": "R-001",
+          "likelihood": 5,
+          "impact": 5,
+          "score": 25,
+          "approved": false,
+          "mitigation": ""
+        },
+        {
+          "id": "R-002",
+          "likelihood": 4,
+          "impact": 4,
+          "score": 16,
+          "approved": false,
+          "mitigation": ""
+        }
+      ]
+    },
+    "AU-3": {
+      "records": [
+        {
+          "timestamp": "2026-02-14T09:00:00.000Z",
+          "event_type": "4624"
+        },
+        {
+          "timestamp": "2026-02-14T10:00:00.000Z"
+        }
+      ]
+    },
+    "RA-5": {
+      "vulnerabilities": [
+        {
+          "cve": "CVE-2025-9999",
+          "cvss_score": 9.8,
+          "days_open": 45,
+          "in_kev": true
+        },
+        {
+          "cve": "CVE-2025-8888",
+          "cvss_score": 7.5,
+          "days_open": 62,
+          "in_kev": false
+        }
+      ],
+      "scan_coverage": 0.4,
+      "scan_age_hours": 200
+    },
+    "SI-2": {
+      "patches": [
+        {
+          "cve": "CVE-2025-7777",
+          "severity": "CRITICAL",
+          "days_open": 30,
+          "compensating_control": false,
+          "in_kev": true
+        },
+        {
+          "cve": "CVE-2025-6666",
+          "severity": "HIGH",
+          "days_open": 60,
+          "compensating_control": false,
+          "in_kev": false
+        }
+      ]
+    },
+    "AC-7": {
+      "lockout_threshold": 5,
+      "lockout_events": [
+        {
+          "account": "alice",
+          "time": "2026-02-14T12:10:00Z",
+          "ip": "192.168.99.99"
+        }
+      ],
+      "failed_logons_24h": 87
+    }
+  },
+  "evtx": {
+    "xml_records": [
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4720</EventID><TimeCreated SystemTime=\"2026-02-14T08:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account created</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4738</EventID><TimeCreated SystemTime=\"2026-02-14T08:05:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account changed</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4634</EventID><TimeCreated SystemTime=\"2026-02-14T17:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account logoff</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4648</EventID><TimeCreated SystemTime=\"2026-02-14T09:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">alice</Data><Data Name=\"IpAddress\">10.0.0.20</Data><Data Name=\"Message\">Explicit credentials used</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4624</EventID><TimeCreated SystemTime=\"2026-02-14T09:01:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DC01</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">10.0.0.20</Data><Data Name=\"Message\">Logon success</Data></EventData></Event>"
+    ],
+    "approved_tickets": [
+      {
+        "account_id": "svc-app-01",
+        "isso_approved": true
+      },
+      {
+        "account_id": "alice",
+        "isso_approved": true
+      }
+    ]
+  }
+}

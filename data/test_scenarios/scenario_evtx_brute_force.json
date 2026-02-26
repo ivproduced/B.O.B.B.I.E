@@ -1,0 +1,22 @@
+{
+  "control_evidence": {},
+  "evtx": {
+    "xml_records": [
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4720</EventID><TimeCreated SystemTime=\"2026-02-14T12:00:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">svc-app-01</Data><Data Name=\"SubjectUserName\">admin</Data><Data Name=\"IpAddress\">10.0.0.10</Data><Data Name=\"Message\">Account created</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:05:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:06:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:07:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:08:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4625</EventID><TimeCreated SystemTime=\"2026-02-14T12:09:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Failed logon attempt</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4740</EventID><TimeCreated SystemTime=\"2026-02-14T12:10:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Account lockout</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4672</EventID><TimeCreated SystemTime=\"2026-02-14T12:15:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">attacker</Data><Data Name=\"SubjectUserName\">SYSTEM</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Special privileges assigned to new logon</Data></EventData></Event>",
+      "<Event><System><Provider Name=\"Microsoft-Windows-Security-Auditing\"/><EventID>4738</EventID><TimeCreated SystemTime=\"2026-02-14T12:16:00.000Z\"/><Channel>Security</Channel><Computer>WIN-DEMO</Computer></System><EventData><Data Name=\"TargetUserName\">alice</Data><Data Name=\"SubjectUserName\">attacker</Data><Data Name=\"IpAddress\">192.168.99.99</Data><Data Name=\"Message\">Account changed after lockout</Data></EventData></Event>"
+    ],
+    "approved_tickets": [
+      {
+        "account_id": "svc-app-01",
+        "isso_approved": false
+      }
+    ]
+  }
+}

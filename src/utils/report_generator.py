@@ -18,15 +18,49 @@ class ReportGenerator:
 
     def build_poam(self, assessment: dict[str, Any], system_name: str = "BOBBIE Demo System") -> dict[str, Any]:
         poam_items = assessment.get("summary", {}).get("poam_items", [])
+        # Include explicit OSCAL metadata to indicate OSCAL 1.2.0 compliance
+        # Point produced POA&M at the vendored OSCAL metaschema for
+        # deterministic, offline validation in CI. Keep oscal_version too.
         return {
+            "$schema": "vendor/oscal-metaschema/oscal_poam_schema.json",
+            "oscal_version": "1.2.0",
             "plan-of-action-and-milestones": {
                 "metadata": {
                     "title": f"POA&M for {system_name}",
                     "last-modified": datetime.now(timezone.utc).isoformat(),
+                    "version": "1.2.0",
                 },
                 "poam-items": poam_items,
-            }
+            },
         }
+
+    def read_poam(self, file_path: str) -> dict[str, Any]:
+        """Read an OSCAL POA&M (JSON) file and normalize to internal structure.
+
+        Returns a dict with keys: 'metadata' and 'poam_items'. Accepts both
+        OSCAL-formatted files and the project's earlier minimal POA&M format.
+        """
+        p = Path(file_path)
+        if not p.exists():
+            raise FileNotFoundError(file_path)
+
+        raw = json.loads(p.read_text(encoding="utf-8"))
+
+        # OSCAL POA&M canonical form contains 'plan-of-action-and-milestones'
+        if "plan-of-action-and-milestones" in raw:
+            poam = raw["plan-of-action-and-milestones"]
+            metadata = poam.get("metadata", {})
+            poam_items = poam.get("poam-items") or poam.get("poam_items") or []
+            return {"metadata": metadata, "poam_items": poam_items}
+
+        # Legacy/simple format: assume top-level keys
+        if "poam-items" in raw or "poam_items" in raw:
+            metadata = raw.get("metadata", {})
+            poam_items = raw.get("poam-items") or raw.get("poam_items") or []
+            return {"metadata": metadata, "poam_items": poam_items}
+
+        # Unknown format
+        raise ValueError("Unrecognized POA&M/OSCAL structure in file: %s" % file_path)
 
     def build_human_summary(self, assessment: dict[str, Any], system_name: str = "BOBBIE Demo System") -> str:
         summary = assessment.get("summary", {})

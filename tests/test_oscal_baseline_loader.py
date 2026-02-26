@@ -12,7 +12,7 @@ def test_load_standard_baselines_and_tagging() -> None:
     assert len(baselines["LOW"].selected_control_ids) > 0
 
     catalog = load_catalog_and_tag_baselines(
-        catalog_path=str(root / "NIST_SP-800-53_rev5_catalog.json"),
+        catalog_path=str(root / "data" / "NIST_SP-800-53_rev5_catalog.json"),
         baselines=baselines,
     )
 

@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from dataclasses import dataclass
 from typing import Any
 
-from src.agents.family_registry import get_family_agent
+from src.agents.family_registry import get_family_agent, validate_plan_vs_registry
 
 
 @dataclass
@@ -133,6 +133,21 @@ class BOBBIEOrchestrator:
         orchestrator_cfg = context.get("orchestrator", {}) if isinstance(context.get("orchestrator", {}), dict) else {}
         deterministic_mode = bool(context.get("deterministic_run", orchestrator_cfg.get("deterministic_mode", False)))
         control_timeout_seconds = float(orchestrator_cfg.get("control_timeout_seconds", 30.0))
+
+        # Validate plan against declared registry and ensure atomic assignment.
+        validate_plan_vs_registry(control_plan)
+
+        # Validation: ensure each control_id is assigned to exactly one family in the provided plan.
+        control_to_families: dict[str, list[str]] = {}
+        for fam, ctrls in control_plan.items():
+            for c in ctrls:
+                control_to_families.setdefault(c, []).append(fam)
+        duplicates = {c: fs for c, fs in control_to_families.items() if len(fs) > 1}
+        if duplicates:
+            dup_msgs = [f"{c}: {', '.join(sorted(fs))}" for c, fs in duplicates.items()]
+            raise ValueError(
+                "Control assignment error: some controls are assigned to multiple families: " + "; ".join(dup_msgs)
+            )
 
         control_tasks = self._build_control_tasks(control_plan, deterministic=deterministic_mode)
         worker_count = int(orchestrator_cfg.get("max_workers", min(8, max(1, len(control_tasks)))))
