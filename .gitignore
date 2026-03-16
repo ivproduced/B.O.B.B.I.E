@@ -47,6 +47,13 @@ ENV/
 .internal/
 .agents/
 
+# Internal planning and architecture documents
+BOBBIE_Agentic_Architecture.md
+BOBBIE_Build_Plan.md
+BOBBIE_Executive_Summary.md
+control_automation_roadmap.md
+amazonnova.txt
+
 # VS Code / AI tooling
 skills-lock.json
 .vscode/settings.json
