@@ -42,3 +42,30 @@ ENV/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Internal assets (not for public/submission repo)
+.internal/
+.agents/
+
+# VS Code / AI tooling
+skills-lock.json
+.vscode/settings.json
+
+# Terraform state (may contain sensitive infrastructure details)
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# User-uploaded assessment inputs (runtime data, not project assets)
+data/uploads/
+
+# Live/ad-hoc run artifacts (generated at runtime, not for source control)
+artifacts/live_run/
+artifacts/demo_run/
+
+# Node / web dependencies
+web/client/node_modules/
+web/server/node_modules/
+web/client/dist/
+web/client/build/
