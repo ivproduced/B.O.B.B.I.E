@@ -1,0 +1,248 @@
+{
+  "_comment": "BOBBIE mock context evidence file — provides control_evidence for all 10 demo controls. Some controls pass, some fail, to produce meaningful assessment output. Use this as --context-file in run_assessment.py or upload via the web UI.",
+
+  "control_evidence": {
+
+    "PL-2": {
+      "_comment": "PASS — All required SSP sections present, no missing baseline controls",
+      "sections_present": [
+        "system-characteristics",
+        "control-implementation",
+        "system-implementation",
+        "metadata"
+      ],
+      "missing_baseline_controls": 0,
+      "stale_approvals": 0
+    },
+
+    "PM-9": {
+      "_comment": "PARTIAL FAIL — Risk PM-RISK-003 has invalid score (3*4=12 but scored 9) and is high-risk without approval",
+      "risks": [
+        {
+          "id": "PM-RISK-001",
+          "description": "Unpatched third-party library in payment processing module",
+          "likelihood": 2.0,
+          "impact": 3.0,
+          "score": 6.0,
+          "approved": true,
+          "mitigation": "WAF rule deployed as compensating control; patch scheduled Q1 2026"
+        },
+        {
+          "id": "PM-RISK-002",
+          "description": "Overly permissive IAM role for legacy integration service",
+          "likelihood": 3.0,
+          "impact": 3.0,
+          "score": 9.0,
+          "approved": true,
+          "mitigation": "Role scoping in progress; targeted for removal by 2026-03-31"
+        },
+        {
+          "id": "PM-RISK-003",
+          "description": "Lack of MFA enforcement on service accounts",
+          "likelihood": 3.0,
+          "impact": 4.0,
+          "score": 9.0,
+          "approved": false,
+          "mitigation": ""
+        },
+        {
+          "id": "PM-RISK-004",
+          "description": "CloudTrail log gaps during planned maintenance window",
+          "likelihood": 1.0,
+          "impact": 2.0,
+          "score": 2.0,
+          "approved": true,
+          "mitigation": "Maintenance windows documented and approved in change management system"
+        }
+      ]
+    },
+
+    "SI-4": {
+      "_comment": "FAIL — Hour 3 is a monitoring gap (zero events); hour 17 has anomalous volume spike",
+      "hourly_event_counts": [
+        142, 138, 155, 0, 161, 149, 153, 144,
+        158, 162, 147, 151, 165, 159, 143, 148,
+        152, 890, 144, 138, 149, 155, 141, 137
+      ],
+      "gap_hours": [3],
+      "anomaly_hours": [17]
+    },
+
+    "CM-8": {
+      "_comment": "FAIL — Shadow IT detected: rogue-dev-box not in expected inventory",
+      "inventory_expected": [
+        "i-0abc123456789def0",
+        "i-0def987654321abc0",
+        "i-0aaa111222333bbb0",
+        "i-0bbb222333444ccc0"
+      ],
+      "inventory_discovered": [
+        "i-0abc123456789def0",
+        "i-0def987654321abc0",
+        "i-0aaa111222333bbb0",
+        "i-0bbb222333444ccc0",
+        "i-0ccc333444555ddd0"
+      ]
+    },
+
+    "AC-2": {
+      "_comment": "FAIL — user003 created without an ISSO-approved ticket",
+      "account_events": [
+        {"account_id": "user001", "event_type": "account_created", "timestamp": "2026-02-10T09:00:00Z"},
+        {"account_id": "user002", "event_type": "account_created", "timestamp": "2026-02-12T14:30:00Z"},
+        {"account_id": "user003", "event_type": "account_created", "timestamp": "2026-02-20T11:15:00Z"}
+      ],
+      "approved_tickets": [
+        {"account_id": "user001", "ticket_id": "CHG-1001", "isso_approved": true, "timestamp": "2026-02-10T08:45:00Z"},
+        {"account_id": "user002", "ticket_id": "CHG-1002", "isso_approved": true, "timestamp": "2026-02-12T14:00:00Z"}
+      ],
+      "lockouts": [],
+      "status_change_notifications": true,
+      "account_reviews": [{"review_date": "2026-02-01", "reviewer": "ISSO", "accounts_reviewed": 45}]
+    },
+
+    "AC-7": {
+      "_comment": "FAIL — user_brute has 7 failed logons but no lockout applied",
+      "failed_logons": [
+        {"username": "svc-deploy",   "timestamp": "2026-02-25T02:11:00Z", "source_ip": "10.0.1.5"},
+        {"username": "svc-deploy",   "timestamp": "2026-02-25T02:11:30Z", "source_ip": "10.0.1.5"},
+        {"username": "admin-api",    "timestamp": "2026-02-25T03:45:00Z", "source_ip": "10.0.2.8"},
+        {"username": "admin-api",    "timestamp": "2026-02-25T03:45:10Z", "source_ip": "10.0.2.8"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:00Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:05Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:10Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:15Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:20Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:25Z", "source_ip": "192.168.50.1"},
+        {"username": "user_brute",   "timestamp": "2026-02-25T04:00:30Z", "source_ip": "192.168.50.1"}
+      ],
+      "lockouts": ["svc-deploy", "admin-api"]
+    },
+
+    "AU-3": {
+      "_comment": "PASS — 20 records, 20/20 complete (all required fields present, no PII detected)",
+      "pii_detections": 0,
+      "records": [
+        {"timestamp": "2026-02-25T00:00:00Z", "event_type": "user.login", "subject": "user001", "outcome": "success", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T00:05:00Z", "event_type": "resource.access", "subject": "svc-deploy", "outcome": "success", "source_ip": "10.0.1.5"},
+        {"timestamp": "2026-02-25T00:10:00Z", "event_type": "user.login", "subject": "user002", "outcome": "success", "source_ip": "10.0.1.11"},
+        {"timestamp": "2026-02-25T00:15:00Z", "event_type": "admin.action", "subject": "admin-api", "outcome": "success", "source_ip": "10.0.2.8"},
+        {"timestamp": "2026-02-25T00:20:00Z", "event_type": "resource.delete", "subject": "user001", "outcome": "denied", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T01:00:00Z", "event_type": "user.login", "subject": "user003", "outcome": "success", "source_ip": "10.0.1.20"},
+        {"timestamp": "2026-02-25T01:15:00Z", "event_type": "resource.write", "subject": "svc-deploy", "outcome": "success", "source_ip": "10.0.1.5"},
+        {"timestamp": "2026-02-25T02:00:00Z", "event_type": "user.logout", "subject": "user001", "outcome": "success", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T02:30:00Z", "event_type": "policy.change", "subject": "admin-api", "outcome": "success", "source_ip": "10.0.2.8"},
+        {"timestamp": "2026-02-25T03:00:00Z", "event_type": "user.login", "subject": "user002", "outcome": "failed", "source_ip": "10.0.1.11"},
+        {"timestamp": "2026-02-25T04:00:00Z", "event_type": "resource.read", "subject": "user003", "outcome": "success", "source_ip": "10.0.1.20"},
+        {"timestamp": "2026-02-25T05:00:00Z", "event_type": "user.login", "subject": "user001", "outcome": "success", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T06:00:00Z", "event_type": "resource.access", "subject": "svc-deploy", "outcome": "success", "source_ip": "10.0.1.5"},
+        {"timestamp": "2026-02-25T07:00:00Z", "event_type": "admin.action", "subject": "admin-api", "outcome": "success", "source_ip": "10.0.2.8"},
+        {"timestamp": "2026-02-25T08:00:00Z", "event_type": "user.login", "subject": "user002", "outcome": "success", "source_ip": "10.0.1.11"},
+        {"timestamp": "2026-02-25T09:00:00Z", "event_type": "resource.write", "subject": "user001", "outcome": "success", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T10:00:00Z", "event_type": "user.login", "subject": "user003", "outcome": "success", "source_ip": "10.0.1.20"},
+        {"timestamp": "2026-02-25T11:00:00Z", "event_type": "policy.read", "subject": "admin-api", "outcome": "success", "source_ip": "10.0.2.8"},
+        {"timestamp": "2026-02-25T12:00:00Z", "event_type": "resource.access", "subject": "user001", "outcome": "success", "source_ip": "10.0.1.10"},
+        {"timestamp": "2026-02-25T13:00:00Z", "event_type": "user.logout", "subject": "user002", "outcome": "success", "source_ip": "10.0.1.11"}
+      ]
+    },
+
+    "IA-5": {
+      "_comment": "PASS — Password policy meets all NIST 800-63B thresholds",
+      "policy": {
+        "MinimumLength": 14,
+        "ComplexityEnabled": true,
+        "PasswordHistory": 24,
+        "MaximumAge": 60,
+        "MinimumAge": 1,
+        "ReversibleEncryptionEnabled": false
+      },
+      "weak_algorithms": []
+    },
+
+    "RA-5": {
+      "_comment": "FAIL — CVE-2025-99001 is critical and 22 days old (>15 day SLA); CVE-2025-88002 is in KEV",
+      "scan_coverage": 0.97,
+      "scan_age_hours": 18,
+      "vulnerabilities": [
+        {
+          "cve": "CVE-2025-99001",
+          "cvss_score": 9.8,
+          "days_open": 22,
+          "affected_resource": "i-0abc123456789def0",
+          "description": "Remote code execution in OpenSSL 3.0.x",
+          "in_kev": false,
+          "compensating_control": false
+        },
+        {
+          "cve": "CVE-2025-88002",
+          "cvss_score": 8.1,
+          "days_open": 9,
+          "affected_resource": "i-0def987654321abc0",
+          "description": "Privilege escalation in Linux kernel",
+          "in_kev": true,
+          "compensating_control": false
+        },
+        {
+          "cve": "CVE-2025-55003",
+          "cvss_score": 5.4,
+          "days_open": 45,
+          "affected_resource": "i-0abc123456789def0",
+          "description": "Information disclosure in Apache HTTP Server",
+          "in_kev": false,
+          "compensating_control": false
+        },
+        {
+          "cve": "CVE-2025-44004",
+          "cvss_score": 3.1,
+          "days_open": 12,
+          "affected_resource": "bobbie-app-db",
+          "description": "Low-severity information leak in postgres driver",
+          "in_kev": false,
+          "compensating_control": false
+        }
+      ]
+    },
+
+    "SI-2": {
+      "_comment": "FAIL — CVE-2025-99001 is critical and 22 days old with no compensating control",
+      "patches": [
+        {
+          "cve": "CVE-2025-99001",
+          "severity": "CRITICAL",
+          "days_open": 22,
+          "affected_instance": "i-0abc123456789def0",
+          "patch_id": "KB5031455",
+          "compensating_control": false,
+          "in_kev": false
+        },
+        {
+          "cve": "CVE-2025-88002",
+          "severity": "HIGH",
+          "days_open": 9,
+          "affected_instance": "i-0def987654321abc0",
+          "patch_id": "RHSA-2025-001",
+          "compensating_control": false,
+          "in_kev": true
+        },
+        {
+          "cve": "CVE-2025-55003",
+          "severity": "MEDIUM",
+          "days_open": 45,
+          "affected_instance": "i-0abc123456789def0",
+          "patch_id": "APACHE-2025-02",
+          "compensating_control": true,
+          "in_kev": false
+        },
+        {
+          "cve": "CVE-2024-50001",
+          "severity": "LOW",
+          "days_open": 5,
+          "affected_instance": "i-0bbb222333444ccc0",
+          "patch_id": "KB5029244",
+          "compensating_control": false,
+          "in_kev": false
+        }
+      ]
+    }
+  }
+}

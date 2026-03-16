@@ -37,7 +37,93 @@ def main() -> None:
         default=0.9,
         help="Confidence threshold (0.0-1.0) required to auto-apply Nova suggestions",
     )
+
+    # ── Infrastructure source options ─────────────────────────────────────────
+    parser.add_argument(
+        "--infra-source",
+        choices=["live", "terraform", "aws-config", "cloudformation"],
+        default="live",
+        help=(
+            "Infrastructure data source for the assessment:\n"
+            "  live           – Live boto3 API calls (default, requires active AWS credentials)\n"
+            "  terraform      – Parse a local terraform.tfstate file (use with --infra-file)\n"
+            "  aws-config     – AWS Config snapshot JSON (local file via --infra-file, or trigger\n"
+            "                   delivery to S3 via --config-s3-bucket)\n"
+            "  cloudformation – Enumerate deployed CloudFormation/CDK stacks via API"
+        ),
+    )
+    parser.add_argument(
+        "--infra-file",
+        default=None,
+        help=(
+            "Path to a local infrastructure file:\n"
+            "  terraform  → path/to/terraform.tfstate\n"
+            "  aws-config → path/to/config-snapshot.json[.gz]"
+        ),
+    )
+    parser.add_argument(
+        "--config-s3-bucket",
+        default=None,
+        help="S3 bucket where AWS Config delivers snapshots (used with --infra-source aws-config).",
+    )
+    parser.add_argument(
+        "--config-s3-prefix",
+        default=None,
+        help="S3 key prefix for AWS Config snapshots (optional, used with --config-s3-bucket).",
+    )
+    parser.add_argument(
+        "--cfn-stacks",
+        default=None,
+        help="Comma-separated CloudFormation stack names/ARNs to include (default: all active stacks).",
+    )
+    parser.add_argument(
+        "--aws-profile",
+        default=None,
+        help="AWS named profile to use for boto3 sessions (overrides AWS_PROFILE env var).",
+    )
+    parser.add_argument(
+        "--aws-region",
+        default="us-east-1",
+        help="AWS region for boto3 sessions (default: us-east-1).",
+    )
+    parser.add_argument(
+        "--collect-only",
+        action="store_true",
+        help="Only collect the infrastructure snapshot and save it; do not run the assessment.",
+    )
+
     args = parser.parse_args()
+
+    # ── Collect infrastructure snapshot ──────────────────────────────────────
+    from src.collectors import collect_infrastructure
+
+    print(f"[BOBBIE] Infrastructure source: {args.infra_source}", flush=True)
+    snapshot = collect_infrastructure(
+        source=args.infra_source,
+        infra_file=args.infra_file,
+        config_s3_bucket=args.config_s3_bucket,
+        config_s3_prefix=args.config_s3_prefix,
+        stack_names=[s.strip() for s in args.cfn_stacks.split(",")] if args.cfn_stacks else None,
+        aws_profile=args.aws_profile,
+        aws_region=args.aws_region,
+    )
+
+    summary = snapshot.to_dict()
+    print(f"[BOBBIE] Snapshot: {summary['total_resources']} resources across "
+          f"{len(summary['resource_counts'])} types", flush=True)
+    if snapshot.errors:
+        for err in snapshot.errors:
+            print(f"[BOBBIE] WARN: {err}", flush=True)
+
+    # Save snapshot alongside other artifacts
+    output_path = Path(args.output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    snapshot.save(output_path / "infra_snapshot.json")
+    print(f"[BOBBIE] Snapshot saved → {output_path / 'infra_snapshot.json'}", flush=True)
+
+    if args.collect_only:
+        print(json.dumps(summary, indent=2, default=str))
+        return
 
     from src.config.demo_plan import DEMO_PLAN as demo_plan
 
@@ -46,6 +132,9 @@ def main() -> None:
         "nova_narrative": bool(args.nova_narrative),
         "apply_nova_suggestions": bool(args.apply_nova_suggestions),
         "nova_confidence_threshold": float(args.nova_confidence_threshold),
+        "infra_snapshot": snapshot.resources,
+        "infra_source": args.infra_source,
+        "aws_region": args.aws_region,
         "orchestrator": {
             "control_timeout_seconds": float(args.control_timeout_seconds),
             "max_workers": int(args.max_workers),

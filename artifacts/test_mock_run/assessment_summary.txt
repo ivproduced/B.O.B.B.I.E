@@ -1,0 +1,17 @@
+System: BOBBIE Mock Test
+Total controls: 10
+Passed: 0
+Failed: 10
+Compliance score: 0.0%
+
+Top prioritized findings:
+- [HIGH] AC-2: Objective ac-2_obj.a-1 NOT MET: No account lifecycle evidence found
+- [HIGH] AC-2: Objective ac-2_obj.a-2 NOT MET: No account lifecycle evidence found
+- [HIGH] AC-2: Objective ac-2_obj.b NOT MET: No account lifecycle evidence found
+- [HIGH] AC-2: Objective ac-2_obj.c NOT MET: No lifecycle enforcement evidence found
+- [HIGH] AC-2: Objective ac-2_obj.d.1 NOT MET: One or more account events lack approved tickets
+- [HIGH] AC-2: Objective ac-2_obj.d.2 NOT MET: Insufficient evidence for objective
+- [HIGH] AC-2: Objective ac-2_obj.d.3-1 NOT MET: One or more account events lack approved tickets
+- [HIGH] AC-2: Objective ac-2_obj.d.3-2 NOT MET: Insufficient evidence for objective
+- [HIGH] AC-2: Objective ac-2_obj.e NOT MET: Insufficient evidence for objective
+- [HIGH] AC-2: Objective ac-2_obj.f-1 NOT MET: Insufficient evidence for objective

@@ -64,23 +64,95 @@ class ReportGenerator:
 
     def build_human_summary(self, assessment: dict[str, Any], system_name: str = "BOBBIE Demo System") -> str:
         summary = assessment.get("summary", {})
+        families = assessment.get("families", {})
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        W = 72  # line width
+
+        def rule(char="═"):
+            return char * W
+
+        def section(title):
+            return f"\n{rule()}\n  {title}\n{rule()}"
+
+        def wrap(text, indent=4, width=W):
+            words = text.split()
+            lines_out = []
+            cur = " " * indent
+            for w in words:
+                if len(cur) + len(w) + 1 > width:
+                    lines_out.append(cur.rstrip())
+                    cur = " " * indent + w + " "
+                else:
+                    cur += w + " "
+            if cur.strip():
+                lines_out.append(cur.rstrip())
+            return "\n".join(lines_out)
+
+        total = summary.get("total_controls", 0)
+        passed = summary.get("passed", 0)
+        failed = summary.get("failed", 0)
+        score = summary.get("compliance_score", 0.0)
+
         lines = [
-            f"System: {system_name}",
-            f"Total controls: {summary.get('total_controls', 0)}",
-            f"Passed: {summary.get('passed', 0)}",
-            f"Failed: {summary.get('failed', 0)}",
-            f"Compliance score: {summary.get('compliance_score', 0.0)}%",
+            rule("═"),
+            f"  B.O.B.B.I.E. ASSESSMENT REPORT",
+            f"  {system_name}",
+            f"  Generated: {now}",
+            rule("═"),
             "",
-            "Top prioritized findings:",
+            f"  COMPLIANCE SCORE   {score:.1f}%",
+            f"  Total Controls     {total}",
+            f"  Passed             {passed}",
+            f"  Failed             {failed}",
+            "",
         ]
-        findings = summary.get("prioritized_findings", [])[:10]
-        if not findings:
-            lines.append("- None")
-        else:
-            for finding in findings:
-                lines.append(
-                    f"- [{finding.get('risk_level', 'LOW')}] {finding.get('control_id', 'UNKNOWN')}: {finding.get('finding', '')}"
-                )
+
+        # ── Per-control breakdown ──────────────────────────────────────────
+        lines.append(section("CONTROL RESULTS"))
+        for _fid, fdata in families.items():
+            for cid, cdata in fdata.get("controls", {}).items():
+                status = cdata.get("status", "UNKNOWN").upper()
+                risk = cdata.get("risk_level", "")
+                status_tag = f"[{status}]" + (f" [{risk}]" if risk and status == "FAIL" else "")
+                lines.append(f"\n  {cid}  {status_tag}")
+
+                findings = cdata.get("findings") or []
+                recs = cdata.get("recommendations") or []
+                narrative = cdata.get("nova_narrative")
+
+                if findings:
+                    lines.append("  Findings:")
+                    for f in findings:
+                        lines.append(wrap(f"• {f}", indent=6))
+
+                if narrative:
+                    lines.append("  Nova AI Narrative:")
+                    lines.append(wrap(narrative, indent=6))
+
+                if recs:
+                    lines.append("  Recommendations:")
+                    for r in recs:
+                        lines.append(wrap(f"→ {r}", indent=6))
+
+                if status == "PASS" and not findings:
+                    lines.append("    All assessment objectives met.")
+
+        # ── Risk summary ───────────────────────────────────────────────────
+        risk_counts: dict[str, int] = {}
+        for _fid, fdata in families.items():
+            for cdata in fdata.get("controls", {}).values():
+                if (cdata.get("status") or "").upper() == "FAIL":
+                    lvl = cdata.get("risk_level", "UNKNOWN").upper()
+                    risk_counts[lvl] = risk_counts.get(lvl, 0) + 1
+
+        if risk_counts:
+            lines.append(section("RISK BREAKDOWN  (failed controls)"))
+            lines.append("")
+            for lvl in ("CRITICAL", "HIGH", "MODERATE", "LOW", "UNKNOWN"):
+                if lvl in risk_counts:
+                    lines.append(f"  {lvl:<12} {risk_counts[lvl]}")
+
+        lines += ["", rule("═"), ""]
         return "\n".join(lines)
 
     def export_artifacts(

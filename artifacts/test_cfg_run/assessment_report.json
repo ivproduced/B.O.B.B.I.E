@@ -1,0 +1,3478 @@
+{
+  "assessment_date": "2026-02-27T04:04:34.481578+00:00",
+  "system_name": "BOBBIE Config Mock",
+  "bobbie_version": "phase3",
+  "summary": {
+    "total_controls": 10,
+    "passed": 0,
+    "failed": 10,
+    "compliance_score": 0.0,
+    "deterministic_mode": true,
+    "prioritized_findings": [
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.a-1 NOT MET: No account lifecycle evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.a-2 NOT MET: No account lifecycle evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.b NOT MET: No account lifecycle evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.c NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.d.1 NOT MET: One or more account events lack approved tickets",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.d.2 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.d.3-1 NOT MET: One or more account events lack approved tickets",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.d.3-2 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.e NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.f-1 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.f-2 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.f-3 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.f-4 NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.f-5 NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.g NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.h.1 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.h.2 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.h.3 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.i.1 NOT MET: One or more account events lack approved tickets",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.i.2 NOT MET: One or more account events lack approved tickets",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.i.3 NOT MET: One or more account events lack approved tickets",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.j NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.k-1 NOT MET: No account lifecycle evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.k-2 NOT MET: No lifecycle enforcement evidence found",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.l-1 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "risk_level": "HIGH",
+        "finding": "Objective ac-2_obj.l-2 NOT MET: Insufficient evidence for objective",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AC",
+        "control_id": "AC-7",
+        "risk_level": "HIGH",
+        "finding": "No evidence provided for AC-7",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Provide control_evidence['AC-7'] with required fields"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.a NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.b NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.c NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.d NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.e NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "risk_level": "HIGH",
+        "finding": "Objective au-3_obj.f NOT MET: Required fields completeness 0.0%",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "CM",
+        "control_id": "CM-8",
+        "risk_level": "HIGH",
+        "finding": "No evidence provided for CM-8",
+        "recommendations": [
+          "Use CM-8 baseline mapping with SSM inventory reconciliation checks",
+          "Track inventory deltas and ownership metadata in final control output",
+          "Provide control_evidence['CM-8'] with required fields"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.a NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.b NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.c NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.d NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.e NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.f NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.g NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.h-1 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.h-2 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ia-5_obj.i NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.1-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.1-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.2-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.2-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.3-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.3-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.4-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.4-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.5-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.5-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.6-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.6-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.7-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.7-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.8-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.8-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.9-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.9-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.10-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.10-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.11-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.11-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.12-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.12-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.13-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.13-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.14-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.14-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.15-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.a.15-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.b-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.b-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.c NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.d-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.d-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.d-3 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.e-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "risk_level": "HIGH",
+        "finding": "Objective pl-2_obj.e-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "risk_level": "HIGH",
+        "finding": "Objective pm-9_obj.a.1 NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "risk_level": "HIGH",
+        "finding": "Objective pm-9_obj.a.2 NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "risk_level": "HIGH",
+        "finding": "Objective pm-9_obj.b NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "risk_level": "HIGH",
+        "finding": "Objective pm-9_obj.c NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.a-1 NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.a-2 NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.b NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.c NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.e NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "risk_level": "HIGH",
+        "finding": "Objective ra-5_obj.f NOT MET: Missing or stale vulnerability scan evidence",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.a-1 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.a-2 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.a-3 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.b-1 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.b-2 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.b-3 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.b-4 NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "risk_level": "HIGH",
+        "finding": "Objective si-2_obj.d NOT MET: No patch/flaw evidence provided",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "family_id": "SI",
+        "control_id": "SI-4",
+        "risk_level": "HIGH",
+        "finding": "No evidence provided for SI-4",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Provide control_evidence['SI-4'] with required fields"
+        ]
+      }
+    ],
+    "poam_items": [
+      {
+        "item_id": "POAM-001",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.a-1 NOT MET: No account lifecycle evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-002",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.a-2 NOT MET: No account lifecycle evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-003",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.b NOT MET: No account lifecycle evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-004",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.c NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-005",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.d.1 NOT MET: One or more account events lack approved tickets",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-006",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.d.2 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-007",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.d.3-1 NOT MET: One or more account events lack approved tickets",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-008",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.d.3-2 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-009",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.e NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-010",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.f-1 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-011",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.f-2 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-012",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.f-3 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-013",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.f-4 NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-014",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.f-5 NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-015",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.g NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-016",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.h.1 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-017",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.h.2 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-018",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.h.3 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-019",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.i.1 NOT MET: One or more account events lack approved tickets",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-020",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.i.2 NOT MET: One or more account events lack approved tickets",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-021",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.i.3 NOT MET: One or more account events lack approved tickets",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-022",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.j NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-023",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.k-1 NOT MET: No account lifecycle evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-024",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.k-2 NOT MET: No lifecycle enforcement evidence found",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-025",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.l-1 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-026",
+        "family_id": "AC",
+        "control_id": "AC-2",
+        "weakness": "Objective ac-2_obj.l-2 NOT MET: Insufficient evidence for objective",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-027",
+        "family_id": "AC",
+        "control_id": "AC-7",
+        "weakness": "No evidence provided for AC-7",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use baseline tags with EVTX evidence checks for final AC assessment",
+          "Correlate account and lockout events to objective statements",
+          "Provide control_evidence['AC-7'] with required fields"
+        ]
+      },
+      {
+        "item_id": "POAM-028",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.a NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-029",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.b NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-030",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.c NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-031",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.d NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-032",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.e NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-033",
+        "family_id": "AU",
+        "control_id": "AU-3",
+        "weakness": "Objective au-3_obj.f NOT MET: Required fields completeness 0.0%",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+          "Map missing fields to POA&M-ready remediation language",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-034",
+        "family_id": "CM",
+        "control_id": "CM-8",
+        "weakness": "No evidence provided for CM-8",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use CM-8 baseline mapping with SSM inventory reconciliation checks",
+          "Track inventory deltas and ownership metadata in final control output",
+          "Provide control_evidence['CM-8'] with required fields"
+        ]
+      },
+      {
+        "item_id": "POAM-035",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.a NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-036",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.b NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-037",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.c NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-038",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.d NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-039",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.e NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-040",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.f NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-041",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.g NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-042",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.h-1 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-043",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.h-2 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-044",
+        "family_id": "IA",
+        "control_id": "IA-5",
+        "weakness": "Objective ia-5_obj.i NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+          "Document policy deviations and compensating controls in POA&M output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-045",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.1-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-046",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.1-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-047",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.2-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-048",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.2-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-049",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.3-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-050",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.3-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-051",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.4-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-052",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.4-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-053",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.5-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-054",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.5-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-055",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.6-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-056",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.6-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-057",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.7-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-058",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.7-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-059",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.8-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-060",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.8-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-061",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.9-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-062",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.9-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-063",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.10-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-064",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.10-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-065",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.11-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-066",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.11-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-067",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.12-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-068",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.12-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-069",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.13-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-070",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.13-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-071",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.14-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-072",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.14-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-073",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.15-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-074",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.a.15-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-075",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.b-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-076",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.b-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-077",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.c NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-078",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.d-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-079",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.d-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-080",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.d-3 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-081",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.e-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-082",
+        "family_id": "PL",
+        "control_id": "PL-2",
+        "weakness": "Objective pl-2_obj.e-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Confirm baseline selection aligns with system impact level",
+          "Use baseline tags for family-agent control routing",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-083",
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "weakness": "Objective pm-9_obj.a.1 NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-084",
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "weakness": "Objective pm-9_obj.a.2 NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-085",
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "weakness": "Objective pm-9_obj.b NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-086",
+        "family_id": "PM",
+        "control_id": "PM-9",
+        "weakness": "Objective pm-9_obj.c NOT MET: Risk evidence missing or invalid risk scoring detected",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Use PM-9 baseline membership as routing input for risk-register checks",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-087",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.a-1 NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-088",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.a-2 NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-089",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.b NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-090",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.c NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-091",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.e NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-092",
+        "family_id": "RA",
+        "control_id": "RA-5",
+        "weakness": "Objective ra-5_obj.f NOT MET: Missing or stale vulnerability scan evidence",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+          "Track open-age and exploitability in remediation prioritization",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-093",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.a-1 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-094",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.a-2 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-095",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.a-3 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-096",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.b-1 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-097",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.b-2 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-098",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.b-3 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-099",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.b-4 NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-100",
+        "family_id": "SI",
+        "control_id": "SI-2",
+        "weakness": "Objective si-2_obj.d NOT MET: No patch/flaw evidence provided",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Address unmet assessment objectives before declaring control effective",
+          "Attach traceable evidence for each 800-53A objective"
+        ]
+      },
+      {
+        "item_id": "POAM-101",
+        "family_id": "SI",
+        "control_id": "SI-4",
+        "weakness": "No evidence provided for SI-4",
+        "risk_level": "HIGH",
+        "recommendations": [
+          "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+          "Prioritize exploitability and SLA breaches in remediation output",
+          "Provide control_evidence['SI-4'] with required fields"
+        ]
+      }
+    ]
+  },
+  "families": {
+    "AC": {
+      "controls": {
+        "AC-2": {
+          "control_id": "AC-2",
+          "status": "FAIL",
+          "findings": [
+            "Objective ac-2_obj.a-1 NOT MET: No account lifecycle evidence found",
+            "Objective ac-2_obj.a-2 NOT MET: No account lifecycle evidence found",
+            "Objective ac-2_obj.b NOT MET: No account lifecycle evidence found",
+            "Objective ac-2_obj.c NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.d.1 NOT MET: One or more account events lack approved tickets",
+            "Objective ac-2_obj.d.2 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.d.3-1 NOT MET: One or more account events lack approved tickets",
+            "Objective ac-2_obj.d.3-2 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.e NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.f-1 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.f-2 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.f-3 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.f-4 NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.f-5 NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.g NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.h.1 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.h.2 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.h.3 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.i.1 NOT MET: One or more account events lack approved tickets",
+            "Objective ac-2_obj.i.2 NOT MET: One or more account events lack approved tickets",
+            "Objective ac-2_obj.i.3 NOT MET: One or more account events lack approved tickets",
+            "Objective ac-2_obj.j NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.k-1 NOT MET: No account lifecycle evidence found",
+            "Objective ac-2_obj.k-2 NOT MET: No lifecycle enforcement evidence found",
+            "Objective ac-2_obj.l-1 NOT MET: Insufficient evidence for objective",
+            "Objective ac-2_obj.l-2 NOT MET: Insufficient evidence for objective"
+          ],
+          "recommendations": [
+            "Use baseline tags with EVTX evidence checks for final AC assessment",
+            "Correlate account and lockout events to objective statements",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ac-2",
+            "title": "Account Management",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "ac-2_obj.a-1",
+                "met": false,
+                "reason": "No account lifecycle evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.a-2",
+                "met": false,
+                "reason": "No account lifecycle evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.b",
+                "met": false,
+                "reason": "No account lifecycle evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.c",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.d.1",
+                "met": false,
+                "reason": "One or more account events lack approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.d.2",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.d.3-1",
+                "met": false,
+                "reason": "One or more account events lack approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.d.3-2",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.e",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.f-1",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.f-2",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.f-3",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.f-4",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.f-5",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.g",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.h.1",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.h.2",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.h.3",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.i.1",
+                "met": false,
+                "reason": "One or more account events lack approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.i.2",
+                "met": false,
+                "reason": "One or more account events lack approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.i.3",
+                "met": false,
+                "reason": "One or more account events lack approved tickets"
+              },
+              {
+                "objective_id": "ac-2_obj.j",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.k-1",
+                "met": false,
+                "reason": "No account lifecycle evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.k-2",
+                "met": false,
+                "reason": "No lifecycle enforcement evidence found"
+              },
+              {
+                "objective_id": "ac-2_obj.l-1",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              },
+              {
+                "objective_id": "ac-2_obj.l-2",
+                "met": false,
+                "reason": "Insufficient evidence for objective"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        },
+        "AC-7": {
+          "control_id": "AC-7",
+          "status": "FAIL",
+          "findings": [
+            "No evidence provided for AC-7"
+          ],
+          "recommendations": [
+            "Use baseline tags with EVTX evidence checks for final AC assessment",
+            "Correlate account and lockout events to objective statements",
+            "Provide control_evidence['AC-7'] with required fields"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.99,
+          "evidence": {
+            "control_id": "ac-7",
+            "title": "Unsuccessful Logon Attempts",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [],
+            "effectiveness": "UNKNOWN"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 2,
+        "passed": 0,
+        "failed": 2
+      }
+    },
+    "AU": {
+      "controls": {
+        "AU-3": {
+          "control_id": "AU-3",
+          "status": "FAIL",
+          "findings": [
+            "Objective au-3_obj.a NOT MET: Required fields completeness 0.0%",
+            "Objective au-3_obj.b NOT MET: Required fields completeness 0.0%",
+            "Objective au-3_obj.c NOT MET: Required fields completeness 0.0%",
+            "Objective au-3_obj.d NOT MET: Required fields completeness 0.0%",
+            "Objective au-3_obj.e NOT MET: Required fields completeness 0.0%",
+            "Objective au-3_obj.f NOT MET: Required fields completeness 0.0%"
+          ],
+          "recommendations": [
+            "Apply AU-3 field-completeness checks against EVTX/CloudWatch evidence",
+            "Map missing fields to POA&M-ready remediation language",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "au-3",
+            "title": "Content of Audit Records",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "au-3_obj.a",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              },
+              {
+                "objective_id": "au-3_obj.b",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              },
+              {
+                "objective_id": "au-3_obj.c",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              },
+              {
+                "objective_id": "au-3_obj.d",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              },
+              {
+                "objective_id": "au-3_obj.e",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              },
+              {
+                "objective_id": "au-3_obj.f",
+                "met": false,
+                "reason": "Required fields completeness 0.0%"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "CM": {
+      "controls": {
+        "CM-8": {
+          "control_id": "CM-8",
+          "status": "FAIL",
+          "findings": [
+            "No evidence provided for CM-8"
+          ],
+          "recommendations": [
+            "Use CM-8 baseline mapping with SSM inventory reconciliation checks",
+            "Track inventory deltas and ownership metadata in final control output",
+            "Provide control_evidence['CM-8'] with required fields"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.99,
+          "evidence": {
+            "control_id": "cm-8",
+            "title": "System Component Inventory",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {}
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "IA": {
+      "controls": {
+        "IA-5": {
+          "control_id": "IA-5",
+          "status": "FAIL",
+          "findings": [
+            "Objective ia-5_obj.a NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.b NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.c NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.d NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.e NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.f NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.g NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.h-1 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.h-2 NOT MET: Policy thresholds not met (length/complexity/history/max age)",
+            "Objective ia-5_obj.i NOT MET: Policy thresholds not met (length/complexity/history/max age)"
+          ],
+          "recommendations": [
+            "Apply password policy checks against IA-5 NIST 800-63B thresholds",
+            "Document policy deviations and compensating controls in POA&M output",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ia-5",
+            "title": "Authenticator Management",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "ia-5_obj.a",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.b",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.c",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.d",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.e",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.f",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.g",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.h-1",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.h-2",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              },
+              {
+                "objective_id": "ia-5_obj.i",
+                "met": false,
+                "reason": "Policy thresholds not met (length/complexity/history/max age)"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "PL": {
+      "controls": {
+        "PL-2": {
+          "control_id": "PL-2",
+          "status": "FAIL",
+          "findings": [
+            "Objective pl-2_obj.a.1-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.1-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.2-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.2-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.3-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.3-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.4-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.4-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.5-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.5-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.6-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.6-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.7-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.7-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.8-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.8-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.9-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.9-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.10-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.10-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.11-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.11-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.12-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.12-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.13-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.13-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.14-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.14-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.15-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.a.15-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.b-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.b-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.c NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.d-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.d-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.d-3 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.e-1 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation",
+            "Objective pl-2_obj.e-2 NOT MET: Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+          ],
+          "recommendations": [
+            "Confirm baseline selection aligns with system impact level",
+            "Use baseline tags for family-agent control routing",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "pl-2",
+            "title": "System Security and Privacy Plans",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": true
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "pl-2_obj.a.1-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.1-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.2-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.2-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.3-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.3-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.4-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.4-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.5-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.5-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.6-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.6-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.7-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.7-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.8-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.8-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.9-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.9-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.10-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.10-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.11-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.11-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.12-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.12-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.13-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.13-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.14-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.14-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.15-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.a.15-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.b-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.b-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.c",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.d-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.d-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.d-3",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.e-1",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              },
+              {
+                "objective_id": "pl-2_obj.e-2",
+                "met": false,
+                "reason": "Missing SSP sections: control-implementation, metadata, system-characteristics, system-implementation"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "PM": {
+      "controls": {
+        "PM-9": {
+          "control_id": "PM-9",
+          "status": "FAIL",
+          "findings": [
+            "Objective pm-9_obj.a.1 NOT MET: Risk evidence missing or invalid risk scoring detected",
+            "Objective pm-9_obj.a.2 NOT MET: Risk evidence missing or invalid risk scoring detected",
+            "Objective pm-9_obj.b NOT MET: Risk evidence missing or invalid risk scoring detected",
+            "Objective pm-9_obj.c NOT MET: Risk evidence missing or invalid risk scoring detected"
+          ],
+          "recommendations": [
+            "Use PM-9 baseline membership as routing input for risk-register checks",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "pm-9",
+            "title": "Risk Management Strategy",
+            "baselines": {
+              "LOW": false,
+              "MODERATE": false,
+              "HIGH": false,
+              "PRIVACY": true
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "pm-9_obj.a.1",
+                "met": false,
+                "reason": "Risk evidence missing or invalid risk scoring detected"
+              },
+              {
+                "objective_id": "pm-9_obj.a.2",
+                "met": false,
+                "reason": "Risk evidence missing or invalid risk scoring detected"
+              },
+              {
+                "objective_id": "pm-9_obj.b",
+                "met": false,
+                "reason": "Risk evidence missing or invalid risk scoring detected"
+              },
+              {
+                "objective_id": "pm-9_obj.c",
+                "met": false,
+                "reason": "Risk evidence missing or invalid risk scoring detected"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "RA": {
+      "controls": {
+        "RA-5": {
+          "control_id": "RA-5",
+          "status": "FAIL",
+          "findings": [
+            "Objective ra-5_obj.a-1 NOT MET: Missing or stale vulnerability scan evidence",
+            "Objective ra-5_obj.a-2 NOT MET: Missing or stale vulnerability scan evidence",
+            "Objective ra-5_obj.b NOT MET: Missing or stale vulnerability scan evidence",
+            "Objective ra-5_obj.c NOT MET: Missing or stale vulnerability scan evidence",
+            "Objective ra-5_obj.e NOT MET: Missing or stale vulnerability scan evidence",
+            "Objective ra-5_obj.f NOT MET: Missing or stale vulnerability scan evidence"
+          ],
+          "recommendations": [
+            "Apply RA-5 CVSS SLA and KEV enrichment checks using vulnerability evidence",
+            "Track open-age and exploitability in remediation prioritization",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "ra-5",
+            "title": "Vulnerability Monitoring and Scanning",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "ra-5_obj.a-1",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              },
+              {
+                "objective_id": "ra-5_obj.a-2",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              },
+              {
+                "objective_id": "ra-5_obj.b",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              },
+              {
+                "objective_id": "ra-5_obj.c",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              },
+              {
+                "objective_id": "ra-5_obj.d",
+                "met": true,
+                "reason": "All vulnerabilities within SLA"
+              },
+              {
+                "objective_id": "ra-5_obj.e",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              },
+              {
+                "objective_id": "ra-5_obj.f",
+                "met": false,
+                "reason": "Missing or stale vulnerability scan evidence"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "SI": {
+      "controls": {
+        "SI-2": {
+          "control_id": "SI-2",
+          "status": "FAIL",
+          "findings": [
+            "Objective si-2_obj.a-1 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.a-2 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.a-3 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.b-1 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.b-2 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.b-3 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.b-4 NOT MET: No patch/flaw evidence provided",
+            "Objective si-2_obj.d NOT MET: No patch/flaw evidence provided"
+          ],
+          "recommendations": [
+            "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+            "Prioritize exploitability and SLA breaches in remediation output",
+            "Address unmet assessment objectives before declaring control effective",
+            "Attach traceable evidence for each 800-53A objective"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.965,
+          "evidence": {
+            "control_id": "si-2",
+            "title": "Flaw Remediation",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [
+              {
+                "objective_id": "si-2_obj.a-1",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.a-2",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.a-3",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.b-1",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.b-2",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.b-3",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.b-4",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              },
+              {
+                "objective_id": "si-2_obj.c-1",
+                "met": true,
+                "reason": "Patches applied within SLA"
+              },
+              {
+                "objective_id": "si-2_obj.c-2",
+                "met": true,
+                "reason": "Patches applied within SLA"
+              },
+              {
+                "objective_id": "si-2_obj.d",
+                "met": false,
+                "reason": "No patch/flaw evidence provided"
+              }
+            ],
+            "effectiveness": "INEFFECTIVE"
+          }
+        },
+        "SI-4": {
+          "control_id": "SI-4",
+          "status": "FAIL",
+          "findings": [
+            "No evidence provided for SI-4"
+          ],
+          "recommendations": [
+            "Map SI baseline tags to CloudWatch and patch-compliance evidence collection",
+            "Prioritize exploitability and SLA breaches in remediation output",
+            "Provide control_evidence['SI-4'] with required fields"
+          ],
+          "risk_level": "HIGH",
+          "confidence_score": 0.99,
+          "evidence": {
+            "control_id": "si-4",
+            "title": "System Monitoring",
+            "baselines": {
+              "LOW": true,
+              "MODERATE": true,
+              "HIGH": true,
+              "PRIVACY": false
+            },
+            "control_evidence": {},
+            "objective_results": [],
+            "effectiveness": "UNKNOWN"
+          }
+        }
+      },
+      "summary": {
+        "total_controls": 2,
+        "passed": 0,
+        "failed": 2
+      }
+    }
+  }
+}

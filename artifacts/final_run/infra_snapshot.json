@@ -1,0 +1,360 @@
+{
+  "source": "terraform",
+  "collected_at": "2026-03-16T05:42:03.509357+00:00",
+  "account_id": "123456789012",
+  "region": "us-east-1",
+  "resource_counts": {
+    "AWS::IAM::Role": 2,
+    "AWS::IAM::AccountPasswordPolicy": 1,
+    "AWS::S3::Bucket": 3,
+    "AWS::CloudTrail::Trail": 1,
+    "AWS::EC2::Instance": 2,
+    "AWS::EC2::SecurityGroup": 1,
+    "AWS::EC2::VPC": 1,
+    "AWS::KMS::Key": 1,
+    "AWS::RDS::DBInstance": 1,
+    "AWS::Lambda::Function": 1,
+    "AWS::GuardDuty::Detector": 1,
+    "AWS::Logs::LogGroup": 1,
+    "AWS::Config::ConfigurationRecorder": 1
+  },
+  "total_resources": 17,
+  "errors": [],
+  "resources": {
+    "AWS::IAM::Role": [
+      {
+        "id": "app-execution-role",
+        "arn": "arn:aws:iam::123456789012:role/app-execution-role",
+        "name": "app-execution-role",
+        "module": "module.iam",
+        "attributes": {
+          "id": "app-execution-role",
+          "arn": "arn:aws:iam::123456789012:role/app-execution-role",
+          "name": "app-execution-role",
+          "path": "/",
+          "description": "ECS task execution role",
+          "assume_role_policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ecs-tasks.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+          "tags": {
+            "Environment": "production",
+            "Owner": "platform-team"
+          }
+        }
+      },
+      {
+        "id": "lambda-exec-role",
+        "arn": "arn:aws:iam::123456789012:role/lambda-exec-role",
+        "name": "lambda-exec-role",
+        "module": "module.iam",
+        "attributes": {
+          "id": "lambda-exec-role",
+          "arn": "arn:aws:iam::123456789012:role/lambda-exec-role",
+          "name": "lambda-exec-role",
+          "path": "/",
+          "description": "Lambda execution role",
+          "assume_role_policy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::IAM::AccountPasswordPolicy": [
+      {
+        "id": "iam-account-password-policy",
+        "arn": "",
+        "name": "iam-account-password-policy",
+        "module": "module.iam",
+        "attributes": {
+          "id": "iam-account-password-policy",
+          "minimum_password_length": 14,
+          "require_lowercase_characters": true,
+          "require_numbers": true,
+          "require_symbols": true,
+          "require_uppercase_characters": true,
+          "allow_users_to_change_password": true,
+          "max_password_age": 60,
+          "password_reuse_prevention": 24,
+          "hard_expiry": false
+        }
+      }
+    ],
+    "AWS::S3::Bucket": [
+      {
+        "id": "bobbie-app-data-123456789012",
+        "arn": "arn:aws:s3:::bobbie-app-data-123456789012",
+        "name": "bobbie-app-data-123456789012",
+        "module": "module.storage",
+        "attributes": {
+          "id": "bobbie-app-data-123456789012",
+          "arn": "arn:aws:s3:::bobbie-app-data-123456789012",
+          "bucket": "bobbie-app-data-123456789012",
+          "region": "us-east-1",
+          "tags": {
+            "Purpose": "application-data",
+            "Environment": "production"
+          }
+        }
+      },
+      {
+        "id": "bobbie-audit-logs-123456789012",
+        "arn": "arn:aws:s3:::bobbie-audit-logs-123456789012",
+        "name": "bobbie-audit-logs-123456789012",
+        "module": "module.storage",
+        "attributes": {
+          "id": "bobbie-audit-logs-123456789012",
+          "arn": "arn:aws:s3:::bobbie-audit-logs-123456789012",
+          "bucket": "bobbie-audit-logs-123456789012",
+          "region": "us-east-1",
+          "tags": {
+            "Purpose": "audit-logs",
+            "Environment": "production"
+          }
+        }
+      },
+      {
+        "id": "bobbie-app-data-123456789012",
+        "arn": "",
+        "name": "bobbie-app-data-123456789012",
+        "module": "module.storage",
+        "attributes": {
+          "id": "bobbie-app-data-123456789012",
+          "bucket": "bobbie-app-data-123456789012",
+          "block_public_acls": true,
+          "block_public_policy": true,
+          "ignore_public_acls": true,
+          "restrict_public_buckets": true
+        }
+      }
+    ],
+    "AWS::CloudTrail::Trail": [
+      {
+        "id": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+        "arn": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+        "name": "bobbie-main-trail",
+        "module": "module.audit",
+        "attributes": {
+          "id": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+          "arn": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+          "name": "bobbie-main-trail",
+          "s3_bucket_name": "bobbie-audit-logs-123456789012",
+          "include_global_service_events": true,
+          "is_multi_region_trail": true,
+          "enable_log_file_validation": true,
+          "is_logging": true,
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::EC2::Instance": [
+      {
+        "id": "i-0abc123456789def0",
+        "arn": "arn:aws:ec2:us-east-1:123456789012:instance/i-0abc123456789def0",
+        "name": "i-0abc123456789def0",
+        "module": "module.compute",
+        "attributes": {
+          "id": "i-0abc123456789def0",
+          "arn": "arn:aws:ec2:us-east-1:123456789012:instance/i-0abc123456789def0",
+          "instance_type": "t3.medium",
+          "ami": "ami-0abcdef1234567890",
+          "availability_zone": "us-east-1a",
+          "vpc_id": "vpc-0a1b2c3d4e5f6a7b8",
+          "subnet_id": "subnet-0a1b2c3d4e5f6a7b8",
+          "tags": {
+            "Name": "app-server-1",
+            "Environment": "production",
+            "ManagedBy": "terraform"
+          }
+        }
+      },
+      {
+        "id": "i-0def987654321abc0",
+        "arn": "arn:aws:ec2:us-east-1:123456789012:instance/i-0def987654321abc0",
+        "name": "i-0def987654321abc0",
+        "module": "module.compute",
+        "attributes": {
+          "id": "i-0def987654321abc0",
+          "arn": "arn:aws:ec2:us-east-1:123456789012:instance/i-0def987654321abc0",
+          "instance_type": "t3.medium",
+          "ami": "ami-0abcdef1234567890",
+          "availability_zone": "us-east-1b",
+          "vpc_id": "vpc-0a1b2c3d4e5f6a7b8",
+          "subnet_id": "subnet-0b2c3d4e5f6a7b8c9",
+          "tags": {
+            "Name": "app-server-2",
+            "Environment": "production",
+            "ManagedBy": "terraform"
+          }
+        }
+      }
+    ],
+    "AWS::EC2::SecurityGroup": [
+      {
+        "id": "sg-0a1b2c3d4e5f6a7b8",
+        "arn": "arn:aws:ec2:us-east-1:123456789012:security-group/sg-0a1b2c3d4e5f6a7b8",
+        "name": "app-sg",
+        "module": "module.compute",
+        "attributes": {
+          "id": "sg-0a1b2c3d4e5f6a7b8",
+          "arn": "arn:aws:ec2:us-east-1:123456789012:security-group/sg-0a1b2c3d4e5f6a7b8",
+          "name": "app-sg",
+          "vpc_id": "vpc-0a1b2c3d4e5f6a7b8",
+          "description": "Application security group",
+          "ingress": [
+            {
+              "from_port": 443,
+              "to_port": 443,
+              "protocol": "tcp",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "from_port": 0,
+              "to_port": 0,
+              "protocol": "-1",
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "AWS::EC2::VPC": [
+      {
+        "id": "vpc-0a1b2c3d4e5f6a7b8",
+        "arn": "arn:aws:ec2:us-east-1:123456789012:vpc/vpc-0a1b2c3d4e5f6a7b8",
+        "name": "vpc-0a1b2c3d4e5f6a7b8",
+        "module": "module.network",
+        "attributes": {
+          "id": "vpc-0a1b2c3d4e5f6a7b8",
+          "arn": "arn:aws:ec2:us-east-1:123456789012:vpc/vpc-0a1b2c3d4e5f6a7b8",
+          "cidr_block": "10.0.0.0/16",
+          "enable_dns_hostnames": true,
+          "enable_dns_support": true,
+          "tags": {
+            "Name": "bobbie-main-vpc",
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::KMS::Key": [
+      {
+        "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "arn": "arn:aws:kms:us-east-1:123456789012:key/aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "name": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "module": "module.security",
+        "attributes": {
+          "id": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+          "arn": "arn:aws:kms:us-east-1:123456789012:key/aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+          "description": "KMS key for application data encryption",
+          "enable_key_rotation": true,
+          "key_usage": "ENCRYPT_DECRYPT",
+          "key_state": "Enabled",
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::RDS::DBInstance": [
+      {
+        "id": "bobbie-app-db",
+        "arn": "arn:aws:rds:us-east-1:123456789012:db:bobbie-app-db",
+        "name": "bobbie-app-db",
+        "module": "module.database",
+        "attributes": {
+          "id": "bobbie-app-db",
+          "arn": "arn:aws:rds:us-east-1:123456789012:db:bobbie-app-db",
+          "identifier": "bobbie-app-db",
+          "engine": "postgres",
+          "engine_version": "15.3",
+          "instance_class": "db.t3.medium",
+          "storage_encrypted": true,
+          "multi_az": true,
+          "backup_retention_period": 7,
+          "deletion_protection": true,
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::Lambda::Function": [
+      {
+        "id": "bobbie-processor",
+        "arn": "arn:aws:lambda:us-east-1:123456789012:function:bobbie-processor",
+        "name": "bobbie-processor",
+        "module": "module.serverless",
+        "attributes": {
+          "id": "bobbie-processor",
+          "arn": "arn:aws:lambda:us-east-1:123456789012:function:bobbie-processor",
+          "function_name": "bobbie-processor",
+          "runtime": "python3.12",
+          "handler": "handler.lambda_handler",
+          "role": "arn:aws:iam::123456789012:role/lambda-exec-role",
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::GuardDuty::Detector": [
+      {
+        "id": "abc123def456abc123",
+        "arn": "",
+        "name": "abc123def456abc123",
+        "module": "module.monitoring",
+        "attributes": {
+          "id": "abc123def456abc123",
+          "enable": true,
+          "finding_publishing_frequency": "SIX_HOURS",
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::Logs::LogGroup": [
+      {
+        "id": "/aws/bobbie/application",
+        "arn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/bobbie/application",
+        "name": "/aws/bobbie/application",
+        "module": "module.monitoring",
+        "attributes": {
+          "id": "/aws/bobbie/application",
+          "arn": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/bobbie/application",
+          "name": "/aws/bobbie/application",
+          "retention_in_days": 90,
+          "tags": {
+            "Environment": "production"
+          }
+        }
+      }
+    ],
+    "AWS::Config::ConfigurationRecorder": [
+      {
+        "id": "default",
+        "arn": "",
+        "name": "default",
+        "module": "module.monitoring",
+        "attributes": {
+          "id": "default",
+          "name": "default",
+          "recording_group": [
+            {
+              "all_supported": true,
+              "include_global_resource_types": true
+            }
+          ],
+          "role_arn": "arn:aws:iam::123456789012:role/aws-config-role"
+        }
+      }
+    ]
+  }
+}

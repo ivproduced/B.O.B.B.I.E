@@ -85,7 +85,7 @@ class CMFamilyAgent(BaseFamilyAgent):
                 "Use CM-8 baseline mapping with SSM inventory reconciliation checks",
                 "Track inventory deltas and ownership metadata in final control output",
             ] + evidence_eval["recommendations"],
-            "risk_level": "LOW" if not findings else evidence_eval.get("risk_level", "MEDIUM"),
+            "risk_level": "LOW" if not findings else evidence_eval.get("risk_level", "MODERATE"),
             "confidence_score": min(0.99, max(0.0, (0.98 + float(evidence_eval.get("confidence_score", 0.9))) / 2)),
             "evidence": {
                 "control_id": control.get("id"),

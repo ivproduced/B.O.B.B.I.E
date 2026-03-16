@@ -1,21 +1,136 @@
-MIT License
+BOBBIE Source Available License
+Copyright (c) 2026 euCann LLC. All rights reserved.
 
-Copyright (c) 2026 BOBBIE Contributors
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FREE USE — Permitted Without a License
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+The following uses are permitted free of charge:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. U.S. federal, state, local, and tribal government agencies, and contractors
+   operating directly on behalf of a government agency under a government
+   contract, for government purposes only.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+2. Personal, non-commercial, and hobbyist use.
+
+3. Academic research, education, and non-profit use.
+
+4. Evaluation and internal testing (not deployed in production for a
+   commercial purpose).
+
+All free use is subject to the conditions below.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMMERCIAL USE — Requires a Paid License
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A paid commercial license is required for any of the following:
+
+- Using this software as part of a product or service that is sold, licensed,
+  or otherwise monetized (e.g., SaaS, consulting deliverables, managed
+  services, packaged assessments).
+
+- Deploying this software internally at a for-profit company with annual
+  revenue exceeding $1,000,000 USD.
+
+- Offering this software — or any derivative — as a service to third parties,
+  whether or not a fee is charged.
+
+- Any use by a professional services, consulting, or systems integration firm
+  (e.g., using this software in client engagements or proposals).
+
+To obtain a commercial license, contact:
+
+    euCann LLC
+    info@eucann.life
+
+Unauthorized commercial use is prohibited and constitutes copyright
+infringement.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONDITIONS (Applies to All Use)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. This license notice and copyright notice must be retained in all copies or
+   substantial portions of the software.
+
+2. You may not sublicense, resell, or redistribute this software to any third
+   party as a standalone product or as a material component of a commercial
+   offering.
+
+3. You may not remove or alter any copyright, trademark, or attribution
+   notices.
+
+4. Modifications and derivative works are permitted under the same terms as
+   this license. Derivatives do not transfer ownership or license rights beyond
+   those granted here.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DISCLAIMER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+EUCANN LLC BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — GOVERNMENT USE LICENSE (Free)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+United States federal, state, local, and tribal government agencies, as well
+as contractors operating directly on behalf of a U.S. government agency under
+a government contract, are granted a perpetual, royalty-free, non-exclusive
+license to use, copy, modify, and distribute this software and its
+documentation solely for government purposes, subject to the following
+conditions:
+
+1. This license notice and copyright notice must be retained in all copies or
+   substantial portions of the software.
+
+2. Redistribution to non-government parties requires a separate Commercial
+   License (see Part 2).
+
+3. The software is provided "AS IS", without warranty of any kind, express or
+   implied. euCann LLC shall not be liable for any damages arising from use.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 2 — COMMERCIAL LICENSE (Paid)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Any use of this software outside of U.S. government use as defined in Part 1 —
+including but not limited to use by private companies, startups, nonprofits,
+consultancies, SaaS products, internal enterprise tooling, or any for-profit
+application — requires a paid commercial license.
+
+To obtain a commercial license, contact:
+
+    euCann LLC
+    info@eucann.life
+
+Unauthorized commercial use of this software is prohibited and constitutes
+copyright infringement.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GENERAL TERMS (Applies to All Use)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- You may not sublicense, sell, or transfer this software to any third party
+  without explicit written permission from euCann LLC.
+- You may not remove or alter any copyright, trademark, or attribution notices.
+- euCann LLC reserves the right to update these license terms for future
+  versions of the software.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+EUCANN LLC BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

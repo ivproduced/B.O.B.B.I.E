@@ -1,17 +1,148 @@
-System: BOBBIE Full Flow Test
-Total controls: 10
-Passed: 0
-Failed: 10
-Compliance score: 0.0%
+════════════════════════════════════════════════════════════════════════
+  B.O.B.B.I.E. ASSESSMENT REPORT
+  BOBBIE Web Run
+  Generated: 2026-03-16 05:42 UTC
+════════════════════════════════════════════════════════════════════════
 
-Top prioritized findings:
-- [HIGH] AC-2: Objective ac-2_obj.a-1 NOT MET: No account lifecycle evidence found
-- [HIGH] AC-2: Objective ac-2_obj.a-2 NOT MET: No account lifecycle evidence found
-- [HIGH] AC-2: Objective ac-2_obj.b NOT MET: No account lifecycle evidence found
-- [HIGH] AC-2: Objective ac-2_obj.c NOT MET: No lifecycle enforcement evidence found
-- [HIGH] AC-2: Objective ac-2_obj.d.1 NOT MET: One or more account events lack approved tickets
-- [HIGH] AC-2: Objective ac-2_obj.d.2 NOT MET: Insufficient evidence for objective
-- [HIGH] AC-2: Objective ac-2_obj.d.3-1 NOT MET: One or more account events lack approved tickets
-- [HIGH] AC-2: Objective ac-2_obj.d.3-2 NOT MET: Insufficient evidence for objective
-- [HIGH] AC-2: Objective ac-2_obj.e NOT MET: Insufficient evidence for objective
-- [HIGH] AC-2: Objective ac-2_obj.f-1 NOT MET: Insufficient evidence for objective
+  COMPLIANCE SCORE   30.0%
+  Total Controls     10
+  Passed             3
+  Failed             7
+
+
+════════════════════════════════════════════════════════════════════════
+  CONTROL RESULTS
+════════════════════════════════════════════════════════════════════════
+
+  AC-2  [FAIL] [HIGH]
+  Findings:
+      • Objective ac-2_obj.d.1 NOT MET: One or more account events lack
+      approved tickets
+      • Objective ac-2_obj.d.3-1 NOT MET: One or more account events
+      lack approved tickets
+      • Objective ac-2_obj.i.1 NOT MET: One or more account events lack
+      approved tickets
+      • Objective ac-2_obj.i.2 NOT MET: One or more account events lack
+      approved tickets
+      • Objective ac-2_obj.i.3 NOT MET: One or more account events lack
+      approved tickets
+  Recommendations:
+      → Use baseline tags with EVTX evidence checks for final AC
+      assessment
+      → Correlate account and lockout events to objective statements
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+
+  AC-7  [FAIL] [HIGH]
+  Findings:
+      • Lockout missing for user user_brute after 7 failures
+  Recommendations:
+      → Use baseline tags with EVTX evidence checks for final AC
+      assessment
+      → Correlate account and lockout events to objective statements
+      → Enforce account lockout after failed authentication threshold
+
+  AU-3  [PASS]
+  Recommendations:
+      → Apply AU-3 field-completeness checks against EVTX/CloudWatch
+      evidence
+      → Map missing fields to POA&M-ready remediation language
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+    All assessment objectives met.
+
+  CM-8  [FAIL] [MEDIUM]
+  Findings:
+      • Discovered unmanaged assets (shadow IT): 1
+  Recommendations:
+      → Use CM-8 baseline mapping with SSM inventory reconciliation
+      checks
+      → Track inventory deltas and ownership metadata in final control
+      output
+      → Reconcile expected and discovered inventory sets
+      → Verify AWS SSM connectivity and IAM permissions
+
+  IA-5  [PASS]
+  Recommendations:
+      → Apply password policy checks against IA-5 NIST 800-63B
+      thresholds
+      → Document policy deviations and compensating controls in POA&M
+      output
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+    All assessment objectives met.
+
+  PL-2  [PASS]
+  Recommendations:
+      → Confirm baseline selection aligns with system impact level
+      → Use baseline tags for family-agent control routing
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+    All assessment objectives met.
+
+  PM-9  [FAIL] [HIGH]
+  Findings:
+      • Objective pm-9_obj.a.1 NOT MET: Risk evidence missing or
+      invalid risk scoring detected
+      • Objective pm-9_obj.a.2 NOT MET: Risk evidence missing or
+      invalid risk scoring detected
+      • Objective pm-9_obj.b NOT MET: Risk evidence missing or invalid
+      risk scoring detected
+      • Objective pm-9_obj.c NOT MET: Risk evidence missing or invalid
+      risk scoring detected
+  Recommendations:
+      → Use PM-9 baseline membership as routing input for risk-register
+      checks
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+
+  RA-5  [FAIL] [HIGH]
+  Findings:
+      • Objective ra-5_obj.d NOT MET: 1 vulnerabilities exceed SLA
+  Recommendations:
+      → Apply RA-5 CVSS SLA and KEV enrichment checks using
+      vulnerability evidence
+      → Track open-age and exploitability in remediation prioritization
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+
+  SI-2  [FAIL] [HIGH]
+  Findings:
+      • Objective si-2_obj.c-1 NOT MET: Overdue patches found:
+      critical=1, high=0
+      • Objective si-2_obj.c-2 NOT MET: Overdue patches found:
+      critical=1, high=0
+  Recommendations:
+      → Map SI baseline tags to CloudWatch and patch-compliance
+      evidence collection
+      → Prioritize exploitability and SLA breaches in remediation
+      output
+      → Address unmet assessment objectives before declaring control
+      effective
+      → Attach traceable evidence for each 800-53A objective
+
+  SI-4  [FAIL] [HIGH]
+  Findings:
+      • Monitoring gaps detected in hours: [3]
+      • Log volume anomalies detected in hours: [17]
+  Recommendations:
+      → Map SI baseline tags to CloudWatch and patch-compliance
+      evidence collection
+      → Prioritize exploitability and SLA breaches in remediation
+      output
+      → Ensure continuous monitoring with no hourly log gaps
+      → Investigate anomalous log volume spikes/drops
+
+════════════════════════════════════════════════════════════════════════
+  RISK BREAKDOWN  (failed controls)
+════════════════════════════════════════════════════════════════════════
+
+  HIGH         6
+
+════════════════════════════════════════════════════════════════════════

@@ -1,6 +1,8 @@
-# BOBBIE
+# B.O.B.B.I.E.
 
-BOBBIE is a family-agent federal compliance assessment engine for NIST SP 800-53 Rev 5 controls.
+**Bedrock-Orchestrated Baseline & Behavior Intelligence Engine**
+
+B.O.B.B.I.E. is a hierarchical multi-agent federal compliance assessment engine for NIST SP 800-53 Rev 5 controls. It orchestrates specialized family agents powered by AWS Bedrock (Amazon Nova) to deliver deterministic evidence-driven findings with AI-augmented risk narratives and remediation guidance.
 
 ## What it does
 

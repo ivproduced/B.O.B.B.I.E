@@ -1,0 +1,340 @@
+{
+  "configurationItems": [
+    {
+      "resourceType": "AWS::IAM::Role",
+      "resourceId": "AROAAAAABBBBCCCCDDDD1",
+      "resourceName": "app-execution-role",
+      "ARN": "arn:aws:iam::123456789012:role/app-execution-role",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "RoleId": "AROAAAAABBBBCCCCDDDD1",
+        "RoleName": "app-execution-role",
+        "Arn": "arn:aws:iam::123456789012:role/app-execution-role",
+        "Path": "/",
+        "CreateDate": "2024-01-15T10:00:00Z",
+        "AssumeRolePolicyDocument": "%7B%22Version%22%3A%222012-10-17%22%7D",
+        "Description": "ECS task execution role"
+      },
+      "tags": {"Environment": "production", "Owner": "platform-team"}
+    },
+    {
+      "resourceType": "AWS::IAM::Role",
+      "resourceId": "AROAAAAABBBBCCCCDDDD2",
+      "resourceName": "lambda-exec-role",
+      "ARN": "arn:aws:iam::123456789012:role/lambda-exec-role",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "RoleId": "AROAAAAABBBBCCCCDDDD2",
+        "RoleName": "lambda-exec-role",
+        "Arn": "arn:aws:iam::123456789012:role/lambda-exec-role",
+        "Path": "/"
+      },
+      "tags": {"Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::IAM::User",
+      "resourceId": "AIDAAAAABBBBCCCCDDDD1",
+      "resourceName": "svc-deploy",
+      "ARN": "arn:aws:iam::123456789012:user/svc-deploy",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "UserId": "AIDAAAAABBBBCCCCDDDD1",
+        "UserName": "svc-deploy",
+        "Arn": "arn:aws:iam::123456789012:user/svc-deploy",
+        "Path": "/service-accounts/",
+        "CreateDate": "2024-01-15T10:00:00Z",
+        "PasswordLastUsed": "2025-12-01T08:00:00Z"
+      },
+      "tags": {"Purpose": "ci-cd-deployment"}
+    },
+    {
+      "resourceType": "AWS::S3::Bucket",
+      "resourceId": "bobbie-app-data-123456789012",
+      "resourceName": "bobbie-app-data-123456789012",
+      "ARN": "arn:aws:s3:::bobbie-app-data-123456789012",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "Name": "bobbie-app-data-123456789012",
+        "CreationDate": "2024-01-15T10:00:00Z",
+        "ServerSideEncryptionConfiguration": {
+          "rules": [{"applyServerSideEncryptionByDefault": {"sseAlgorithm": "aws:kms"}}]
+        },
+        "VersioningConfiguration": {"status": "Enabled"},
+        "PublicAccessBlockConfiguration": {
+          "blockPublicAcls": true,
+          "ignorePublicAcls": true,
+          "blockPublicPolicy": true,
+          "restrictPublicBuckets": true
+        }
+      },
+      "tags": {"Purpose": "application-data", "Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::S3::Bucket",
+      "resourceId": "bobbie-audit-logs-123456789012",
+      "resourceName": "bobbie-audit-logs-123456789012",
+      "ARN": "arn:aws:s3:::bobbie-audit-logs-123456789012",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "Name": "bobbie-audit-logs-123456789012",
+        "ServerSideEncryptionConfiguration": {
+          "rules": [{"applyServerSideEncryptionByDefault": {"sseAlgorithm": "aws:kms"}}]
+        },
+        "VersioningConfiguration": {"status": "Enabled"},
+        "LoggingEnabled": {"targetBucket": "bobbie-audit-logs-123456789012"},
+        "PublicAccessBlockConfiguration": {
+          "blockPublicAcls": true,
+          "ignorePublicAcls": true,
+          "blockPublicPolicy": true,
+          "restrictPublicBuckets": true
+        }
+      },
+      "tags": {"Purpose": "audit-logs", "Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::CloudTrail::Trail",
+      "resourceId": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+      "resourceName": "bobbie-main-trail",
+      "ARN": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "TrailARN": "arn:aws:cloudtrail:us-east-1:123456789012:trail/bobbie-main-trail",
+        "Name": "bobbie-main-trail",
+        "S3BucketName": "bobbie-audit-logs-123456789012",
+        "IncludeGlobalServiceEvents": true,
+        "IsMultiRegionTrail": true,
+        "LogFileValidationEnabled": true,
+        "HasCustomEventSelectors": false,
+        "HomeRegion": "us-east-1",
+        "status": {
+          "IsLogging": true,
+          "LatestDeliveryAttemptTime": "2026-02-26T00:00:00Z"
+        }
+      },
+      "tags": {"Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::EC2::Instance",
+      "resourceId": "i-0abc123456789def0",
+      "resourceName": "app-server-1",
+      "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0abc123456789def0",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "us-east-1a",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "InstanceId": "i-0abc123456789def0",
+        "InstanceType": "t3.medium",
+        "ImageId": "ami-0abcdef1234567890",
+        "State": {"Name": "running"},
+        "VpcId": "vpc-0a1b2c3d4e5f6a7b8",
+        "SubnetId": "subnet-0a1b2c3d4e5f6a7b8",
+        "IamInstanceProfile": {"Arn": "arn:aws:iam::123456789012:instance-profile/app-instance-profile"}
+      },
+      "tags": {"Name": "app-server-1", "Environment": "production", "Patch-Group": "production-windows"}
+    },
+    {
+      "resourceType": "AWS::EC2::Instance",
+      "resourceId": "i-0def987654321abc0",
+      "resourceName": "app-server-2",
+      "ARN": "arn:aws:ec2:us-east-1:123456789012:instance/i-0def987654321abc0",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "us-east-1b",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "InstanceId": "i-0def987654321abc0",
+        "InstanceType": "t3.medium",
+        "State": {"Name": "running"},
+        "VpcId": "vpc-0a1b2c3d4e5f6a7b8",
+        "SubnetId": "subnet-0b2c3d4e5f6a7b8c9",
+        "IamInstanceProfile": {"Arn": "arn:aws:iam::123456789012:instance-profile/app-instance-profile"}
+      },
+      "tags": {"Name": "app-server-2", "Environment": "production", "Patch-Group": "production-windows"}
+    },
+    {
+      "resourceType": "AWS::EC2::SecurityGroup",
+      "resourceId": "sg-0a1b2c3d4e5f6a7b8",
+      "resourceName": "app-sg",
+      "ARN": "arn:aws:ec2:us-east-1:123456789012:security-group/sg-0a1b2c3d4e5f6a7b8",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "GroupId": "sg-0a1b2c3d4e5f6a7b8",
+        "GroupName": "app-sg",
+        "VpcId": "vpc-0a1b2c3d4e5f6a7b8",
+        "IpPermissions": [{"FromPort": 443, "ToPort": 443, "IpProtocol": "tcp"}],
+        "IpPermissionsEgress": [{"FromPort": 0, "ToPort": 0, "IpProtocol": "-1"}]
+      }
+    },
+    {
+      "resourceType": "AWS::EC2::VPC",
+      "resourceId": "vpc-0a1b2c3d4e5f6a7b8",
+      "resourceName": "bobbie-main-vpc",
+      "ARN": "arn:aws:ec2:us-east-1:123456789012:vpc/vpc-0a1b2c3d4e5f6a7b8",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "VpcId": "vpc-0a1b2c3d4e5f6a7b8",
+        "CidrBlock": "10.0.0.0/16",
+        "State": "available",
+        "IsDefault": false
+      },
+      "tags": {"Name": "bobbie-main-vpc", "Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::KMS::Key",
+      "resourceId": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+      "resourceName": "data-encryption-key",
+      "ARN": "arn:aws:kms:us-east-1:123456789012:key/aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "KeyId": "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "Arn": "arn:aws:kms:us-east-1:123456789012:key/aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+        "KeyState": "Enabled",
+        "KeyUsage": "ENCRYPT_DECRYPT",
+        "KeyRotationEnabled": true,
+        "Description": "KMS key for application data encryption",
+        "Origin": "AWS_KMS"
+      },
+      "tags": {"Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::RDS::DBInstance",
+      "resourceId": "bobbie-app-db",
+      "resourceName": "bobbie-app-db",
+      "ARN": "arn:aws:rds:us-east-1:123456789012:db:bobbie-app-db",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "us-east-1a",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "DBInstanceIdentifier": "bobbie-app-db",
+        "DBInstanceClass": "db.t3.medium",
+        "Engine": "postgres",
+        "EngineVersion": "15.3",
+        "MultiAZ": true,
+        "StorageEncrypted": true,
+        "BackupRetentionPeriod": 7,
+        "DeletionProtection": true,
+        "DBInstanceStatus": "available"
+      },
+      "tags": {"Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::Lambda::Function",
+      "resourceId": "bobbie-processor",
+      "resourceName": "bobbie-processor",
+      "ARN": "arn:aws:lambda:us-east-1:123456789012:function:bobbie-processor",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "FunctionName": "bobbie-processor",
+        "FunctionArn": "arn:aws:lambda:us-east-1:123456789012:function:bobbie-processor",
+        "Runtime": "python3.12",
+        "Role": "arn:aws:iam::123456789012:role/lambda-exec-role",
+        "Handler": "handler.lambda_handler"
+      },
+      "tags": {"Environment": "production"}
+    },
+    {
+      "resourceType": "AWS::GuardDuty::Detector",
+      "resourceId": "abc123def456abc123",
+      "resourceName": "abc123def456abc123",
+      "ARN": "",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "DetectorId": "abc123def456abc123",
+        "Status": "ENABLED",
+        "FindingPublishingFrequency": "SIX_HOURS"
+      }
+    },
+    {
+      "resourceType": "AWS::SecurityHub::Hub",
+      "resourceId": "arn:aws:securityhub:us-east-1:123456789012:hub/default",
+      "resourceName": "SecurityHub",
+      "ARN": "arn:aws:securityhub:us-east-1:123456789012:hub/default",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "HubArn": "arn:aws:securityhub:us-east-1:123456789012:hub/default",
+        "SubscribedAt": "2024-01-15T10:00:00Z"
+      }
+    },
+    {
+      "resourceType": "AWS::Config::ConfigurationRecorder",
+      "resourceId": "default",
+      "resourceName": "default",
+      "ARN": "",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "name": "default",
+        "roleARN": "arn:aws:iam::123456789012:role/aws-config-role",
+        "recordingGroup": {"allSupported": true, "includeGlobalResourceTypes": true}
+      }
+    },
+    {
+      "resourceType": "AWS::Logs::LogGroup",
+      "resourceId": "/aws/bobbie/application",
+      "resourceName": "/aws/bobbie/application",
+      "ARN": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/bobbie/application",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "logGroupName": "/aws/bobbie/application",
+        "retentionInDays": 90
+      }
+    },
+    {
+      "resourceType": "AWS::Logs::LogGroup",
+      "resourceId": "/aws/bobbie/cloudtrail",
+      "resourceName": "/aws/bobbie/cloudtrail",
+      "ARN": "arn:aws:logs:us-east-1:123456789012:log-group:/aws/bobbie/cloudtrail",
+      "awsAccountId": "123456789012",
+      "awsRegion": "us-east-1",
+      "availabilityZone": "Not Applicable",
+      "configurationItemStatus": "OK",
+      "configuration": {
+        "logGroupName": "/aws/bobbie/cloudtrail",
+        "retentionInDays": 365
+      }
+    }
+  ]
+}

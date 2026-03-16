@@ -1,4 +1,5 @@
-# BOBBIE Agentic Architecture
+# B.O.B.B.I.E. Agentic Architecture
+### Bedrock-Orchestrated Baseline & Behavior Intelligence Engine
 ## Multi-Agent System Design for Federal Security Control Automation
 
 **Last Updated:** February 14, 2026  
@@ -28,89 +29,93 @@ BOBBIE employs a **hierarchical multi-agent architecture** with 1 orchestrator a
 ## System Architecture Overview
 
 ```
-┌───────────────────────────────────────────────────────────────┐
-│                     User Interface Layer                      │
-│  ┌─────────────────┐  ┌──────────────────┐  ┌──────────────┐ │
-│  │ CLI (run_       │  │ Streamlit Web UI │  │ API Endpoint │ │
-│  │ assessment.py)  │  │ (app.py)         │  │ (future)     │ │
-│  └────────┬────────┘  └────────┬─────────┘  └──────┬───────┘ │
-└───────────┼────────────────────┼────────────────────┼─────────┘
-            │                    │                    │
-            └────────────────────┼────────────────────┘
-                                 ▼
-┌───────────────────────────────────────────────────────────────┐
-│              Master Orchestrator Agent (Layer 1)              │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │ BOBBIEOrchestrator                                      │ │
-│  │ • Coordinates all active family agents                  │ │
-│  │ • Manages parallel execution                            │ │
-│  │ • Aggregates results into compliance report             │ │
-│  │ • Generates POA&M entries                               │ │
-│  │ • Nova Pro: Compliance scoring & remediation synthesis  │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└───────────────────────────────────────────────────────────────┘
-                                 │
-                    ┌────────────┴────────────┐
-                    │   Parallel Dispatch     │
-                    └────────────┬────────────┘
-                                 ▼
-┌───────────────────────────────────────────────────────────────┐
-│         Family Assessment Agents (Layer 2 - 20 Target)        │
-├───────────────────────────────────────────────────────────────┤
-│  OSCAL Document Analysis Agents (2)                           │
-│  ┌──────────────────┐  ┌──────────────────┐                  │
-│  │ PL2Agent         │  │ PM9Agent         │                  │
-│  │ SSP Validation   │  │ Risk Register    │                  │
-│  └────────┬─────────┘  └────────┬─────────┘                  │
-├───────────┼────────────────────┼────────────────────────────┤
-│  AWS-Native Control Agents (3)                                │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────┐ │
-│  │ SI4Agent         │  │ CM8Agent         │  │ SI2Agent   │ │
-│  │ Monitoring Gaps  │  │ Asset Inventory  │  │ Patching   │ │
-│  └────────┬─────────┘  └────────┬─────────┘  └──────┬─────┘ │
-├───────────┼────────────────────┼──────────────────┼──────────┤
-│  EVTX Log Analysis Agents (3)                                 │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌────────────┐ │
-│  │ AC2Agent         │  │ AC7Agent         │  │ AU3Agent   │ │
-│  │ Account Mgmt     │  │ Failed Logons    │  │ Audit Logs │ │
-│  └────────┬─────────┘  └────────┬─────────┘  └──────┬─────┘ │
-├───────────┼────────────────────┼──────────────────┼──────────┤
-│  Mock Data Validation Agents (2)                              │
-│  ┌──────────────────┐  ┌──────────────────┐                  │
-│  │ IA5Agent         │  │ RA5Agent         │                  │
-│  │ Password Policy  │  │ Vulnerability    │                  │
-│  └────────┬─────────┘  └────────┬─────────┘                  │
-└───────────┼────────────────────┼────────────────────────────┘
-            │                    │
-            ▼                    ▼
-┌───────────────────────────────────────────────────────────────┐
-│                    Tool Layer (Layer 3)                        │
-├───────────────────────────────────────────────────────────────┤
-│  Data Collection Tools                                         │
-│  • OSCALValidatorTool      → Parse/validate OSCAL JSON        │
-│  • CloudWatchLogTool       → AWS CloudWatch Logs API          │
-│  • SSMInventoryTool        → AWS Systems Manager API          │
-│  • SSMPatchTool            → AWS Patch Manager API            │
-│  • EVTXParser              → Windows Event Log binary parser  │
-│  • PasswordPolicyTool      → JSON schema validator            │
-│  • VulnerabilityTool       → CVSS scoring + SLA checker       │
-│  • NVDAPIClient            → NIST NVD CVE database            │
-│  • CISAKEVLoader           → Known Exploited Vulnerabilities  │
-│  • MockDataLoader          → CSV/JSON file parsers            │
-└───────────────────────────────────────────────────────────────┘
-                                 │
-                                 ▼
-┌───────────────────────────────────────────────────────────────┐
-│                   Data Source Layer (Layer 4)                  │
-├───────────────────────────────────────────────────────────────┤
-│  • NIST OSCAL Samples (GitHub)                                │
-│  • AWS CloudWatch Logs (log streams)                          │
-│  • AWS Systems Manager (inventory, patch status)              │
-│  • Local EVTX Files (Security.evtx, System.evtx)              │
-│  • NIST NVD API (nvd.nist.gov)                                │
-│  • CISA KEV Catalog (known_exploited_vulnerabilities.json)    │
-│  • Mock Data Files (systems.csv, password_policy.json, etc.)  │
-└───────────────────────────────────────────────────────────────┘
+╔═══════════════════════════════════════════════════════════════════════╗
+║                        LAYER 0 · User Interface                       ║
+║                                                                       ║
+║   ┌─────────────────────────────┐   ┌─────────────────────────────┐   ║
+║   │  CLI  ·  run_assessment.py  │   │  Web UI  ·  React + Express │   ║
+║   └─────────────────────────────┘   └─────────────────────────────┘   ║
+╚═══════════════════════════════════════════════════════════════════════╝
+                                     │
+                                     ▼
+╔═══════════════════════════════════════════════════════════════════════╗
+║                    LAYER 1 · Master Orchestrator                      ║
+║                                                                       ║
+║   ┌───────────────────────────────────────────────────────────────┐   ║
+║   │  BOBBIEOrchestrator                                           │   ║
+║   │                                                               │   ║
+║   │  · Validates control-to-family routing (atomicity enforced)   │   ║
+║   │  · Dispatches family agents in parallel with timeout guard    │   ║
+║   │  · Isolates agent failures — assessment never crashes         │   ║
+║   │  · Aggregates findings → compliance score + POA&M             │   ║
+║   │  · Nova Pro: cross-control synthesis & remediation narrative  │   ║
+║   └───────────────────────────────────────────────────────────────┘   ║
+╚═══════════════════════════════════════════════════════════════════════╝
+                                     │
+                         ┌───────────┴───────────┐
+                         │   Parallel Dispatch   │
+                         │   (8 active families) │
+                         └───────────┬───────────┘
+                                     │
+                                     ▼
+╔═══════════════════════════════════════════════════════════════════════╗
+║                  LAYER 2 · Family Assessment Agents                   ║
+║                  (8 active · 20 target architecture)                  ║
+╠═══════════════════════╦═══════════════════════╦═══════════════════════╣
+║  OSCAL Documents      ║  AWS-Native           ║  Windows Event Logs   ║
+║  ─────────────────    ║  ─────────────────    ║  ─────────────────    ║
+║  PL2Agent             ║  SI4Agent             ║  AC2Agent             ║
+║  · SSP validation     ║  · Monitoring gaps    ║  · Account mgmt       ║
+║                       ║                       ║                       ║
+║  PM9Agent             ║  CM8Agent             ║  AC7Agent             ║
+║  · Risk register      ║  · Asset inventory    ║  · Failed logons      ║
+║                       ║                       ║                       ║
+║                       ║  SI2Agent             ║  AU3Agent             ║
+║                       ║  · Patch / CVE SLA    ║  · Audit records      ║
+╠═══════════════════════╩═══════════════════════╩═══════════════════════╣
+║  Mock Data Validation                                                 ║
+║  ───────────────────────────────────────────────────────────────────  ║
+║  IA5Agent  ·  Password policy (NIST 800-63B)                          ║
+║  RA5Agent  ·  Vulnerability scan SLA + CISA KEV matching              ║
+╚═══════════════════════════════════════════════════════════════════════╝
+                                     │
+                                     ▼
+╔═══════════════════════════════════════════════════════════════════════╗
+║                        LAYER 3 · Tool Layer                           ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  OSCALValidatorTool   → parse & validate OSCAL JSON                   ║
+║  CloudWatchLogTool    → AWS CloudWatch Logs API                       ║
+║  SSMInventoryTool     → AWS Systems Manager inventory                 ║
+║  SSMPatchTool         → AWS Patch Manager compliance                  ║
+║  EVTXParser           → Windows Event Log binary parser               ║
+║  PasswordPolicyTool   → JSON schema validator (800-63B rules)         ║
+║  VulnerabilityTool    → CVSS scoring + SLA enforcement                ║
+║  NVDAPIClient         → NIST NVD CVE database                         ║
+║  CISAKEVLoader        → Known Exploited Vulnerabilities catalog       ║
+║  MockDataLoader       → CSV / JSON file parsers                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+                                     │
+                                     ▼
+╔═══════════════════════════════════════════════════════════════════════╗
+║                       LAYER 4 · Data Sources                          ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  NIST OSCAL Samples          · SSPs, risk registers (JSON)            ║
+║  AWS CloudWatch Logs         · live log streams                       ║
+║  AWS Systems Manager         · inventory + patch status               ║
+║  Windows EVTX Files          · Security.evtx, System.evtx             ║
+║  NIST NVD API                · nvd.nist.gov CVE data                  ║
+║  CISA KEV Catalog            · known_exploited_vulnerabilities.json   ║
+║  Mock Data Files             · systems.csv, password_policy.json      ║
+╚═══════════════════════════════════════════════════════════════════════╝
+                                     │
+                                     ▼
+╔═══════════════════════════════════════════════════════════════════════╗
+║                      LAYER 5 · Output Artifacts                       ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║  assessment_report.json  · machine-readable findings per control      ║
+║  poam.json               · auto-generated POA&M with remediation      ║
+║  assessment_summary.txt  · human-readable compliance scorecard        ║
+╚═══════════════════════════════════════════════════════════════════════╝
 ```
 
 ---
