@@ -143,7 +143,6 @@ export default function App() {
         if (c.awsProfile !== undefined) setAwsProfile(c.awsProfile)
         if (c.awsRegion !== undefined) setAwsRegion(c.awsRegion)
         if (c.awsAccessKeyId !== undefined) setAwsAccessKeyId(c.awsAccessKeyId)
-        if (c.awsSecretAccessKey !== undefined) setAwsSecretAccessKey(c.awsSecretAccessKey)
         setCredsSaved(true)
       }
     } catch {}
@@ -152,7 +151,7 @@ export default function App() {
   function saveCredentials() {
     try {
       localStorage.setItem('bobbie_aws_creds', JSON.stringify({
-        awsProfile, awsRegion, awsAccessKeyId, awsSecretAccessKey
+        awsProfile, awsRegion, awsAccessKeyId
       }))
       setCredsSaved(true)
     } catch {}
