@@ -51,7 +51,11 @@ app.get('/api/artifacts/:name', (req, res) => {
     return res.status(400).json({ error: 'invalid artifact name' });
   }
 
-  const filePath = path.join(ARTIFACTS_DIR, safeName);
+  const filePath = path.resolve(ARTIFACTS_DIR, safeName);
+  const relativePath = path.relative(ARTIFACTS_DIR, filePath);
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    return res.status(403).json({ error: 'forbidden' });
+  }
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'not found' });
   res.sendFile(filePath);
 });
