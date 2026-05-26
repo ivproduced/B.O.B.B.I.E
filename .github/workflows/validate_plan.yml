@@ -1,5 +1,8 @@
 name: Validate Demo Plan
 
+permissions:
+  contents: read
+
 on:
   push:
     paths:
