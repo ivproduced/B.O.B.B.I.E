@@ -100,7 +100,11 @@ app.post('/api/run', (req, res) => {
   }
 
   if (contextFile) {
-    const contextPath = path.join(UPLOADS_DIR, contextFile);
+    const uploadsBase = UPLOADS_DIR.endsWith(path.sep) ? UPLOADS_DIR : UPLOADS_DIR + path.sep;
+    const contextPath = path.resolve(UPLOADS_DIR, contextFile);
+    if (!contextPath.startsWith(uploadsBase)) {
+      return res.status(400).json({ error: 'Invalid context file path' });
+    }
     if (!fs.existsSync(contextPath)) {
         return res.status(400).json({ error: `Context file not found: ${contextFile}` });
     }
