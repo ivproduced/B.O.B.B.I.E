@@ -43,7 +43,15 @@ app.get('/api/artifacts', (req, res) => {
 });
 
 app.get('/api/artifacts/:name', (req, res) => {
-  const filePath = path.resolve(ARTIFACTS_DIR, req.params.name);
+  const rawName = req.params.name;
+  const safeName = path.basename(rawName);
+
+  // Reject traversal/path-component input; only allow simple filenames
+  if (!safeName || safeName !== rawName || safeName === '.' || safeName === '..') {
+    return res.status(400).json({ error: 'invalid artifact name' });
+  }
+
+  const filePath = path.resolve(ARTIFACTS_DIR, safeName);
   const relativePath = path.relative(ARTIFACTS_DIR, filePath);
   if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
     return res.status(403).json({ error: 'forbidden' });
@@ -96,7 +104,11 @@ app.post('/api/run', (req, res) => {
   }
 
   if (contextFile) {
-    const contextPath = path.join(UPLOADS_DIR, contextFile);
+    const uploadsBase = UPLOADS_DIR.endsWith(path.sep) ? UPLOADS_DIR : UPLOADS_DIR + path.sep;
+    const contextPath = path.resolve(UPLOADS_DIR, contextFile);
+    if (!contextPath.startsWith(uploadsBase)) {
+      return res.status(400).json({ error: 'Invalid context file path' });
+    }
     if (!fs.existsSync(contextPath)) {
         return res.status(400).json({ error: `Context file not found: ${contextFile}` });
     }
