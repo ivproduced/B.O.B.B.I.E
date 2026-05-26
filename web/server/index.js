@@ -13,6 +13,21 @@ const UPLOADS_DIR = path.resolve(__dirname, '../../data/uploads');
 const ARTIFACTS_DIR = path.resolve(__dirname, '../../artifacts/final_run');
 const RUN_LOG = path.join(ARTIFACTS_DIR, 'web_run.log');
 
+function resolvePathInUploads(userProvidedPath) {
+  if (typeof userProvidedPath !== 'string' || userProvidedPath.trim() === '') {
+    return null;
+  }
+
+  const resolvedPath = path.resolve(UPLOADS_DIR, userProvidedPath);
+  const relative = path.relative(UPLOADS_DIR, resolvedPath);
+
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+    return null;
+  }
+
+  return resolvedPath;
+}
+
 // Configure multer storage
 const upload = multer({ 
   storage: multer.diskStorage({
@@ -92,7 +107,10 @@ app.post('/api/run', (req, res) => {
   }
 
   if (contextFile) {
-    const contextPath = path.join(UPLOADS_DIR, contextFile);
+    const contextPath = resolvePathInUploads(contextFile);
+    if (!contextPath) {
+      return res.status(400).json({ error: 'Invalid context file path' });
+    }
     if (!fs.existsSync(contextPath)) {
         return res.status(400).json({ error: `Context file not found: ${contextFile}` });
     }
@@ -105,7 +123,10 @@ app.post('/api/run', (req, res) => {
   }
 
   if (infraFile) {
-    const infraPath = path.join(UPLOADS_DIR, infraFile);
+    const infraPath = resolvePathInUploads(infraFile);
+    if (!infraPath) {
+      return res.status(400).json({ error: 'Invalid infrastructure file path' });
+    }
     if (!fs.existsSync(infraPath)) {
       return res.status(400).json({ error: `Infrastructure file not found: ${infraFile}` });
     }
