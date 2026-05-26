@@ -131,6 +131,12 @@ Freeze expected snapshot outputs:
 python scripts/freeze_demo_snapshots.py
 ```
 
+Extract architecture diagram from README into a standalone mermaid file:
+
+```bash
+python scripts/extract_architecture_diagram.py
+```
+
 ## Testing
 
 ```bash
