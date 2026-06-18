@@ -20,8 +20,12 @@ function resolvePathInUploads(userProvidedPath) {
 
   const resolvedPath = path.resolve(UPLOADS_DIR, userProvidedPath);
   const relative = path.relative(UPLOADS_DIR, resolvedPath);
+  const isPathTraversal =
+    relative === '..' ||
+    relative.startsWith(`..${path.sep}`) ||
+    (path.sep !== '\\' && relative.startsWith('..\\'));
 
-  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+  if (isPathTraversal || path.isAbsolute(relative)) {
     return null;
   }
 
