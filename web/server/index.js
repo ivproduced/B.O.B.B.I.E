@@ -43,18 +43,18 @@ function resolvePathInUploads(userProvidedPath) {
     return null;
   }
 
-  const resolvedPath = path.resolve(UPLOADS_DIR, userProvidedPath);
-  const relative = path.relative(UPLOADS_DIR, resolvedPath);
-  const isPathTraversal =
-    relative === '..' ||
-    relative.startsWith(`..${path.sep}`) ||
-    (path.sep !== '\\' && relative.startsWith('..\\'));
-
-  if (isPathTraversal || path.isAbsolute(relative)) {
+  // Reject inputs containing path separators or null bytes before any path operation
+  if (userProvidedPath.includes('/') || userProvidedPath.includes('\\') || userProvidedPath.includes('\0')) {
     return null;
   }
 
-  return resolvedPath;
+  // Extract the bare filename — strips any remaining directory components
+  const safeName = path.basename(userProvidedPath);
+  if (!safeName || safeName === '.' || safeName === '..') {
+    return null;
+  }
+
+  return path.join(UPLOADS_DIR, safeName);
 }
 
 // Configure multer storage
@@ -67,7 +67,7 @@ const upload = multer({
       cb(null, UPLOADS_DIR);
     },
     filename: (req, file, cb) => {
-      cb(null, file.originalname);
+      cb(null, path.basename(file.originalname));
     }
   })
 });
