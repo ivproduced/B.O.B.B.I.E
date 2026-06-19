@@ -151,12 +151,15 @@ app.post('/api/run', runLimiter, (req, res) => {
     if (!resolvePathInUploads(contextFile)) {
       return res.status(400).json({ error: 'Invalid context file path' });
     }
-    // Re-derive from fixed base + sanitized basename to break the taint chain
-    const safeContextPath = path.join(UPLOADS_DIR, path.basename(contextFile));
-    if (!fs.existsSync(safeContextPath)) {
-        return res.status(400).json({ error: `Context file not found: ${contextFile}` });
+    // Match against actual directory listing so the path used in fs ops
+    // is sourced from the filesystem, not from user input (breaks CodeQL taint)
+    const safeName = path.basename(contextFile);
+    const uploadedFiles = fs.readdirSync(UPLOADS_DIR);
+    const matchedContextFile = uploadedFiles.find(f => f === safeName);
+    if (!matchedContextFile) {
+      return res.status(400).json({ error: `Context file not found: ${contextFile}` });
     }
-    args.push('--context-file', safeContextPath);
+    args.push('--context-file', path.join(UPLOADS_DIR, matchedContextFile));
   }
 
   // Infrastructure source options
@@ -168,12 +171,15 @@ app.post('/api/run', runLimiter, (req, res) => {
     if (!resolvePathInUploads(infraFile)) {
       return res.status(400).json({ error: 'Invalid infrastructure file path' });
     }
-    // Re-derive from fixed base + sanitized basename to break the taint chain
-    const safeInfraPath = path.join(UPLOADS_DIR, path.basename(infraFile));
-    if (!fs.existsSync(safeInfraPath)) {
+    // Match against actual directory listing so the path used in fs ops
+    // is sourced from the filesystem, not from user input (breaks CodeQL taint)
+    const safeInfraName = path.basename(infraFile);
+    const uploadedFiles = fs.readdirSync(UPLOADS_DIR);
+    const matchedInfraFile = uploadedFiles.find(f => f === safeInfraName);
+    if (!matchedInfraFile) {
       return res.status(400).json({ error: `Infrastructure file not found: ${infraFile}` });
     }
-    args.push('--infra-file', safeInfraPath);
+    args.push('--infra-file', path.join(UPLOADS_DIR, matchedInfraFile));
   }
 
   if (configS3Bucket) {
