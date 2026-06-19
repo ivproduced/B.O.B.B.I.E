@@ -54,7 +54,24 @@ function resolvePathInUploads(userProvidedPath) {
     return null;
   }
 
-  return resolvedPath;
+  try {
+    const uploadsRootRealPath = fs.realpathSync.native(UPLOADS_DIR);
+    const resolvedRealPath = fs.realpathSync.native(resolvedPath);
+    const canonicalRelative = path.relative(uploadsRootRealPath, resolvedRealPath);
+    const escapesUploadsRoot =
+      canonicalRelative === '..' ||
+      canonicalRelative.startsWith(`..${path.sep}`) ||
+      (path.sep !== '\\' && canonicalRelative.startsWith('..\\')) ||
+      path.isAbsolute(canonicalRelative);
+
+    if (escapesUploadsRoot) {
+      return null;
+    }
+
+    return resolvedRealPath;
+  } catch (err) {
+    return null;
+  }
 }
 
 // Configure multer storage
