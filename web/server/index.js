@@ -148,14 +148,15 @@ app.post('/api/run', runLimiter, (req, res) => {
   }
 
   if (contextFile) {
-    const contextPath = resolvePathInUploads(contextFile);
-    if (!contextPath) {
+    if (!resolvePathInUploads(contextFile)) {
       return res.status(400).json({ error: 'Invalid context file path' });
     }
-    if (!fs.existsSync(contextPath)) {
+    // Re-derive from fixed base + sanitized basename to break the taint chain
+    const safeContextPath = path.join(UPLOADS_DIR, path.basename(contextFile));
+    if (!fs.existsSync(safeContextPath)) {
         return res.status(400).json({ error: `Context file not found: ${contextFile}` });
     }
-    args.push('--context-file', contextPath);
+    args.push('--context-file', safeContextPath);
   }
 
   // Infrastructure source options
@@ -164,14 +165,15 @@ app.post('/api/run', runLimiter, (req, res) => {
   }
 
   if (infraFile) {
-    const infraPath = resolvePathInUploads(infraFile);
-    if (!infraPath) {
+    if (!resolvePathInUploads(infraFile)) {
       return res.status(400).json({ error: 'Invalid infrastructure file path' });
     }
-    if (!fs.existsSync(infraPath)) {
+    // Re-derive from fixed base + sanitized basename to break the taint chain
+    const safeInfraPath = path.join(UPLOADS_DIR, path.basename(infraFile));
+    if (!fs.existsSync(safeInfraPath)) {
       return res.status(400).json({ error: `Infrastructure file not found: ${infraFile}` });
     }
-    args.push('--infra-file', infraPath);
+    args.push('--infra-file', safeInfraPath);
   }
 
   if (configS3Bucket) {
