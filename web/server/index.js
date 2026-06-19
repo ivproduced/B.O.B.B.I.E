@@ -62,7 +62,19 @@ app.get('/api/artifacts', (req, res) => {
 });
 
 app.get('/api/artifacts/:name', (req, res) => {
-  const filePath = path.join(ARTIFACTS_DIR, req.params.name);
+  const rawName = req.params.name;
+  const safeName = path.basename(rawName);
+
+  // Reject traversal/path-component input; only allow simple filenames
+  if (!safeName || safeName !== rawName || safeName === '.' || safeName === '..') {
+    return res.status(400).json({ error: 'invalid artifact name' });
+  }
+
+  const filePath = path.resolve(ARTIFACTS_DIR, safeName);
+  const relativePath = path.relative(ARTIFACTS_DIR, filePath);
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    return res.status(403).json({ error: 'forbidden' });
+  }
   if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'not found' });
   res.sendFile(filePath);
 });
