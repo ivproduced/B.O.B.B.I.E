@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// General read endpoints: 120 requests per 15 minutes per IP
+// General read endpoints: 120 requests per 15-minute fixed window per IP
 const readLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 120,
@@ -18,7 +18,7 @@ const readLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// File upload: 30 requests per 15 minutes per IP
+// File upload: 30 requests per 15-minute fixed window per IP
 const uploadLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 30,
@@ -26,7 +26,7 @@ const uploadLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Assessment run: 10 requests per 15 minutes per IP (spawns a process)
+// Assessment run: 10 requests per 15-minute fixed window per IP (spawns a process)
 const runLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
