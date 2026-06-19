@@ -4,10 +4,35 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 const multer = require('multer');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// General read endpoints: 120 requests per 15 minutes per IP
+const readLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// File upload: 30 requests per 15 minutes per IP
+const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Assessment run: 10 requests per 15 minutes per IP (spawns a process)
+const runLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 const UPLOADS_DIR = path.resolve(__dirname, '../../data/uploads');
 const ARTIFACTS_DIR = path.resolve(__dirname, '../../artifacts/final_run');
@@ -47,21 +72,21 @@ const upload = multer({
   })
 });
 
-app.post('/api/upload', upload.single('file'), (req, res) => {
+app.post('/api/upload', uploadLimiter, upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
   }
   res.json({ filename: req.file.filename });
 });
 
-app.get('/api/artifacts', (req, res) => {
+app.get('/api/artifacts', readLimiter, (req, res) => {
   fs.readdir(ARTIFACTS_DIR, (err, files) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ files });
   });
 });
 
-app.get('/api/artifacts/:name', (req, res) => {
+app.get('/api/artifacts/:name', readLimiter, (req, res) => {
   const rawName = req.params.name;
   const safeName = path.basename(rawName);
 
@@ -79,7 +104,7 @@ app.get('/api/artifacts/:name', (req, res) => {
   res.sendFile(filePath);
 });
 
-app.post('/api/run', (req, res) => {
+app.post('/api/run', runLimiter, (req, res) => {
   // spawn the Python assessment using the project virtualenv
   const pythonPath = path.resolve(__dirname, '../../.venv/bin/python');
   if (!fs.existsSync(pythonPath)) {
@@ -198,13 +223,13 @@ app.post('/api/run', (req, res) => {
   res.json({ pid: proc.pid, log: '/api/artifacts/web_run.log' });
 });
 
-app.get('/api/log', (req, res) => {
+app.get('/api/log', readLimiter, (req, res) => {
   if (!fs.existsSync(RUN_LOG)) return res.json({ log: '' });
   const data = fs.readFileSync(RUN_LOG, 'utf8');
   res.json({ log: data });
 });
 
-app.get('/api/report', (req, res) => {
+app.get('/api/report', readLimiter, (req, res) => {
   const reportPath = path.join(ARTIFACTS_DIR, 'assessment_report.json');
   if (!fs.existsSync(reportPath)) return res.json(null);
   try {
@@ -215,7 +240,7 @@ app.get('/api/report', (req, res) => {
   }
 });
 
-app.get('/api/poam', (req, res) => {
+app.get('/api/poam', readLimiter, (req, res) => {
   const poamPath = path.join(ARTIFACTS_DIR, 'poam.json');
   if (!fs.existsSync(poamPath)) return res.json(null);
   try {
