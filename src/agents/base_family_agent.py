@@ -59,10 +59,9 @@ class BaseFamilyAgent:
     ) -> str | None:
         """Call Nova Pro for a human-readable risk narrative. Returns None on any failure."""
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
             findings_text = (
                 "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
             )
@@ -88,10 +87,9 @@ class BaseFamilyAgent:
     ) -> list[str]:
         """Call Nova Pro to generate concise remediation recommendations. Returns empty list on failure."""
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
             findings_text = (
                 "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
             )
@@ -130,10 +128,9 @@ class BaseFamilyAgent:
         or None on failure.
         """
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
             findings_text = (
                 "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
             )

@@ -48,7 +48,7 @@ def _render_control_table(result: dict[str, Any]) -> None:
                         st.write(f"- {recommendation}")
                 nova_narrative = control_result.get("nova_narrative")
                 if nova_narrative:
-                    st.info(f"**Nova Pro Risk Narrative:** {nova_narrative}")
+                    st.info(f"**LLM Risk Narrative:** {nova_narrative}")
 
 
 st.set_page_config(page_title="BOBBIE Assessment Engine", layout="wide")
@@ -64,18 +64,43 @@ with st.sidebar:
 
     st.subheader("Data Sources")
     use_frozen_context = st.checkbox("Use frozen demo dataset", value=True)
-    enable_nova_narrative = st.checkbox(
-        "Enable Nova Pro narrative (requires AWS Bedrock)",
+    st.subheader("LLM Narrative")
+    enable_llm_narrative = st.checkbox(
+        "Enable LLM narrative",
         value=True,
-        help="Calls Amazon Nova Pro to generate a risk narrative per control and an executive compliance summary.",
+        help="Calls the configured LLM to generate a risk narrative per control and an executive summary.",
     )
-    apply_nova_suggestions = st.checkbox(
-        "Apply Nova suggestions automatically",
+    llm_provider = st.selectbox(
+        "LLM Provider",
+        options=["bedrock", "openai"],
+        index=0,
+        help="'bedrock' uses AWS Bedrock. 'openai' works with OpenAI or any OpenAI-compatible endpoint.",
+    )
+    llm_model_id = st.text_input(
+        "Model ID",
+        value="",
+        placeholder="Leave blank to use LLM_MODEL_ID env var or provider default",
+        help="e.g. amazon.nova-2-lite-v1:0, gpt-4o, llama3, etc.",
+    )
+    llm_base_url = st.text_input(
+        "Base URL (openai-compatible)",
+        value="",
+        placeholder="e.g. http://localhost:11434/v1",
+        help="Override the API base URL. Required only for non-OpenAI compatible endpoints.",
+    )
+    llm_api_key = st.text_input(
+        "API Key",
+        value="",
+        type="password",
+        placeholder="Leave blank to use LLM_API_KEY / OPENAI_API_KEY env var",
+    )
+    apply_llm_suggestions = st.checkbox(
+        "Apply LLM suggestions automatically",
         value=False,
-        help="If checked, BOBBIE will apply Nova's suggested status/risk when confidence >= threshold. Use with caution.",
+        help="If checked, BOBBIE will apply the LLM's suggested status/risk when confidence >= threshold. Use with caution.",
     )
-    nova_confidence_threshold = st.number_input(
-        "Nova confidence threshold (0.0-1.0)", min_value=0.0, max_value=1.0, value=0.9, step=0.05
+    llm_confidence_threshold = st.number_input(
+        "LLM confidence threshold (0.0-1.0)", min_value=0.0, max_value=1.0, value=0.9, step=0.05
     )
     uploaded_control_evidence = st.file_uploader("Control evidence JSON (optional)", type=["json"])
     uploaded_evtx_payload = st.file_uploader("EVTX payload JSON (optional)", type=["json"])
@@ -89,9 +114,13 @@ if run_assessment:
     context: dict[str, Any] = {
         "repo_root": str(REPO_ROOT),
         "deterministic_run": bool(deterministic_mode),
-            "nova_narrative": bool(enable_nova_narrative),
-            "apply_nova_suggestions": bool(apply_nova_suggestions),
-            "nova_confidence_threshold": float(nova_confidence_threshold),
+        "nova_narrative": bool(enable_llm_narrative),
+        "apply_nova_suggestions": bool(apply_llm_suggestions),
+        "nova_confidence_threshold": float(llm_confidence_threshold),
+        "llm_provider": llm_provider,
+        "llm_model_id": llm_model_id.strip() or None,
+        "llm_base_url": llm_base_url.strip() or None,
+        "llm_api_key": llm_api_key.strip() or None,
         "orchestrator": {
             "control_timeout_seconds": float(timeout_seconds),
             "max_workers": int(max_workers),
