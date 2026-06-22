@@ -154,6 +154,10 @@ app.post('/api/run', runLimiter, (req, res) => {
     awsAccessKeyId,
     awsSecretAccessKey,
     collectOnly,
+    llmProvider,
+    llmModel,
+    llmBaseUrl,
+    llmApiKey,
   } = req.body;
 
   if (applySuggestions) {
@@ -162,6 +166,22 @@ app.post('/api/run', runLimiter, (req, res) => {
 
   if (typeof confidenceThreshold === 'number') {
     args.push('--nova-confidence-threshold', String(confidenceThreshold));
+  }
+
+  if (llmProvider) {
+    args.push('--llm-provider', llmProvider);
+  }
+
+  if (llmModel) {
+    args.push('--llm-model', llmModel);
+  }
+
+  if (llmBaseUrl) {
+    args.push('--llm-base-url', llmBaseUrl);
+  }
+
+  if (llmApiKey) {
+    args.push('--llm-api-key', llmApiKey);
   }
 
   if (contextFile) {
@@ -222,6 +242,10 @@ app.post('/api/run', runLimiter, (req, res) => {
       AWS_DEFAULT_REGION: awsRegion || process.env.AWS_DEFAULT_REGION || 'us-east-1',
       ...(awsAccessKeyId ? { AWS_ACCESS_KEY_ID: awsAccessKeyId } : {}),
       ...(awsSecretAccessKey ? { AWS_SECRET_ACCESS_KEY: awsSecretAccessKey } : {}),
+      ...(llmProvider ? { LLM_PROVIDER: llmProvider } : {}),
+      ...(llmModel ? { LLM_MODEL_ID: llmModel } : {}),
+      ...(llmBaseUrl ? { LLM_BASE_URL: llmBaseUrl } : {}),
+      ...(llmApiKey ? { LLM_API_KEY: llmApiKey } : {}),
     }),
     cwd: path.resolve(__dirname, '../..')
   });

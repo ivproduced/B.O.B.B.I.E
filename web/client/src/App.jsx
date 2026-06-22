@@ -21,7 +21,7 @@ function ControlCard({ controlId, data }) {
       <div className="control-card-header">
         <span className="control-id">{controlId}</span>
         <StatusBadge status={status} />
-        {narrative && <span className="nova-badge">Nova AI</span>}
+        {narrative && <span className="nova-badge">AI Narrative</span>}
         <span className="chevron">{open ? '▲' : '▼'}</span>
       </div>
       {open && (
@@ -40,7 +40,7 @@ function ControlCard({ controlId, data }) {
           )}
           {narrative && (
             <div className="nova-narrative">
-              <span className="nova-label">Nova AI Narrative</span>
+              <span className="nova-label">AI Narrative</span>
               <p>{narrative}</p>
             </div>
           )}
@@ -132,6 +132,12 @@ export default function App() {
   const [awsSecretAccessKey, setAwsSecretAccessKey] = useState('')
   const [showSecret, setShowSecret] = useState(false)
   const [credsSaved, setCredsSaved] = useState(false)
+  const [llmProvider, setLlmProvider] = useState('bedrock')
+  const [llmModel, setLlmModel] = useState('')
+  const [llmBaseUrl, setLlmBaseUrl] = useState('')
+  const [llmApiKey, setLlmApiKey] = useState('')
+  const [showLlmKey, setShowLlmKey] = useState(false)
+  const [llmSettingsSaved, setLlmSettingsSaved] = useState(false)
   const logRef = useRef(null)
 
   /* ── Load saved credentials from localStorage on mount ── */
@@ -144,6 +150,16 @@ export default function App() {
         if (c.awsRegion !== undefined) setAwsRegion(c.awsRegion)
         if (c.awsAccessKeyId !== undefined) setAwsAccessKeyId(c.awsAccessKeyId)
         setCredsSaved(true)
+      }
+    } catch {}
+    try {
+      const saved = localStorage.getItem('bobbie_llm_settings')
+      if (saved) {
+        const c = JSON.parse(saved)
+        if (c.llmProvider) setLlmProvider(c.llmProvider)
+        if (c.llmModel !== undefined) setLlmModel(c.llmModel)
+        if (c.llmBaseUrl !== undefined) setLlmBaseUrl(c.llmBaseUrl)
+        setLlmSettingsSaved(true)
       }
     } catch {}
   }, [])
@@ -164,6 +180,22 @@ export default function App() {
     setAwsAccessKeyId('')
     setAwsSecretAccessKey('')
     setCredsSaved(false)
+  }
+
+  function saveLlmSettings() {
+    try {
+      localStorage.setItem('bobbie_llm_settings', JSON.stringify({ llmProvider, llmModel, llmBaseUrl }))
+      setLlmSettingsSaved(true)
+    } catch {}
+  }
+
+  function clearLlmSettings() {
+    try { localStorage.removeItem('bobbie_llm_settings') } catch {}
+    setLlmProvider('bedrock')
+    setLlmModel('')
+    setLlmBaseUrl('')
+    setLlmApiKey('')
+    setLlmSettingsSaved(false)
   }
 
   /* ── Data fetching ── */
@@ -209,7 +241,9 @@ export default function App() {
     setRunDone(false)
     setLog('')
     setTab('run')
-    const payload = { applySuggestions, confidenceThreshold: parseFloat(confidenceThreshold), infraSource }
+    const payload = { applySuggestions, confidenceThreshold: parseFloat(confidenceThreshold), infraSource,
+      llmProvider, llmModel: llmModel.trim() || undefined, llmBaseUrl: llmBaseUrl.trim() || undefined,
+      llmApiKey: llmApiKey.trim() || undefined }
     if (infraSource !== 'live') {
       if (infraFile) payload.infraFile = infraFile
       if (infraSource === 'aws-config') {
@@ -278,7 +312,7 @@ export default function App() {
           </div>
         </div>
         <div className="header-meta">
-          <span>AWS Bedrock Nova</span>
+          <span>{llmProvider === 'bedrock' ? 'AWS Bedrock' : llmProvider === 'openai' ? (llmBaseUrl ? 'Custom Endpoint' : 'OpenAI') : llmProvider}</span>
           <span>OSCAL 1.2.0</span>
           <span>
             <span className={`status-dot ${running ? 'active' : 'idle'}`} />
@@ -290,10 +324,73 @@ export default function App() {
       <div className="shell-body">
         {/* ── Sidebar ── */}
         <aside className="sidebar">
-          {/* Nova AI Controls */}
+          {/* LLM Configuration */}
           <div className="sidebar-section">
-            <div className="sidebar-section-title">Nova AI Configuration</div>
-            <label className="toggle-row">
+            <div className="sidebar-section-title">
+              LLM Configuration
+              {llmSettingsSaved && <span className="creds-saved-badge">✓ Saved</span>}
+            </div>
+            <div className="infra-sub">
+              <div className="llm-provider-row">
+                <button
+                  className={`infra-btn${llmProvider === 'bedrock' ? ' active' : ''}`}
+                  onClick={() => { if (!running) { setLlmProvider('bedrock'); setLlmSettingsSaved(false) } }}
+                  disabled={running}
+                  title="Amazon Bedrock"
+                >
+                  <span className="infra-btn-label">Bedrock</span>
+                  <span className="infra-btn-desc">AWS managed</span>
+                </button>
+                <button
+                  className={`infra-btn${llmProvider === 'openai' ? ' active' : ''}`}
+                  onClick={() => { if (!running) { setLlmProvider('openai'); setLlmSettingsSaved(false) } }}
+                  disabled={running}
+                  title="OpenAI or any OpenAI-compatible endpoint"
+                >
+                  <span className="infra-btn-label">OpenAI</span>
+                  <span className="infra-btn-desc">or compatible</span>
+                </button>
+              </div>
+              <input
+                className="infra-input"
+                placeholder={llmProvider === 'bedrock' ? 'Model ID (default: amazon.nova-2-lite-v1:0)' : 'Model ID (default: gpt-4o)'}
+                value={llmModel}
+                onChange={e => { setLlmModel(e.target.value); setLlmSettingsSaved(false) }}
+                disabled={running}
+              />
+              {llmProvider === 'openai' && (
+                <>
+                  <input
+                    className="infra-input"
+                    placeholder="Base URL (e.g. http://localhost:11434/v1)"
+                    value={llmBaseUrl}
+                    onChange={e => { setLlmBaseUrl(e.target.value); setLlmSettingsSaved(false) }}
+                    disabled={running}
+                  />
+                  <div className="secret-row">
+                    <input
+                      className="infra-input secret-input"
+                      type={showLlmKey ? 'text' : 'password'}
+                      placeholder="API Key"
+                      value={llmApiKey}
+                      onChange={e => setLlmApiKey(e.target.value)}
+                      disabled={running}
+                      autoComplete="off"
+                    />
+                    <button className="secret-toggle" type="button" onClick={() => setShowLlmKey(v => !v)} tabIndex={-1}>
+                      {showLlmKey ? 'Hide' : 'Show'}
+                    </button>
+                  </div>
+                </>
+              )}
+              <div className="creds-actions">
+                <button className="creds-save-btn" type="button" onClick={saveLlmSettings} disabled={running}>Save settings</button>
+                {llmSettingsSaved && (
+                  <button className="creds-clear-btn" type="button" onClick={clearLlmSettings} disabled={running}>Clear</button>
+                )}
+              </div>
+            </div>
+            <label className="toggle-row" style={{ marginTop: '0.75rem' }}>
               <span>Apply Suggestions</span>
               <div className={`toggle ${applySuggestions ? 'on' : ''}`} onClick={() => !running && setApplySuggestions(v => !v)}>
                 <div className="toggle-knob" />
