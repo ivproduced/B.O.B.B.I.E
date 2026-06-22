@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -8,12 +9,18 @@ import streamlit as st
 
 from src.agents.orchestrator import BOBBIEOrchestrator
 from src.utils import ReportGenerator
+from src.security.input_sanitizer import sanitize_context_keys, validate_allowed_path
+from src.security.audit_log import get_default_log
 
 
 REPO_ROOT = Path(__file__).resolve().parent
 FROZEN_CONTEXT_PATH = REPO_ROOT / "data" / "demo_frozen" / "demo_context.json"
 
 from src.config.demo_plan import DEMO_PLAN
+
+# Maximum length for the system_name field displayed in reports.
+_MAX_SYSTEM_NAME_LEN = 200
+_SAFE_NAME_PATTERN = re.compile(r"[^\w\s\-.,():/]")
 
 
 def _load_uploaded_json(uploaded_file: Any, label: str) -> dict[str, Any] | list[Any] | None:
@@ -25,6 +32,12 @@ def _load_uploaded_json(uploaded_file: Any, label: str) -> dict[str, Any] | list
         st.error(f"{label} must be valid JSON. Error: {exc}")
         return None
     return payload
+
+
+def _sanitize_system_name(name: str) -> str:
+    """Sanitize system_name to prevent injection into report artifacts."""
+    name = name.strip()[:_MAX_SYSTEM_NAME_LEN]
+    return _SAFE_NAME_PATTERN.sub("", name) or "BOBBIE Demo System"
 
 
 def _render_control_table(result: dict[str, Any]) -> None:
@@ -69,10 +82,22 @@ with st.sidebar:
         value=True,
         help="Calls Amazon Nova Pro to generate a risk narrative per control and an executive compliance summary.",
     )
+    if enable_nova_narrative:
+        st.warning(
+            "⚠️ **Data Disclosure Notice:** When Nova Pro is enabled, assessment findings "
+            "(control IDs, status, and finding text) are transmitted to AWS Bedrock. "
+            "Do not enable this feature if findings contain classified or sensitive information "
+            "that must not leave your environment. (OWASP LLM06)",
+            icon="🔒",
+        )
     apply_nova_suggestions = st.checkbox(
         "Apply Nova suggestions automatically",
         value=False,
-        help="If checked, BOBBIE will apply Nova's suggested status/risk when confidence >= threshold. Use with caution.",
+        help=(
+            "If checked, BOBBIE will apply Nova's suggested status/risk when confidence >= threshold. "
+            "⚠️ Note: Nova can NEVER automatically promote a FAIL control to PASS — "
+            "a human reviewer must approve any such change. (OWASP LLM08/AA02)"
+        ),
     )
     nova_confidence_threshold = st.number_input(
         "Nova confidence threshold (0.0-1.0)", min_value=0.0, max_value=1.0, value=0.9, step=0.05
@@ -86,6 +111,9 @@ with st.sidebar:
 
 
 if run_assessment:
+    # LLM01: sanitize system_name before it appears in any report artifact.
+    safe_system_name = _sanitize_system_name(system_name)
+
     context: dict[str, Any] = {
         "repo_root": str(REPO_ROOT),
         "deterministic_run": bool(deterministic_mode),
@@ -99,14 +127,27 @@ if run_assessment:
         },
     }
 
+    # AA03: Validate catalog_path stays within REPO_ROOT before adding to context.
     if catalog_path.strip():
-        context["catalog_path"] = catalog_path.strip()
+        try:
+            safe_catalog = validate_allowed_path(catalog_path.strip(), REPO_ROOT, label="catalog_path")
+            context["catalog_path"] = str(safe_catalog)
+        except ValueError as path_err:
+            st.error(f"Invalid catalog path: {path_err}")
+            st.stop()
 
     if use_frozen_context and FROZEN_CONTEXT_PATH.exists():
         try:
             frozen_payload = json.loads(FROZEN_CONTEXT_PATH.read_text(encoding="utf-8"))
             if isinstance(frozen_payload, dict):
-                context.update(frozen_payload)
+                # LLM08/AA02: strip protected keys from the frozen dataset so it
+                # cannot override security-critical settings (e.g. apply_nova_suggestions,
+                # nova_confidence_threshold) set by the authenticated UI session.
+                safe_frozen = sanitize_context_keys(frozen_payload)
+                stripped_keys = set(frozen_payload) - set(safe_frozen)
+                for k in stripped_keys:
+                    get_default_log().log_context_key_stripped(k)
+                context.update(safe_frozen)
         except Exception as exc:
             st.warning(f"Frozen dataset could not be loaded: {exc}")
 
@@ -161,9 +202,9 @@ if run_assessment:
     _render_control_table(result)
 
     report_generator = ReportGenerator()
-    report_payload = report_generator.build_assessment_report(result, system_name=system_name)
-    poam_payload = report_generator.build_poam(result, system_name=system_name)
-    summary_text = report_generator.build_human_summary(result, system_name=system_name)
+    report_payload = report_generator.build_assessment_report(result, system_name=safe_system_name)
+    poam_payload = report_generator.build_poam(result, system_name=safe_system_name)
+    summary_text = report_generator.build_human_summary(result, system_name=safe_system_name)
 
     st.subheader("Download Artifacts")
     st.download_button(
@@ -184,3 +225,21 @@ if run_assessment:
         file_name="assessment_summary.txt",
         mime="text/plain",
     )
+    # AA06: expose the audit log so reviewers can verify no unexpected LLM overrides occurred.
+    audit_entries = result.get("_audit_log", [])
+    if audit_entries:
+        st.download_button(
+            "Download LLM Audit Log JSON",
+            data=json.dumps(audit_entries, indent=2),
+            file_name="llm_audit_log.json",
+            mime="application/json",
+            help="Contains a record of every Nova Pro override, blocked FAIL→PASS attempt, and LLM budget event.",
+        )
+        override_count = sum(1 for e in audit_entries if e.get("event_type") == "NOVA_SUGGESTION_APPLIED")
+        blocked_count = sum(1 for e in audit_entries if e.get("event_type") == "FAIL_TO_PASS_BLOCKED")
+        if override_count or blocked_count:
+            st.warning(
+                f"⚠️ **LLM Override Activity:** {override_count} Nova suggestion(s) applied, "
+                f"{blocked_count} FAIL→PASS promotion(s) blocked. Download the LLM Audit Log for details.",
+                icon="🔍",
+            )

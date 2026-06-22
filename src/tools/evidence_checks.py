@@ -5,6 +5,8 @@ from pathlib import Path
 from typing import Any
 
 from src.models.oscal_catalog import Catalog
+from src.security.input_sanitizer import validate_allowed_path
+from src.security.audit_log import get_default_log
 
 
 def _result(findings: list[str], recommendations: list[str], risk_level: str, confidence: float = 0.9) -> dict[str, Any]:
@@ -89,7 +91,21 @@ def evaluate_control_effectiveness_with_objectives(control_id: str, context: dic
 
 def get_control_assessment_objectives(control_id: str, context: dict[str, Any]) -> list[dict[str, str]]:
     repo_root = Path(str(context.get("repo_root", Path.cwd()))).resolve()
-    fixture_path = Path(str(context.get("objective_fixture_path", repo_root / "data" / "oscal_samples" / f"objectives_{control_id.lower().replace('-', '')}.json")))
+
+    raw_fixture_path = context.get(
+        "objective_fixture_path",
+        repo_root / "data" / "oscal_samples" / f"objectives_{control_id.lower().replace('-', '')}.json",
+    )
+    # AA03: Validate that fixture_path stays within repo_root.
+    try:
+        fixture_path = validate_allowed_path(raw_fixture_path, repo_root, label="objective_fixture_path")
+    except ValueError:
+        get_default_log().log_path_traversal_blocked(
+            label="objective_fixture_path",
+            candidate=str(raw_fixture_path),
+            allowed_root=str(repo_root),
+        )
+        fixture_path = repo_root / "data" / "oscal_samples" / f"objectives_{control_id.lower().replace('-', '')}.json"
 
     if fixture_path.exists():
         payload = json.loads(fixture_path.read_text(encoding="utf-8"))
@@ -104,7 +120,17 @@ def get_control_assessment_objectives(control_id: str, context: dict[str, Any]) 
                 if isinstance(item, dict)
             ]
 
-    catalog_path = Path(str(context.get("catalog_path", repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json")))
+    raw_catalog_path = context.get("catalog_path", repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json")
+    # AA03: Validate catalog_path is within repo_root.
+    try:
+        catalog_path = validate_allowed_path(raw_catalog_path, repo_root, label="catalog_path")
+    except ValueError:
+        get_default_log().log_path_traversal_blocked(
+            label="catalog_path",
+            candidate=str(raw_catalog_path),
+            allowed_root=str(repo_root),
+        )
+        catalog_path = repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json"
     if not catalog_path.exists():
         return []
 
