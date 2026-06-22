@@ -57,7 +57,7 @@ class BaseFamilyAgent:
         findings: list[str],
         context: dict[str, Any],
     ) -> str | None:
-        """Call Nova Pro for a human-readable risk narrative. Returns None on any failure."""
+        """Call the configured LLM for a human-readable risk narrative. Returns None on any failure."""
         try:
             from src.models.llm_factory import create_llm_client
 
@@ -85,7 +85,7 @@ class BaseFamilyAgent:
         findings: list[str],
         context: dict[str, Any],
     ) -> list[str]:
-        """Call Nova Pro to generate concise remediation recommendations. Returns empty list on failure."""
+        """Call the configured LLM to generate concise remediation recommendations. Returns empty list on failure."""
         try:
             from src.models.llm_factory import create_llm_client
 
@@ -123,7 +123,7 @@ class BaseFamilyAgent:
         findings: list[str],
         context: dict[str, Any],
     ) -> dict[str, Any] | None:
-        """Call Nova to propose a suggested status and risk level with confidence.
+        """Call the configured LLM to propose a suggested status and risk level with confidence.
         Returns a dict with keys: suggested_status, suggested_risk, confidence, explanation
         or None on failure.
         """
@@ -212,7 +212,7 @@ class BaseFamilyAgent:
                 result["nova_narrative"] = narrative
 
         # If the control failed and no deterministic recommendations were provided,
-        # ask Nova to generate concise remediation steps (operator/engineer focused).
+        # ask the configured LLM to generate concise remediation steps (operator/engineer focused).
         if (
             str(result.get("status", "")).upper() == "FAIL"
             and not result.get("recommendations")
@@ -224,7 +224,7 @@ class BaseFamilyAgent:
             if recs:
                 result["recommendations"] = recs
 
-        # Soft suggestion: ask Nova to propose status/risk and confidence. Do not override
+        # Soft suggestion: ask the configured LLM to propose status/risk and confidence. Do not override
         # unless explicitly enabled via context `apply_nova_suggestions` and confidence >= threshold.
         if context.get("nova_narrative"):
             suggestion = self._invoke_nova_suggestion(
