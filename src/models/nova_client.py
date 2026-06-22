@@ -1,19 +1,14 @@
+"""Backwards-compatible shim — delegates to the provider-agnostic llm_factory."""
 from __future__ import annotations
 
-import os
+from typing import Any
 
-from langchain_aws import ChatBedrock
+from src.models.llm_factory import create_llm_client
 
 
-def create_nova_client(region_name: str | None = None) -> ChatBedrock:
-    region = (
-        region_name
-        or os.environ.get("AWS_REGION")
-        or os.environ.get("AWS_DEFAULT_REGION")
-        or "us-east-1"
-    )
-    return ChatBedrock(
-        model_id="amazon.nova-2-lite-v1:0",
-        region_name=region,
-        model_kwargs={"temperature": 0.0, "max_tokens": 4096},
-    )
+def create_nova_client(region_name: str | None = None) -> Any:
+    """Deprecated shim — use src.models.llm_factory.create_llm_client instead."""
+    ctx: dict[str, Any] = {}
+    if region_name:
+        ctx["llm_aws_region"] = region_name
+    return create_llm_client(ctx)

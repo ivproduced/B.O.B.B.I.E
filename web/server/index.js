@@ -132,15 +132,8 @@ app.post('/api/run', runLimiter, (req, res) => {
   fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
   const out = fs.createWriteStream(RUN_LOG, { flags: 'a' });
 
-  const args = [
-    'run_assessment.py',
-    '--deterministic',
-    '--nova-narrative',
-    '--output-dir', 'artifacts/final_run',
-    '--system-name', 'BOBBIE Web Run'
-  ];
-
   const {
+    systemName,
     applySuggestions,
     confidenceThreshold,
     contextFile,
@@ -154,7 +147,22 @@ app.post('/api/run', runLimiter, (req, res) => {
     awsAccessKeyId,
     awsSecretAccessKey,
     collectOnly,
+    llmProvider,
+    llmModel,
+    llmBaseUrl,
+    llmApiKey,
   } = req.body;
+
+  const safeSystemName =
+    typeof systemName === 'string' && systemName.trim() ? systemName.trim() : 'BOBBIE Web Run';
+
+  const args = [
+    'run_assessment.py',
+    '--deterministic',
+    '--nova-narrative',
+    '--output-dir', 'artifacts/final_run',
+    '--system-name', safeSystemName
+  ];
 
   if (applySuggestions) {
     args.push('--apply-nova-suggestions');
@@ -162,6 +170,18 @@ app.post('/api/run', runLimiter, (req, res) => {
 
   if (typeof confidenceThreshold === 'number') {
     args.push('--nova-confidence-threshold', String(confidenceThreshold));
+  }
+
+  if (llmProvider) {
+    args.push('--llm-provider', llmProvider);
+  }
+
+  if (llmModel) {
+    args.push('--llm-model', llmModel);
+  }
+
+  if (llmBaseUrl) {
+    args.push('--llm-base-url', llmBaseUrl);
   }
 
   if (contextFile) {
@@ -222,6 +242,10 @@ app.post('/api/run', runLimiter, (req, res) => {
       AWS_DEFAULT_REGION: awsRegion || process.env.AWS_DEFAULT_REGION || 'us-east-1',
       ...(awsAccessKeyId ? { AWS_ACCESS_KEY_ID: awsAccessKeyId } : {}),
       ...(awsSecretAccessKey ? { AWS_SECRET_ACCESS_KEY: awsSecretAccessKey } : {}),
+      ...(llmProvider ? { LLM_PROVIDER: llmProvider } : {}),
+      ...(llmModel ? { LLM_MODEL_ID: llmModel } : {}),
+      ...(llmBaseUrl ? { LLM_BASE_URL: llmBaseUrl } : {}),
+      ...(llmApiKey ? { LLM_API_KEY: llmApiKey } : {}),
     }),
     cwd: path.resolve(__dirname, '../..')
   });
