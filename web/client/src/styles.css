@@ -171,6 +171,7 @@ body {
 
 /* INFRA GRID */
 .infra-source-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.llm-provider-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
 .infra-btn {
   display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
   padding: 9px 11px; border: 2px solid var(--usa-gray-10); border-radius: 4px;

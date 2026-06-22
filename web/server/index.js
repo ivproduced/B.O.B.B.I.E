@@ -137,7 +137,6 @@ app.post('/api/run', runLimiter, (req, res) => {
     '--deterministic',
     '--nova-narrative',
     '--output-dir', 'artifacts/final_run',
-    '--system-name', 'BOBBIE Web Run'
   ];
 
   const {
@@ -154,7 +153,19 @@ app.post('/api/run', runLimiter, (req, res) => {
     awsAccessKeyId,
     awsSecretAccessKey,
     collectOnly,
+    llmProvider,
+    llmModel,
+    llmBaseUrl,
+    llmApiKey,
+    systemName,
   } = req.body;
+
+  // LLM01: sanitize system_name to prevent injection into report artifacts.
+  const safeSystemName = typeof systemName === 'string'
+    ? systemName.trim().slice(0, 200).replace(/[^\w\s\-.,():/]/g, '') || 'BOBBIE Web Run'
+    : 'BOBBIE Web Run';
+
+  args.push('--system-name', safeSystemName);
 
   if (applySuggestions) {
     args.push('--apply-nova-suggestions');
@@ -162,6 +173,22 @@ app.post('/api/run', runLimiter, (req, res) => {
 
   if (typeof confidenceThreshold === 'number') {
     args.push('--nova-confidence-threshold', String(confidenceThreshold));
+  }
+
+  if (llmProvider) {
+    args.push('--llm-provider', llmProvider);
+  }
+
+  if (llmModel) {
+    args.push('--llm-model', llmModel);
+  }
+
+  if (llmBaseUrl) {
+    args.push('--llm-base-url', llmBaseUrl);
+  }
+
+  if (llmApiKey) {
+    args.push('--llm-api-key', llmApiKey);
   }
 
   if (contextFile) {
@@ -222,6 +249,10 @@ app.post('/api/run', runLimiter, (req, res) => {
       AWS_DEFAULT_REGION: awsRegion || process.env.AWS_DEFAULT_REGION || 'us-east-1',
       ...(awsAccessKeyId ? { AWS_ACCESS_KEY_ID: awsAccessKeyId } : {}),
       ...(awsSecretAccessKey ? { AWS_SECRET_ACCESS_KEY: awsSecretAccessKey } : {}),
+      ...(llmProvider ? { LLM_PROVIDER: llmProvider } : {}),
+      ...(llmModel ? { LLM_MODEL_ID: llmModel } : {}),
+      ...(llmBaseUrl ? { LLM_BASE_URL: llmBaseUrl } : {}),
+      ...(llmApiKey ? { LLM_API_KEY: llmApiKey } : {}),
     }),
     cwd: path.resolve(__dirname, '../..')
   });
@@ -265,6 +296,18 @@ app.get('/api/poam', readLimiter, (req, res) => {
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: 'Failed to parse poam' });
+  }
+});
+
+// AA06: expose the LLM audit log so the UI can surface override/block activity.
+app.get('/api/audit-log', readLimiter, (req, res) => {
+  const auditPath = path.join(ARTIFACTS_DIR, 'llm_audit_log.json');
+  if (!fs.existsSync(auditPath)) return res.json([]);
+  try {
+    const data = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to parse audit log' });
   }
 });
 

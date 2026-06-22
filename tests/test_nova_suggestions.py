@@ -26,7 +26,7 @@ def test_nova_suggestion_not_applied_by_default(monkeypatch):
         "confidence": 0.95,
         "explanation": "Looks low risk."
     }))
-    monkeypatch.setattr("src.models.nova_client.create_nova_client", lambda region_name=None: client)
+    monkeypatch.setattr("src.models.llm_factory.create_llm_client", lambda context=None: client)
 
     agent = DummyAgent()
     ctx = {"nova_narrative": True, "apply_nova_suggestions": False, "nova_confidence_threshold": 0.9}
@@ -50,7 +50,7 @@ def test_nova_suggestion_applied_when_flag_and_confident(monkeypatch):
         "confidence": 0.95,
         "explanation": "Looks low risk."
     }))
-    monkeypatch.setattr("src.models.nova_client.create_nova_client", lambda region_name=None: client)
+    monkeypatch.setattr("src.models.llm_factory.create_llm_client", lambda context=None: client)
 
     agent = DummyAgent()
     ctx = {"nova_narrative": True, "apply_nova_suggestions": True, "nova_confidence_threshold": 0.9}
@@ -74,7 +74,7 @@ def test_nova_suggestion_not_applied_if_low_confidence(monkeypatch):
         "confidence": 0.5,
         "explanation": "Low confidence."
     }))
-    monkeypatch.setattr("src.models.nova_client.create_nova_client", lambda region_name=None: client)
+    monkeypatch.setattr("src.models.llm_factory.create_llm_client", lambda context=None: client)
 
     agent = DummyAgent()
     ctx = {"nova_narrative": True, "apply_nova_suggestions": True, "nova_confidence_threshold": 0.9}

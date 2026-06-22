@@ -56,27 +56,28 @@ Say:
 
 ### 2:35-2:55 — UI Experience (Optional if time permits)
 
-Run:
+Start the web UI:
 
 ```bash
-streamlit run app.py
+cd web/server && node index.js &
+cd web/client && npx vite
 ```
 
-Show:
-- configuration sidebar
+Open http://localhost:5173 and show:
+- assessment configuration panel
 - run button
-- results + artifact download buttons
+- results + artifact download
 
-### Nova Suggestion Safety (Important)
+### LLM Suggestion Safety (Important)
 
-When demoing with Nova suggestions enabled, note the following safety controls:
+When demoing with LLM suggestions enabled, note the following safety controls:
 
-- `Apply Nova suggestions automatically` (Streamlit) / `--apply-nova-suggestions` (CLI) is OFF by default. Leave it OFF for the demo unless you explicitly want suggestions applied.
-- `Nova confidence threshold` (Streamlit) / `--nova-confidence-threshold` (CLI) defaults to `0.9`. Auto-apply only occurs when Nova reports a confidence >= threshold.
-- If a Nova suggestion is shown, reviewers should:
-	1. Inspect the `nova_suggestion` object in the control result (or UI) which includes `suggested_status`, `suggested_risk`, `confidence`, and a short `explanation`.
+- `--apply-nova-suggestions` (CLI) is OFF by default. Leave it OFF for the demo unless you explicitly want suggestions applied.
+- `--nova-confidence-threshold` (CLI) defaults to `0.9`. Auto-apply only occurs when the LLM reports a confidence >= threshold.
+- If a suggestion is shown, reviewers should:
+	1. Inspect the `nova_suggestion` object in the control result which includes `suggested_status`, `suggested_risk`, `confidence`, and a short `explanation`.
 	2. Verify deterministic evidence and findings supporting the suggestion.
-	3. Only toggle `Apply Nova suggestions automatically` or accept the suggestion after human approval — the system records `_original_status` and `_original_risk_level` when an auto-apply occurs to preserve auditability.
+	3. Only enable `--apply-nova-suggestions` after human approval — the system records `_original_status` and `_original_risk_level` when an auto-apply occurs to preserve auditability.
 
 For the hackathon demo, prefer showing suggestions in the UI and discussing them verbally rather than auto-applying them.
 

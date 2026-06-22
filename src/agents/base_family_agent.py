@@ -104,10 +104,9 @@ class BaseFamilyAgent:
             get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
             return None
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
 
             # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
             safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
@@ -142,10 +141,9 @@ class BaseFamilyAgent:
             get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
             return []
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
 
             # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
             safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
@@ -188,10 +186,9 @@ class BaseFamilyAgent:
             get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
             return None
         try:
-            from src.models.nova_client import create_nova_client
+            from src.models.llm_factory import create_llm_client
 
-            region = str(context.get("aws_region", "")).strip() or None
-            llm = create_nova_client(region_name=region)
+            llm = create_llm_client(context)
 
             # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
             safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
