@@ -32,22 +32,34 @@ _MAX_FIELD_LEN = 2000
 _MAX_FINDINGS_TOTAL_LEN = 4000
 
 
+def _fit_truncation_note(value: str, field_name: str, max_len: int) -> str:
+    """Truncate *value* so any truncation note still fits within *max_len*."""
+    if max_len <= 0:
+        return ""
+
+    note = f"… [truncated – original {field_name} exceeded {max_len} chars]"
+    if len(note) >= max_len:
+        return note[:max_len]
+
+    return value[: max_len - len(note)] + note
+
+
 def sanitize_prompt_field(value: str, field_name: str = "field", max_len: int = _MAX_FIELD_LEN) -> str:
     """Sanitize a user-controlled string before embedding it in an LLM prompt.
 
-    - Truncates to *max_len* characters.
+    - Caps the final output at *max_len* characters.
     - Strips injection-attempt patterns (replaces with a safe placeholder).
     - Returns a clean string safe for prompt interpolation.
     """
     if not isinstance(value, str):
         value = str(value)
 
-    # Hard truncation to avoid token stuffing / context overflow.
-    if len(value) > max_len:
-        value = value[:max_len] + f"… [truncated – original {field_name} exceeded {max_len} chars]"
-
     for pattern in _INJECTION_PATTERNS:
         value = pattern.sub(f"[REDACTED-{field_name.upper()}]", value)
+
+    # Hard truncation to avoid token stuffing / context overflow.
+    if len(value) > max_len:
+        value = _fit_truncation_note(value, field_name, max_len)
 
     return value
 

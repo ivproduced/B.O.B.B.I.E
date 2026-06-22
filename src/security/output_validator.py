@@ -11,6 +11,7 @@ from typing import Any
 # Allowlists for LLM-returned classification values.
 _VALID_STATUSES: frozenset[str] = frozenset({"PASS", "FAIL"})
 _VALID_RISK_LEVELS: frozenset[str] = frozenset({"LOW", "MEDIUM", "HIGH", "CRITICAL"})
+_MAX_EXPLANATION_LEN = 500
 
 
 def validate_confidence(raw: Any) -> float:
@@ -39,7 +40,8 @@ def validate_nova_suggestion(
        values are nullified so the suggestion cannot be applied.
     2. ``suggested_risk`` must be in the allowlist {LOW, MEDIUM, HIGH, CRITICAL}.
     3. ``confidence`` is clamped to [0.0, 1.0] regardless of what the LLM returned.
-    4. **Nova can NEVER auto-promote a FAIL→PASS**. The deterministic assessment
+    4. ``explanation`` is coerced to a string and capped at 500 characters.
+    5. **Nova can NEVER auto-promote a FAIL→PASS**. The deterministic assessment
        is the authoritative compliance record; an LLM cannot unilaterally clear
        a compliance failure. The ``suggested_status`` is overridden to ``None``
        when the LLM would change FAIL to PASS, preventing silent compliance bypass.
@@ -66,7 +68,10 @@ def validate_nova_suggestion(
     # 3. Clamp confidence.
     result["confidence"] = validate_confidence(result.get("confidence"))
 
-    # 4. Block FAIL→PASS auto-promotion (excessive agency / compliance bypass).
+    # 4. Cap explanation size.
+    result["explanation"] = str(result.get("explanation") or "")[:_MAX_EXPLANATION_LEN]
+
+    # 5. Block FAIL→PASS auto-promotion (excessive agency / compliance bypass).
     if (
         str(current_status).upper() == "FAIL"
         and result.get("suggested_status") == "PASS"

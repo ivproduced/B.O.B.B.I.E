@@ -6,8 +6,8 @@ from typing import Any
 
 from src.agents.family_registry import get_family_agent, validate_plan_vs_registry
 from src.agents.base_family_agent import set_llm_budget, _LLM_BUDGET_DEFAULT
-from src.security.audit_log import reset_default_log, get_default_log
-from src.security.input_sanitizer import sanitize_prompt_field, sanitize_findings_list
+from src.security.audit_log import reset_default_log
+from src.security.input_sanitizer import sanitize_prompt_field
 
 
 @dataclass
@@ -101,7 +101,13 @@ class BOBBIEOrchestrator:
     ) -> str | None:
         """Call Nova Pro for a cross-control compliance executive narrative. Returns None on failure."""
         try:
+            from src.agents.base_family_agent import _consume_llm_budget, _LLM_BUDGET_DEFAULT
             from src.models.llm_factory import create_llm_client
+            from src.security.audit_log import get_default_log
+
+            if not _consume_llm_budget("__executive_summary__"):
+                get_default_log().log_llm_budget_exceeded("__executive_summary__", _LLM_BUDGET_DEFAULT)
+                return None
 
             llm = create_llm_client(context)
             top_findings = summary.get("prioritized_findings", [])[:5]
@@ -132,7 +138,12 @@ class BOBBIEOrchestrator:
         except Exception:
             return None
 
-    def run(self, control_plan: dict[str, list[str]], context: dict[str, Any] | None = None) -> dict[str, Any]:
+    def run(
+        self,
+        control_plan: dict[str, list[str]],
+        context: dict[str, Any] | None = None,
+        pre_run_audit_entries: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         context = context or {}
         orchestrator_cfg = context.get("orchestrator", {}) if isinstance(context.get("orchestrator", {}), dict) else {}
         deterministic_mode = bool(context.get("deterministic_run", orchestrator_cfg.get("deterministic_mode", False)))
@@ -140,9 +151,11 @@ class BOBBIEOrchestrator:
 
         # LLM04: Reset audit log and initialise per-run LLM call budget before any work.
         audit_log = reset_default_log()
+        if pre_run_audit_entries:
+            audit_log.append_entries(pre_run_audit_entries)
         nova_enabled = bool(context.get("nova_narrative"))
         # Budget: 3 Nova calls per control (narrative + recommendations + suggestion) + 1 executive.
-        llm_budget = (len([c for ctrls in control_plan.values() for c in ctrls]) * 3 + 1) if nova_enabled else 0
+        llm_budget = (sum(len(ctrls) for ctrls in control_plan.values()) * 3 + 1) if nova_enabled else 0
         llm_budget = min(llm_budget, _LLM_BUDGET_DEFAULT)
         set_llm_budget(llm_budget)
 

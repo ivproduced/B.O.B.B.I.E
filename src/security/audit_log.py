@@ -37,6 +37,11 @@ class AuditLog:
         with self._lock:
             self._entries.append(entry)
 
+    def append_entries(self, entries: list[dict[str, Any]]) -> None:
+        """Append pre-built audit entries while preserving their original shape."""
+        with self._lock:
+            self._entries.extend(dict(entry) for entry in entries)
+
     def log_nova_suggestion_applied(
         self,
         control_id: str,

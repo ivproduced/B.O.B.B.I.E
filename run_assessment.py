@@ -9,7 +9,7 @@ from typing import Any
 from src.agents.orchestrator import BOBBIEOrchestrator
 from src.utils import ReportGenerator
 from src.security.input_sanitizer import sanitize_context_keys
-from src.security.audit_log import get_default_log
+from src.security.audit_log import AuditLog
 
 _MAX_SYSTEM_NAME_LEN = 200
 _SAFE_NAME_PATTERN = re.compile(r"[^\w\s\-.,():/]")
@@ -180,6 +180,7 @@ def main() -> None:
             "deterministic_mode": bool(args.deterministic),
         },
     }
+    pre_run_audit_log = AuditLog()
 
     if args.context_file:
         context_path = Path(args.context_file)
@@ -193,13 +194,15 @@ def main() -> None:
         # LLM08/AA02: strip protected keys so a context file cannot override
         # security-critical settings already set by CLI flags.
         safe_external = sanitize_context_keys(external_context)
-        stripped = set(external_context) - set(safe_external)
+        stripped = sorted(set(external_context) - set(safe_external))
         if stripped:
-            print(f"[BOBBIE] SECURITY: stripped protected context keys from context file: {sorted(stripped)}", flush=True)
+            print(f"[BOBBIE] SECURITY: stripped protected context keys from context file: {stripped}", flush=True)
+            for key in stripped:
+                pre_run_audit_log.log_context_key_stripped(key)
         context.update(safe_external)
 
     orchestrator = BOBBIEOrchestrator()
-    output = orchestrator.run(demo_plan, context=context)
+    output = orchestrator.run(demo_plan, context=context, pre_run_audit_entries=pre_run_audit_log.entries())
 
     report_generator = ReportGenerator()
     safe_system_name = _sanitize_system_name(args.system_name)

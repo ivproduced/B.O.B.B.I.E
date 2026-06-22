@@ -14,6 +14,7 @@ from src.security.audit_log import get_default_log
 # The orchestrator resets _llm_budget_remaining before each run via set_llm_budget().
 _LLM_BUDGET_DEFAULT: int = 100  # max Nova invocations per assessment run
 _llm_budget_lock = threading.Lock()
+_llm_budget_configured: int = _LLM_BUDGET_DEFAULT
 _llm_budget_remaining: int = _LLM_BUDGET_DEFAULT  # start at default; orchestrator resets per run
 
 
@@ -38,11 +39,18 @@ def _consume_llm_budget(control_id: str) -> bool:
         return True
 
 
+def _get_llm_budget_configured() -> int:
+    with _llm_budget_lock:
+        return _llm_budget_configured
+
+
 def set_llm_budget(budget: int) -> None:
     """Set the per-run LLM call budget. Called by the orchestrator before each run."""
-    global _llm_budget_remaining
+    global _llm_budget_configured, _llm_budget_remaining
     with _llm_budget_lock:
-        _llm_budget_remaining = max(0, int(budget))
+        configured_budget = max(0, int(budget))
+        _llm_budget_configured = configured_budget
+        _llm_budget_remaining = configured_budget
 
 
 class BaseFamilyAgent:
@@ -74,6 +82,11 @@ class BaseFamilyAgent:
         try:
             catalog_path = validate_allowed_path(raw_catalog_path, repo_root, label="catalog_path")
         except ValueError:
+            get_default_log().log_path_traversal_blocked(
+                label="catalog_path",
+                candidate=str(raw_catalog_path),
+                allowed_root=str(repo_root),
+            )
             catalog_path = default_catalog
 
         baselines = load_standard_baselines(str(repo_root))
@@ -101,7 +114,7 @@ class BaseFamilyAgent:
         """Call Nova Pro for a human-readable risk narrative. Returns None on any failure."""
         # LLM04: enforce per-assessment call budget.
         if not _consume_llm_budget(control_id):
-            get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
             return None
         try:
             from src.models.llm_factory import create_llm_client
@@ -138,7 +151,7 @@ class BaseFamilyAgent:
         """Call Nova Pro to generate concise remediation recommendations. Returns empty list on failure."""
         # LLM04: enforce per-assessment call budget.
         if not _consume_llm_budget(control_id):
-            get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
             return []
         try:
             from src.models.llm_factory import create_llm_client
@@ -183,7 +196,7 @@ class BaseFamilyAgent:
         """
         # LLM04: enforce per-assessment call budget.
         if not _consume_llm_budget(control_id):
-            get_default_log().log_llm_budget_exceeded(control_id, _LLM_BUDGET_DEFAULT)
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
             return None
         try:
             from src.models.llm_factory import create_llm_client
