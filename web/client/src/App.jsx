@@ -160,7 +160,7 @@ function StartScreen(props) {
                   <div className="secret-row">
                     <input className="text-input" type={showSecret ? 'text' : 'password'} placeholder="Secret Access Key"
                       value={awsSecretAccessKey} autoComplete="off" onChange={e => setAwsSecretAccessKey(e.target.value)} disabled={running} />
-                    <button className="secret-toggle" type="button" tabIndex={-1} onClick={() => setShowSecret(v => !v)}>{showSecret ? 'Hide' : 'Show'}</button>
+                    <button className="secret-toggle" type="button" aria-label={showSecret ? 'Hide secret access key' : 'Show secret access key'} aria-pressed={showSecret} onClick={() => setShowSecret(v => !v)}>{showSecret ? 'Hide' : 'Show'}</button>
                   </div>
                 </div>
               )}
@@ -180,7 +180,7 @@ function StartScreen(props) {
                     <div className="secret-row">
                       <input className="text-input" type={showLlmKey ? 'text' : 'password'} placeholder="API key" value={llmApiKey}
                         autoComplete="off" onChange={e => setLlmApiKey(e.target.value)} disabled={running} />
-                      <button className="secret-toggle" type="button" tabIndex={-1} onClick={() => setShowLlmKey(v => !v)}>{showLlmKey ? 'Hide' : 'Show'}</button>
+                      <button className="secret-toggle" type="button" aria-label={showLlmKey ? 'Hide API key' : 'Show API key'} aria-pressed={showLlmKey} onClick={() => setShowLlmKey(v => !v)}>{showLlmKey ? 'Hide' : 'Show'}</button>
                     </div>
                   </>
                 )}
