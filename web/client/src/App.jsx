@@ -342,7 +342,7 @@ function ControlCard({ fid, controlId, data, defaultOpen }) {
   const [showEvidence, setShowEvidence] = useState(false)
   useEffect(() => { if (defaultOpen) setOpen(true) }, [defaultOpen])
 
-  const { key: skey, label: slabel } = statusInfo(data.status)
+  const { key: skey } = statusInfo(data.status)
   const findings = data.findings || []
   const recs = data.recommendations || []
   const narrative = data.nova_narrative
