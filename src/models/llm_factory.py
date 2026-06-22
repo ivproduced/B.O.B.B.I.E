@@ -31,6 +31,64 @@ def _env(key: str, default: str = "") -> str:
     return os.environ.get(key, default).strip()
 
 
+def _resolve_raw_setting(
+    ctx: dict[str, Any],
+    context_key: str,
+    env_key: str,
+    default: Any,
+) -> tuple[Any, str]:
+    if context_key in ctx and ctx[context_key] is not None:
+        return ctx[context_key], context_key
+    env_value = _env(env_key)
+    if env_value:
+        return env_value, env_key
+    return default, context_key
+
+
+def _resolve_float_setting(
+    ctx: dict[str, Any],
+    context_key: str,
+    env_key: str,
+    default: float,
+    *,
+    min_value: float,
+) -> float:
+    raw_value, source = _resolve_raw_setting(ctx, context_key, env_key, default)
+    try:
+        value = float(raw_value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"Invalid {source} value {raw_value!r}: expected a number."
+        ) from exc
+    if value < min_value:
+        raise ValueError(
+            f"Invalid {source} value {raw_value!r}: expected a number >= {min_value}."
+        )
+    return value
+
+
+def _resolve_int_setting(
+    ctx: dict[str, Any],
+    context_key: str,
+    env_key: str,
+    default: int,
+    *,
+    min_value: int,
+) -> int:
+    raw_value, source = _resolve_raw_setting(ctx, context_key, env_key, default)
+    try:
+        value = int(raw_value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"Invalid {source} value {raw_value!r}: expected an integer."
+        ) from exc
+    if value < min_value:
+        raise ValueError(
+            f"Invalid {source} value {raw_value!r}: expected an integer >= {min_value}."
+        )
+    return value
+
+
 def create_llm_client(context: dict[str, Any] | None = None) -> Any:
     """Return an LLM client with a LangChain-compatible `.invoke()` interface.
 
@@ -47,15 +105,19 @@ def create_llm_client(context: dict[str, Any] | None = None) -> Any:
         or "bedrock"
     ).lower()
 
-    temperature = float(
-        ctx.get("llm_temperature")
-        or _env("LLM_TEMPERATURE")
-        or 0.0
+    temperature = _resolve_float_setting(
+        ctx,
+        "llm_temperature",
+        "LLM_TEMPERATURE",
+        0.0,
+        min_value=0.0,
     )
-    max_tokens = int(
-        ctx.get("llm_max_tokens")
-        or _env("LLM_MAX_TOKENS")
-        or 4096
+    max_tokens = _resolve_int_setting(
+        ctx,
+        "llm_max_tokens",
+        "LLM_MAX_TOKENS",
+        4096,
+        min_value=1,
     )
     model_id = (
         str(ctx.get("llm_model_id", "") or "").strip()
