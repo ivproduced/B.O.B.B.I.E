@@ -2,7 +2,7 @@
 ## Development Progress Snapshot
 
 **Status Date:** February 16, 2026  
-**Source of Truth:** [BOBBIE_Build_Plan.md](BOBBIE_Build_Plan.md)  
+**Source of Truth:** [BOBBIE_Build_Plan.md](../BOBBIE_Build_Plan.md)  
 **Overall Program Status:** **Phase 5 (Submission Packaging) in progress**
 
 ---
@@ -79,7 +79,7 @@ Progress indicates strong technical readiness for the 10-control demo scope and 
 1. Complete demo recording/editing and produce one backup take.
 2. Run one final end-to-end assessment and regenerate final artifacts.
 3. Execute submission asset checklist (video URL, README links, repo docs, Devpost field validation).
-4. Update [BOBBIE_Build_Plan.md](BOBBIE_Build_Plan.md) to clear stale historical checkboxes or annotate why they remain open.
+4. Update [BOBBIE_Build_Plan.md](../BOBBIE_Build_Plan.md) to clear stale historical checkboxes or annotate why they remain open.
 5. Lock demo branch and tag release candidate for submission.
 
 ---

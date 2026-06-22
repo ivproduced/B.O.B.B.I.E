@@ -154,8 +154,12 @@ Typical output files:
 
 ## Submission Assets
 
-- Demo script: `DEMO_SCRIPT.md`
-- Submission checklist: `SUBMISSION_CHECKLIST.md`
+- Demo script: `docs/DEMO_SCRIPT.md`
+- Submission checklist: `docs/SUBMISSION_CHECKLIST.md`
+- Project status: `docs/PROJECT_STATUS.md`
+- Concept of Operations: `docs/CONOPS.md`
+- Architecture: `docs/architecture.md`
+- Bill of Materials (SBOM + AIBOM, CycloneDX 1.6): `docs/bom.cdx.json`
 - Build plan tracker: `BOBBIE_Build_Plan.md`
 
 ## License
