@@ -184,10 +184,6 @@ app.post('/api/run', runLimiter, (req, res) => {
     args.push('--llm-base-url', llmBaseUrl);
   }
 
-  if (llmApiKey) {
-    args.push('--llm-api-key', llmApiKey);
-  }
-
   if (contextFile) {
     const contextPath = resolvePathInUploads(contextFile);
     if (!contextPath) {
