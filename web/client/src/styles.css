@@ -2,8 +2,6 @@
    B.O.B.B.I.E. — Federal review UI  (USWDS-derived tokens)
    ════════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -31,8 +29,8 @@
   --line:      #dfe1e2;
   --line-soft: #ebedee;
 
-  --font: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'Source Code Pro', ui-monospace, monospace;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
   --radius: 8px;
   --shadow-sm: 0 1px 2px rgba(27,27,27,0.06), 0 1px 3px rgba(27,27,27,0.04);
