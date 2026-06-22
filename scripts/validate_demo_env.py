@@ -18,7 +18,7 @@ REQUIRED_FILES = [
 
 def _check_dependencies() -> dict[str, Any]:
     deps = {}
-    for module_name in ["streamlit", "boto3", "Evtx"]:
+    for module_name in ["boto3", "Evtx"]:
         try:
             __import__(module_name)
             deps[module_name] = {"ok": True}

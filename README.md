@@ -62,8 +62,10 @@ scripts/
 	run_dry_runs.py
 	freeze_demo_snapshots.py
 tests/           Unit/integration tests
-app.py           Streamlit demo UI
 run_assessment.py CLI entrypoint
+web/             React web UI + Node API server
+  client/        Vite/React frontend (port 5173)
+  server/        Express API server (port 3001)
 ```
 
 ## Prerequisites
@@ -99,17 +101,15 @@ python run_assessment.py \
 	--max-workers 8
 ```
 
-## Run (Streamlit)
+## Run (Web UI)
 
 ```bash
-streamlit run app.py
-```
+# API server
+cd web/server && npm install && node index.js &
 
-Then configure in the sidebar:
-- deterministic mode
-- timeout/worker settings
-- optional uploaded JSON evidence
-- optional catalog override
+# Frontend (http://localhost:5173)
+cd web/client && npm install && npx vite
+```
 
 ## Validation and Rehearsal Scripts
 
