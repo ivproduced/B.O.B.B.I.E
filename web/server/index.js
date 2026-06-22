@@ -132,15 +132,8 @@ app.post('/api/run', runLimiter, (req, res) => {
   fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
   const out = fs.createWriteStream(RUN_LOG, { flags: 'a' });
 
-  const args = [
-    'run_assessment.py',
-    '--deterministic',
-    '--nova-narrative',
-    '--output-dir', 'artifacts/final_run',
-    '--system-name', 'BOBBIE Web Run'
-  ];
-
   const {
+    systemName,
     applySuggestions,
     confidenceThreshold,
     contextFile,
@@ -159,6 +152,17 @@ app.post('/api/run', runLimiter, (req, res) => {
     llmBaseUrl,
     llmApiKey,
   } = req.body;
+
+  const safeSystemName =
+    typeof systemName === 'string' && systemName.trim() ? systemName.trim() : 'BOBBIE Web Run';
+
+  const args = [
+    'run_assessment.py',
+    '--deterministic',
+    '--nova-narrative',
+    '--output-dir', 'artifacts/final_run',
+    '--system-name', safeSystemName
+  ];
 
   if (applySuggestions) {
     args.push('--apply-nova-suggestions');
