@@ -280,13 +280,15 @@ function Overview({ report, poamItems, onJump }) {
           ) : (
             <ul className="todo-list">
               {top.map((f, i) => (
-                <li key={i} className="todo-item" onClick={() => onJump(f.control_id)}>
-                  <div className="todo-main">
-                    <RiskPill level={f.risk_level} />
-                    <span className="todo-ctl">{f.control_id} · {familyName(f.family_id)}</span>
-                  </div>
-                  <p className="todo-finding">{f.finding}</p>
-                  <span className="todo-link">Review control →</span>
+                <li key={i} className="todo-item">
+                  <button type="button" className="todo-button" onClick={() => onJump(f.control_id)}>
+                    <span className="todo-main">
+                      <RiskPill level={f.risk_level} />
+                      <span className="todo-ctl">{f.control_id} · {familyName(f.family_id)}</span>
+                    </span>
+                    <span className="todo-finding">{f.finding}</span>
+                    <span className="todo-link">Review control →</span>
+                  </button>
                 </li>
               ))}
             </ul>
