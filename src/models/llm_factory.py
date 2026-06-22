@@ -143,17 +143,26 @@ def create_llm_client(context: dict[str, Any] | None = None) -> Any:
     if provider == "openai":
         from langchain_openai import ChatOpenAI
 
-        api_key = (
-            str(ctx.get("llm_api_key", "") or "").strip()
-            or _env("LLM_API_KEY")
-            or _env("OPENAI_API_KEY")
-            or "sk-placeholder"
-        )
         base_url = (
             str(ctx.get("llm_base_url", "") or "").strip()
             or _env("LLM_BASE_URL")
             or None
         )
+        api_key = (
+            str(ctx.get("llm_api_key", "") or "").strip()
+            or _env("LLM_API_KEY")
+            or _env("OPENAI_API_KEY")
+        )
+        if not api_key:
+            if base_url:
+                api_key = "no-key-required"
+            else:
+                raise ValueError(
+                    "An OpenAI API key is required when using the public OpenAI "
+                    "endpoint. Set LLM_API_KEY or OPENAI_API_KEY, pass "
+                    "llm_api_key, or set LLM_BASE_URL for a local "
+                    "OpenAI-compatible server."
+                )
         kwargs: dict[str, Any] = {
             "model": model_id,
             "temperature": temperature,
