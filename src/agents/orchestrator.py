@@ -96,7 +96,7 @@ class BOBBIEOrchestrator:
     def _invoke_nova_executive_summary(
         self, summary: dict[str, Any], context: dict[str, Any]
     ) -> str | None:
-        """Call Nova Pro for a cross-control compliance executive narrative. Returns None on failure."""
+        """Call the configured LLM for a cross-control compliance executive narrative. Returns None on failure."""
         try:
             from src.models.llm_factory import create_llm_client
 
