@@ -132,14 +132,9 @@ app.post('/api/run', runLimiter, (req, res) => {
   fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
   const out = fs.createWriteStream(RUN_LOG, { flags: 'a' });
 
-  const args = [
-    'run_assessment.py',
-    '--deterministic',
-    '--nova-narrative',
-    '--output-dir', 'artifacts/final_run',
-  ];
 
   const {
+    systemName,
     applySuggestions,
     confidenceThreshold,
     contextFile,
@@ -157,7 +152,6 @@ app.post('/api/run', runLimiter, (req, res) => {
     llmModel,
     llmBaseUrl,
     llmApiKey,
-    systemName,
   } = req.body;
 
   // LLM01: sanitize system_name to prevent injection into report artifacts.
@@ -165,7 +159,13 @@ app.post('/api/run', runLimiter, (req, res) => {
     ? systemName.trim().slice(0, 200).replace(/[^\w\s\-.,():/]/g, '') || 'BOBBIE Web Run'
     : 'BOBBIE Web Run';
 
-  args.push('--system-name', safeSystemName);
+  const args = [
+    'run_assessment.py',
+    '--deterministic',
+    '--nova-narrative',
+    '--output-dir', 'artifacts/final_run',
+    '--system-name', safeSystemName
+  ];
 
   if (applySuggestions) {
     args.push('--apply-nova-suggestions');
@@ -185,10 +185,6 @@ app.post('/api/run', runLimiter, (req, res) => {
 
   if (llmBaseUrl) {
     args.push('--llm-base-url', llmBaseUrl);
-  }
-
-  if (llmApiKey) {
-    args.push('--llm-api-key', llmApiKey);
   }
 
   if (contextFile) {
