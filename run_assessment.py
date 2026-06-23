@@ -2,11 +2,22 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 from src.agents.orchestrator import BOBBIEOrchestrator
 from src.utils import ReportGenerator
+from src.security.input_sanitizer import sanitize_context_keys
+from src.security.audit_log import AuditLog
+
+_MAX_SYSTEM_NAME_LEN = 200
+_SAFE_NAME_PATTERN = re.compile(r"[^\w\s\-.,():/]")
+
+
+def _sanitize_system_name(name: str) -> str:
+    name = name.strip()[:_MAX_SYSTEM_NAME_LEN]
+    return _SAFE_NAME_PATTERN.sub("", name) or "BOBBIE Demo System"
 
 
 def main() -> None:
@@ -169,6 +180,7 @@ def main() -> None:
             "deterministic_mode": bool(args.deterministic),
         },
     }
+    pre_run_audit_log = AuditLog()
 
     if args.context_file:
         context_path = Path(args.context_file)
@@ -179,17 +191,41 @@ def main() -> None:
         if not isinstance(external_context, dict):
             print("ERROR: context file must contain a JSON object")
             raise SystemExit(1)
-        context.update(external_context)
+        # LLM08/AA02: strip protected keys so a context file cannot override
+        # security-critical settings already set by CLI flags.
+        safe_external = sanitize_context_keys(external_context)
+        stripped = sorted(set(external_context) - set(safe_external))
+        if stripped:
+            print(f"[BOBBIE] SECURITY: stripped protected context keys from context file: {stripped}", flush=True)
+            for key in stripped:
+                pre_run_audit_log.log_context_key_stripped(key)
+        context.update(safe_external)
 
     orchestrator = BOBBIEOrchestrator()
-    output = orchestrator.run(demo_plan, context=context)
+    output = orchestrator.run(demo_plan, context=context, pre_run_audit_entries=pre_run_audit_log.entries())
 
     report_generator = ReportGenerator()
+    safe_system_name = _sanitize_system_name(args.system_name)
     artifacts = report_generator.export_artifacts(
         output,
         output_dir=args.output_dir,
-        system_name=args.system_name,
+        system_name=safe_system_name,
     )
+
+    # AA06: write the audit log alongside other report artifacts.
+    audit_entries = output.get("_audit_log", [])
+    if audit_entries:
+        audit_path = output_path / "llm_audit_log.json"
+        audit_path.write_text(json.dumps(audit_entries, indent=2), encoding="utf-8")
+        artifacts["llm_audit_log"] = str(audit_path)
+        overrides = sum(1 for e in audit_entries if e.get("event_type") == "NOVA_SUGGESTION_APPLIED")
+        blocked = sum(1 for e in audit_entries if e.get("event_type") == "FAIL_TO_PASS_BLOCKED")
+        if overrides or blocked:
+            print(
+                f"[BOBBIE] SECURITY: LLM audit — {overrides} suggestion(s) applied, "
+                f"{blocked} FAIL→PASS promotion(s) blocked. See {audit_path}",
+                flush=True,
+            )
 
     print(json.dumps(output, indent=2, default=str))
     print(json.dumps({"artifacts": artifacts}, indent=2))

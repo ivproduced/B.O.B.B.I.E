@@ -1,10 +1,21 @@
 from __future__ import annotations
 
+import threading
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 from src.parsers import load_catalog_and_tag_baselines, load_standard_baselines
+from src.security.input_sanitizer import sanitize_prompt_field, sanitize_findings_list, validate_allowed_path
+from src.security.output_validator import validate_nova_suggestion
+from src.security.audit_log import get_default_log
+
+# Per-assessment LLM call budget enforced across all family agents (LLM04).
+# The orchestrator resets _llm_budget_remaining before each run via set_llm_budget().
+_LLM_BUDGET_DEFAULT: int = 100  # max Nova invocations per assessment run
+_llm_budget_lock = threading.Lock()
+_llm_budget_configured: int = _LLM_BUDGET_DEFAULT
+_llm_budget_remaining: int = _LLM_BUDGET_DEFAULT  # start at default; orchestrator resets per run
 
 
 @dataclass
@@ -12,6 +23,34 @@ class FamilyAssessmentResult:
     family_id: str
     controls: dict[str, Any] = field(default_factory=dict)
     summary: dict[str, Any] = field(default_factory=dict)
+
+
+def _consume_llm_budget(control_id: str) -> bool:
+    """Decrement the shared LLM call budget. Returns True if the call is allowed.
+
+    Addresses LLM04 (Model DoS) by capping the total number of Nova invocations
+    per assessment run regardless of thread count or control count.
+    """
+    global _llm_budget_remaining
+    with _llm_budget_lock:
+        if _llm_budget_remaining <= 0:
+            return False
+        _llm_budget_remaining -= 1
+        return True
+
+
+def _get_llm_budget_configured() -> int:
+    with _llm_budget_lock:
+        return _llm_budget_configured
+
+
+def set_llm_budget(budget: int) -> None:
+    """Set the per-run LLM call budget. Called by the orchestrator before each run."""
+    global _llm_budget_configured, _llm_budget_remaining
+    with _llm_budget_lock:
+        configured_budget = max(0, int(budget))
+        _llm_budget_configured = configured_budget
+        _llm_budget_remaining = configured_budget
 
 
 class BaseFamilyAgent:
@@ -24,6 +63,8 @@ class BaseFamilyAgent:
     def resolve_repo_root(self, context: dict[str, Any]) -> Path:
         context_root = context.get("repo_root")
         if context_root:
+            # Resolve without path traversal validation here – repo_root is
+            # set by the app itself (not uploaded data) after context sanitization.
             return Path(str(context_root)).expanduser().resolve()
 
         current = Path(__file__).resolve()
@@ -34,7 +75,20 @@ class BaseFamilyAgent:
 
     def load_tagged_catalog(self, context: dict[str, Any]) -> dict[str, Any]:
         repo_root = self.resolve_repo_root(context)
-        catalog_path = Path(context.get("catalog_path", repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json"))
+        default_catalog = repo_root / "data" / "NIST_SP-800-53_rev5_catalog.json"
+
+        raw_catalog_path = context.get("catalog_path", str(default_catalog))
+        # AA03: Validate catalog_path is within repo_root to prevent path traversal.
+        try:
+            catalog_path = validate_allowed_path(raw_catalog_path, repo_root, label="catalog_path")
+        except ValueError:
+            get_default_log().log_path_traversal_blocked(
+                label="catalog_path",
+                candidate=str(raw_catalog_path),
+                allowed_root=str(repo_root),
+            )
+            catalog_path = default_catalog
+
         baselines = load_standard_baselines(str(repo_root))
         return load_catalog_and_tag_baselines(str(catalog_path), baselines)
 
@@ -58,17 +112,26 @@ class BaseFamilyAgent:
         context: dict[str, Any],
     ) -> str | None:
         """Call the configured LLM for a human-readable risk narrative. Returns None on any failure."""
+        # LLM04: enforce per-assessment call budget.
+        if not _consume_llm_budget(control_id):
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
+            return None
         try:
             from src.models.llm_factory import create_llm_client
 
             llm = create_llm_client(context)
+
+            # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
+            safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
+            safe_status = sanitize_prompt_field(status, "status", max_len=30)
+            safe_findings = sanitize_findings_list(findings)
             findings_text = (
-                "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
+                "\n".join(f"- {f}" for f in safe_findings) if safe_findings else "- No findings"
             )
             prompt = (
                 f"You are a federal security compliance analyst assessing NIST SP 800-53.\n"
-                f"Control: {control_id.upper()}\n"
-                f"Assessment result: {status}\n"
+                f"Control: {safe_control_id}\n"
+                f"Assessment result: {safe_status}\n"
                 f"Findings:\n{findings_text}\n\n"
                 f"Write a concise 2-3 sentence risk narrative for this control. "
                 f"Describe the compliance posture and key risk implications. "
@@ -86,32 +149,37 @@ class BaseFamilyAgent:
         context: dict[str, Any],
     ) -> list[str]:
         """Call the configured LLM to generate concise remediation recommendations. Returns empty list on failure."""
+        # LLM04: enforce per-assessment call budget.
+        if not _consume_llm_budget(control_id):
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
+            return []
         try:
             from src.models.llm_factory import create_llm_client
 
             llm = create_llm_client(context)
+
+            # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
+            safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
+            safe_findings = sanitize_findings_list(findings)
             findings_text = (
-                "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
+                "\n".join(f"- {f}" for f in safe_findings) if safe_findings else "- No findings"
             )
             prompt = (
                 f"You are a federal security compliance engineer.\n"
-                f"Control: {control_id.upper()}\n"
+                f"Control: {safe_control_id}\n"
                 f"Context: The deterministic assessment produced a FAIL status with the following findings:\n{findings_text}\n\n"
                 f"Provide 3 concise, actionable remediation recommendations aimed at operators or engineers. "
                 f"Return each recommendation as a short bullet (one sentence)."
             )
             response = llm.invoke(prompt)
             text = str(response.content).strip()
-            # Split into lines and clean bullets
             lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
             recs: list[str] = []
             for ln in lines:
-                # remove leading bullet markers
                 if ln.startswith("- ") or ln.startswith("* ") or ln.startswith("• "):
                     recs.append(ln[2:].strip())
                 else:
                     recs.append(ln)
-            # prefer up to 5 recommendations
             return recs[:5]
         except Exception:
             return []
@@ -127,17 +195,26 @@ class BaseFamilyAgent:
         Returns a dict with keys: suggested_status, suggested_risk, confidence, explanation
         or None on failure.
         """
+        # LLM04: enforce per-assessment call budget.
+        if not _consume_llm_budget(control_id):
+            get_default_log().log_llm_budget_exceeded(control_id, _get_llm_budget_configured())
+            return None
         try:
             from src.models.llm_factory import create_llm_client
 
             llm = create_llm_client(context)
+
+            # LLM01/AA01: sanitize all user-controlled fields before prompt embedding.
+            safe_control_id = sanitize_prompt_field(control_id.upper(), "control_id", max_len=20)
+            safe_status = sanitize_prompt_field(status, "status", max_len=30)
+            safe_findings = sanitize_findings_list(findings)
             findings_text = (
-                "\n".join(f"- {f}" for f in findings) if findings else "- No findings"
+                "\n".join(f"- {f}" for f in safe_findings) if safe_findings else "- No findings"
             )
             prompt = (
                 f"You are a senior federal compliance analyst.\n"
-                f"Control: {control_id.upper()}\n"
-                f"Deterministic assessment result: {status}\n"
+                f"Control: {safe_control_id}\n"
+                f"Deterministic assessment result: {safe_status}\n"
                 f"Findings:\n{findings_text}\n\n"
                 f"Based on the findings, suggest a status (PASS or FAIL) and a risk level (LOW, MEDIUM, HIGH, CRITICAL). "
                 f"Return your answer as JSON with keys: suggested_status, suggested_risk, confidence (0.0-1.0), explanation. "
@@ -145,31 +222,37 @@ class BaseFamilyAgent:
             )
             response = llm.invoke(prompt)
             text = str(response.content).strip()
-            # Try to parse a simple JSON object from the response
             try:
                 import json as _json
 
                 parsed = _json.loads(text)
-                return {
+                raw_suggestion = {
                     "suggested_status": parsed.get("suggested_status"),
                     "suggested_risk": parsed.get("suggested_risk"),
-                    "confidence": float(parsed.get("confidence", 0.0)),
+                    "confidence": parsed.get("confidence", 0.0),
                     "explanation": parsed.get("explanation", ""),
                 }
             except Exception:
-                # Fallback: attempt to extract tokens heuristically
+                # Fallback: attempt to extract tokens heuristically.
                 lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
-                suggestion = {"suggested_status": None, "suggested_risk": None, "confidence": 0.0, "explanation": text}
+                raw_suggestion: dict[str, Any] = {
+                    "suggested_status": None,
+                    "suggested_risk": None,
+                    "confidence": 0.0,
+                    "explanation": text[:500],  # cap heuristic explanation length
+                }
                 for ln in lines:
                     up = ln.upper()
                     if "PASS" in up:
-                        suggestion["suggested_status"] = "PASS"
+                        raw_suggestion["suggested_status"] = "PASS"
                     if "FAIL" in up:
-                        suggestion["suggested_status"] = "FAIL"
+                        raw_suggestion["suggested_status"] = "FAIL"
                     for lvl in ("CRITICAL", "HIGH", "MEDIUM", "LOW"):
                         if lvl in up:
-                            suggestion["suggested_risk"] = lvl
-                return suggestion
+                            raw_suggestion["suggested_risk"] = lvl
+
+            # LLM02/AA05/AA02: validate and sanitize the LLM output before returning.
+            return validate_nova_suggestion(raw_suggestion, current_status=status)
         except Exception:
             return None
 
@@ -245,11 +328,34 @@ class BaseFamilyAgent:
                     # record originals for audit
                     result["_original_status"] = result.get("status")
                     result["_original_risk_level"] = result.get("risk_level")
+                    status_changed = False
+                    risk_changed = False
                     if suggestion.get("suggested_status"):
                         result["status"] = suggestion.get("suggested_status")
+                        status_changed = True
                     if suggestion.get("suggested_risk"):
                         result["risk_level"] = suggestion.get("suggested_risk")
-                    result["nova_suggestion_applied"] = True
+                        risk_changed = True
+                    if status_changed or risk_changed:
+                        result["nova_suggestion_applied"] = True
+                        # AA06: log the override to the audit trail.
+                        get_default_log().log_nova_suggestion_applied(
+                            control_id=control_id,
+                            original_status=str(result["_original_status"]),
+                            new_status=result.get("status"),
+                            original_risk=str(result["_original_risk_level"]),
+                            new_risk=result.get("risk_level"),
+                            confidence=confidence,
+                            explanation=str(suggestion.get("explanation", "")),
+                        )
+
+                # AA06: log any blocked FAIL→PASS attempts regardless of apply_flag.
+                if suggestion.get("_fail_to_pass_blocked"):
+                    get_default_log().log_fail_to_pass_blocked(
+                        control_id=control_id,
+                        confidence=confidence,
+                        explanation=str(suggestion.get("explanation", "")),
+                    )
 
         return result
 

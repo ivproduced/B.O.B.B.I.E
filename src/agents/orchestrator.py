@@ -5,6 +5,9 @@ from dataclasses import dataclass
 from typing import Any
 
 from src.agents.family_registry import get_family_agent, validate_plan_vs_registry
+from src.agents.base_family_agent import set_llm_budget, _LLM_BUDGET_DEFAULT
+from src.security.audit_log import reset_default_log
+from src.security.input_sanitizer import sanitize_prompt_field
 
 
 @dataclass
@@ -98,25 +101,33 @@ class BOBBIEOrchestrator:
     ) -> str | None:
         """Call the configured LLM for a cross-control compliance executive narrative. Returns None on failure."""
         try:
+            from src.agents.base_family_agent import _consume_llm_budget, _LLM_BUDGET_DEFAULT
             from src.models.llm_factory import create_llm_client
+            from src.security.audit_log import get_default_log
+
+            if not _consume_llm_budget("__executive_summary__"):
+                get_default_log().log_llm_budget_exceeded("__executive_summary__", _LLM_BUDGET_DEFAULT)
+                return None
 
             llm = create_llm_client(context)
             top_findings = summary.get("prioritized_findings", [])[:5]
-            findings_text = (
-                "\n".join(
-                    f"- [{f['risk_level']}] {f['control_id']}: {f['finding']}"
-                    for f in top_findings
-                )
-                if top_findings
-                else "- No failures detected"
-            )
+
+            # LLM01/AA01: sanitize finding text before embedding in the prompt.
+            findings_lines: list[str] = []
+            for f in top_findings:
+                safe_risk = sanitize_prompt_field(str(f.get("risk_level", "")), "risk_level", max_len=20)
+                safe_ctrl = sanitize_prompt_field(str(f.get("control_id", "")), "control_id", max_len=20)
+                safe_finding = sanitize_prompt_field(str(f.get("finding", "")), "finding", max_len=300)
+                findings_lines.append(f"- [{safe_risk}] {safe_ctrl}: {safe_finding}")
+
+            findings_text = "\n".join(findings_lines) if findings_lines else "- No failures detected"
             prompt = (
                 f"You are a federal security compliance officer.\n"
                 f"NIST SP 800-53 assessment results:\n"
-                f"- Total controls assessed: {summary.get('total_controls', 0)}\n"
-                f"- Passed: {summary.get('passed', 0)}\n"
-                f"- Failed: {summary.get('failed', 0)}\n"
-                f"- Compliance score: {summary.get('compliance_score', 0.0)}%\n\n"
+                f"- Total controls assessed: {int(summary.get('total_controls', 0))}\n"
+                f"- Passed: {int(summary.get('passed', 0))}\n"
+                f"- Failed: {int(summary.get('failed', 0))}\n"
+                f"- Compliance score: {float(summary.get('compliance_score', 0.0))}%\n\n"
                 f"Top priority findings:\n{findings_text}\n\n"
                 f"Write a 3-4 sentence executive compliance narrative. "
                 f"Summarize the overall security posture, the most critical risks, "
@@ -127,11 +138,26 @@ class BOBBIEOrchestrator:
         except Exception:
             return None
 
-    def run(self, control_plan: dict[str, list[str]], context: dict[str, Any] | None = None) -> dict[str, Any]:
+    def run(
+        self,
+        control_plan: dict[str, list[str]],
+        context: dict[str, Any] | None = None,
+        pre_run_audit_entries: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         context = context or {}
         orchestrator_cfg = context.get("orchestrator", {}) if isinstance(context.get("orchestrator", {}), dict) else {}
         deterministic_mode = bool(context.get("deterministic_run", orchestrator_cfg.get("deterministic_mode", False)))
         control_timeout_seconds = float(orchestrator_cfg.get("control_timeout_seconds", 30.0))
+
+        # LLM04: Reset audit log and initialise per-run LLM call budget before any work.
+        audit_log = reset_default_log()
+        if pre_run_audit_entries:
+            audit_log.append_entries(pre_run_audit_entries)
+        nova_enabled = bool(context.get("nova_narrative"))
+        # Budget: 3 Nova calls per control (narrative + recommendations + suggestion) + 1 executive.
+        llm_budget = (sum(len(ctrls) for ctrls in control_plan.values()) * 3 + 1) if nova_enabled else 0
+        llm_budget = min(llm_budget, _LLM_BUDGET_DEFAULT)
+        set_llm_budget(llm_budget)
 
         # Validate plan against declared registry and ensure atomic assignment.
         validate_plan_vs_registry(control_plan)
@@ -202,5 +228,8 @@ class BOBBIEOrchestrator:
             narrative = self._invoke_nova_executive_summary(output["summary"], context)
             if narrative:
                 output["summary"]["nova_narrative"] = narrative
+
+        # AA06: attach the audit log to the output so it travels with every report.
+        output["_audit_log"] = audit_log.entries()
 
         return output

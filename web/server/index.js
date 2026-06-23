@@ -132,6 +132,7 @@ app.post('/api/run', runLimiter, (req, res) => {
   fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
   const out = fs.createWriteStream(RUN_LOG, { flags: 'a' });
 
+
   const {
     systemName,
     applySuggestions,
@@ -153,8 +154,10 @@ app.post('/api/run', runLimiter, (req, res) => {
     llmApiKey,
   } = req.body;
 
-  const safeSystemName =
-    typeof systemName === 'string' && systemName.trim() ? systemName.trim() : 'BOBBIE Web Run';
+  // LLM01: sanitize system_name to prevent injection into report artifacts.
+  const safeSystemName = typeof systemName === 'string'
+    ? systemName.trim().slice(0, 200).replace(/[^\w\s\-.,():/]/g, '') || 'BOBBIE Web Run'
+    : 'BOBBIE Web Run';
 
   const args = [
     'run_assessment.py',
@@ -289,6 +292,18 @@ app.get('/api/poam', readLimiter, (req, res) => {
     res.json(data);
   } catch (e) {
     res.status(500).json({ error: 'Failed to parse poam' });
+  }
+});
+
+// AA06: expose the LLM audit log so the UI can surface override/block activity.
+app.get('/api/audit-log', readLimiter, (req, res) => {
+  const auditPath = path.join(ARTIFACTS_DIR, 'llm_audit_log.json');
+  if (!fs.existsSync(auditPath)) return res.json([]);
+  try {
+    const data = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
+    res.json(data);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to parse audit log' });
   }
 });
 

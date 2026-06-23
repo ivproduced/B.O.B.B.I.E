@@ -38,6 +38,12 @@ def test_nova_suggestion_not_applied_by_default(monkeypatch):
 
 
 def test_nova_suggestion_applied_when_flag_and_confident(monkeypatch):
+    """Nova cannot auto-promote FAIL→PASS even when apply_nova_suggestions is True.
+
+    LLM08/AA02: Excessive agency — an LLM must never unilaterally clear a
+    compliance failure. The suggestion is recorded but the status stays FAIL,
+    and the blocked attempt is flagged in the suggestion for human review.
+    """
     client = make_client(json.dumps({
         "suggested_status": "PASS",
         "suggested_risk": "MEDIUM",
@@ -50,11 +56,15 @@ def test_nova_suggestion_applied_when_flag_and_confident(monkeypatch):
     ctx = {"nova_narrative": True, "apply_nova_suggestions": True, "nova_confidence_threshold": 0.9}
     res = agent.assess_control("TT-1", ctx)
 
-    assert res["status"] == "PASS"
-    assert res["risk_level"] == "MEDIUM"
-    assert res.get("nova_suggestion_applied") is True
-    assert res.get("_original_status") == "FAIL"
-    assert res.get("_original_risk_level") == "LOW"
+    # FAIL→PASS promotion is blocked; the deterministic FAIL result must be preserved.
+    assert res["status"] == "FAIL", "Nova must not auto-promote FAIL→PASS (LLM08/AA02)"
+    assert not res.get("nova_suggestion_applied", False)
+    # The suggestion is still attached for a human reviewer, with the block flag.
+    assert "nova_suggestion" in res
+    assert res["nova_suggestion"].get("_fail_to_pass_blocked"), (
+        "Blocked FAIL→PASS must be flagged in nova_suggestion for human review"
+    )
+    assert res["nova_suggestion"].get("suggested_status") is None
 
 
 def test_nova_suggestion_not_applied_if_low_confidence(monkeypatch):
